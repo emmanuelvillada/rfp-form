@@ -1,0 +1,51 @@
+/* variables */
+:root{
+    --main-blue: #002931;
+    --secondary-blue: #0B95BB;
+    --white : #FFFFFF;
+}
+
+main{ 
+    margin-top: 40px;
+}
+
+.index-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+
+    padding: 20px;
+    color: var(--main-blue);
+    text-align: center;
+    margin-left: 120px;
+    margin-right: 120px;
+    display: flex;
+    justify-content: space-around;
+}
+
+h1 {
+    margin: 0;
+}
+
+.button-mis-solicitudes{
+    margin-bottom:0;
+}
+.buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+}
+
+button {
+    background-color: #0B95BB;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+}
