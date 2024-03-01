@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+// Verificar si las credenciales de sesión existen
+if(isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
+    $usuario = $_SESSION['usuario'];
+    $contraseña = $_SESSION['contraseña'];
+
+
+    echo "Usuario: $usuario <br>";
+    echo "Contraseña: $contraseña";
+} else {
+    echo "Las credenciales de sesión no existen.";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +37,7 @@
 
     <main class="index-container">
         <section class="section">
+            <!-- hacer echo con php para pintar el nombre del usuario -->
             <h1>BIENVENIDO A LA APLICACION DE FORMULARIO RFP</h1>
             <p>
                 Este formulario está creado con el propósito de ayudar a la creación de una solicitud RFP. Si desea crear una solicitud, diligencie el formulario y presione el botón enviar. Si desea gestionar sus solicitudes, ingrese en el botón Mis Solicitudes.
