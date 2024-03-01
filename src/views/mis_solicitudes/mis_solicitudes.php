@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+// Verificar si las credenciales de sesión existen
+if(isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
+    $usuario = $_SESSION['usuario'];
+    $contraseña = $_SESSION['contraseña'];
+    $id = $_SESSION['id'];
+
+
+    echo "Usuario: $usuario <br>";
+    echo "Contraseña: $contraseña";
+} else {
+    echo "Las credenciales de sesión no existen.";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +33,17 @@
             <a href="../index/index.php"><button class="button-mis-solicitudes" >Volver al formulario</button></a>
         </div>
     </header>
-</body>
+    <main>
+        <h2>Solicitudes</h2>
+        <?php 
+        include '../../controllers/solicitud_controller/SolicitudController.php';
+        $solicitudes = new SolicitudController();
 
+        $solicitudes_usuario = $solicitudes->get($id);
+
+        echo
+        ?>
+    </main>
+</body>
+    
 </html>
