@@ -1,51 +1,114 @@
-/* variables */
 :root{
-    --main-blue: #002931;
-    --secondary-blue: #0B95BB;
-    --white : #FFFFFF;
+    --blue: #001013fa;
+    --ligth-blue:#0B95BB;
 }
-
-main{ 
-    margin-top: 40px;
-}
-
-.index-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
 }
 
 .header {
-
+    background-color: #333;
+    color: white;
     padding: 20px;
-    color: var(--main-blue);
-    text-align: center;
-    margin-left: 120px;
-    margin-right: 120px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
 }
 
-h1 {
+.header h1 {
     margin: 0;
 }
 
-.button-mis-solicitudes{
-    margin-bottom:0;
-}
-.buttons {
-    margin-top: 10px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    
+h1, h2 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
-button {
-    background-color: #0B95BB;
-    color: #FFFFFF;
-    border: none;
+p, label, input, select {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.buttons {
+    text-align: right;
+}
+
+.button-mis-solicitudes {
+    background-color: #4CAF50;
+    color: white;
     padding: 10px 20px;
-    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+}
+
+.index-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section h1 {
+    margin-top: 0;
+}
+
+.section p {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.label-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+label {
+    width: 320px;
+    padding: 4px;
+}
+
+.input-container {
+    flex: 1;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #2f6e31;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 250px;
+    height: 50px;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.hidden {
+    display: none;
 }
