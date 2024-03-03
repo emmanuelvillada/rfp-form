@@ -41,7 +41,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
         $solicitudes_usuario = $solicitudes->get($id);
 
-        echo
+        echo "";
         ?>
     </main>
 </body>
