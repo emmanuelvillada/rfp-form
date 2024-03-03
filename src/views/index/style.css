@@ -1,3 +1,8 @@
+:root{
+    --blue1 : #002931;
+    --blue2 : #0B95BB;
+
+}
 
 body {
     margin: 0;
@@ -6,12 +11,15 @@ body {
 }
 
 .header {
-    background-color: #002931;
+    background-color: white;
     color: white;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid var(--blue1);
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .header h1 {
@@ -35,7 +43,7 @@ p, label, input, select {
 }
 
 .button-mis-solicitudes {
-    background-color: #4CAF50;
+    background-color: var(--blue2);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -95,13 +103,13 @@ input[type="date"],
 input[type="file"] {
     width: 100%;
     padding: 10px;
-    border: 1px solid #2f6e31;
+    border: 1px solid var(--blue1);
     border-radius: 5px;
     box-sizing: border-box;
 }
 
 input[type="submit"] {
-    background-color: #4CAF50;
+    background-color: var(--blue2);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -112,7 +120,11 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #087795;
+}
+
+.button-mis-solicitudes:hover{
+    background-color: #087795;
 }
 
 .hidden {
