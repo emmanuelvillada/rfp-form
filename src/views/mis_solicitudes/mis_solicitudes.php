@@ -45,5 +45,6 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
         ?>
     </main>
 </body>
-    
+
+<script src="script.js"></script>
 </html>
