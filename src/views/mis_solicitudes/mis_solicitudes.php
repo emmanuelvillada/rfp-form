@@ -30,7 +30,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
 <body>
     <header class="header">
-        <img src="../../../public/images/Logo HWI .png" alt="">
+        <img class="logo-hwi" src="../../../public/images/Logo HWI .png" alt="">
         <div class="buttons">
             <a href="../index/index.php"><button class="button-volver">Volver al formulario</button></a>
         </div>

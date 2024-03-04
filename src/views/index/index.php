@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Verificar si las credenciales de sesión existen
+// Verificar si las credenciales de sesión existen, queda pendiente revisar el area para saber si es administrador o usuario
 if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
     $usuario = $_SESSION['usuario'];
     $contraseña = $_SESSION['contraseña'];
@@ -32,6 +32,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
         <img class="logo-hwi" src="../../../public\images\Logo HWI .png" alt="Logo HWI">
         <div class="buttons">
             <a href="../mis_solicitudes/mis_solicitudes.php"><button class="button-mis-solicitudes">Mis Solicitudes</button></a>
+            <a href="../actualizar_solicitud/actualizar_solicitud.php"><button class="button-mis-solicitudes">Actualizar Solicitud</button></a>
         </div>
     </header>
 

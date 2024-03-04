@@ -51,7 +51,7 @@ p, label, input, select {
     cursor: pointer;
 }
 
-.container-main {
+.container {
     max-width: 900px;
     margin: 20px auto;
     padding: 20px;
@@ -68,16 +68,7 @@ p, label, input, select {
     margin-bottom: 20px;
 }
 
-form {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-column-gap: 24px;
-    grid-row-gap: 20px;
 
-    .boton-submit { grid-area: 4 / 2 / 5 / 3; }
-
-}
 
 .label-container {
     display: flex;
