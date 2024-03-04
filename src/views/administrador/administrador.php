@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Administrador RFP</title>
-  <link rel="stylesheet" href="/src/views/administrador/style.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital
@@ -17,8 +17,8 @@
 <header class="header">
         <img class="logo-hwi" src="../../../public\images\Logo HWI .png" alt="Logo HWI">
         <div class="buttons">
-            <a href="../solicitudes_pendientes/solicitudes_pendientes.php"><button class="button-mis-solicitudes">Solicitudes Pendientes</button></a>
-            <a href="../modificar_fase/modificar_fase.php"><button class="button-mis-solicitudes">Modificar fase de solicitud</button></a>
+            <a href="../solicitudes_pendientes/solicitudes_pendientes.php"><button class="button-solicitudes-pendientes">Solicitudes Pendientes</button></a>
+            <a href="../modificar_fase/modificar_fase.php"><button class="button-modificar-fase">Modificar fase de solicitud</button></a>
         </div>
     </header>
   <main class="container-main">

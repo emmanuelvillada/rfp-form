@@ -36,7 +36,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
         </div>
     </header>
     <main class="container-main">
-        <h2 class="h2">Solicitudes</h2>
+        <h2 class="h2">Mis Solicitudes</h2>
         <?php
         include '../../controllers/solicitud_controller/SolicitudController.php';
         $solicitudes = new SolicitudController();
@@ -48,13 +48,51 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
         <table>
             <thead>
                 <tr>
-                    <td>
-
-                    </td>
+                    <th>Id solicitud</th>
+                    <th>fase</th>
+                    <th>Fecha creacion</th>
+                    <th>Fecha de requerimiento </th>
+                    <th>Tipo </th>
+                    <th>Producto o servicio</th>
+                    <th>Detalle</th>
+                    <th>Descripcion</th>
+                    <th>Necesidad</th>
+                    <th>Comentario</th>
                 </tr>
             </thead>
             <tbody>
-
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        02/02/2024
+                    </td>
+                    <td>
+                        15/02/2024
+                    </td>
+                    <td>
+                        Puntual
+                    </td>
+                    <td>
+                        Producto
+                    </td>
+                    <td>
+                        varilla de metal para sostener caja
+                    </td>
+                    <td>
+                        Una varilla de 20x5 cm de metal
+                    </td>
+                    <td>
+                        Se necesita para el area de mantenimiento
+                    </td>
+                    <td>
+                        Se precisa notificar al area de sst
+                    </td>
+                </tr>
             </tbody>
         </table>
     </main>

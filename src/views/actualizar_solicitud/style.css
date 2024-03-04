@@ -11,16 +11,15 @@ body {
 }
 
 .header {
-    background-color: white;
-    color: white;
+    background-color:  #ffffff;;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid var(--blue1);
-    border-radius: 5px;
-    box-sizing: border-box;
+    border-bottom: 1px solid #ddd; /* Borde inferior para separación */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 
 .img h1 {
     margin: 0;
