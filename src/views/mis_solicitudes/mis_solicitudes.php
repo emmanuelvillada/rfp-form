@@ -58,6 +58,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <th>Descripcion</th>
                     <th>Necesidad</th>
                     <th>Comentario</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

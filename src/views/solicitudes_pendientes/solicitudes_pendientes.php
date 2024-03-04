@@ -16,7 +16,7 @@
 <header class="header">
         <img class="logo-hwi" src="../../../public/images/Logo HWI .png" alt="">
         <div class="buttons">
-            <a href="../index/index.php"><button class="button-volver">Volver al iniciio</button></a>
+            <a href="../administrador/administrador.php"><button class="button-volver">Volver al iniciio</button></a>
         </div>
     </header>
     <main class="container-main">
@@ -36,9 +36,42 @@
                 <th>Descripcion</th>
                 <th>Necesidad</th>
                 <th>Comentario</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
+            <tr>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        02/02/2024
+                    </td>
+                    <td>
+                        15/02/2024
+                    </td>
+                    <td>
+                        Puntual
+                    </td>
+                    <td>
+                        Producto
+                    </td>
+                    <td>
+                        varilla de metal para sostener caja
+                    </td>
+                    <td>
+                        Una varilla de 20x5 cm de metal
+                    </td>
+                    <td>
+                        Se necesita para el area de mantenimiento
+                    </td>
+                    <td>
+                        Se precisa notificar al area de sst
+                    </td>
+                    <td>
+                        <button class="button-categorizar"type="button">Categorizar</button>
+                    </td>
+                </tr>
                 <?php
                 
             
