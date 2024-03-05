@@ -38,9 +38,9 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
     <main class="container-main">
         <h2 class="h2">Mis Solicitudes</h2>
         <div class="button-filtro">
-            <button>Solicitudes Aceptadas</button>
-            <button>Solicitudes Rechazadas</button>
-            <button>Solicitudes Pendientes</button>
+            <button Onclick="mostrar_form(solicitudes_aceptadas)">Solicitudes Aceptadas</button>
+            <button Onclick="mostrar_form(solicitudes_rechazadas)">Solicitudes Rechazadas</button>
+            <button Onclick="mostrar_form(solicitudes_pendientes)">Solicitudes Pendientes</button>
         </div>
         <?php
         include '../../controllers/solicitud_controller/SolicitudController.php';
@@ -50,7 +50,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
         echo "$solicitudes_usuario";
         ?>
-        <table>
+        <table id="form-complete">
             <thead>
                 <tr>
                     <th>Id solicitud</th>
@@ -102,6 +102,163 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 </tr>
             </tbody>
         </table>
+        <table id="form-solicitudes-aceptadas">
+            <thead>
+                <tr>
+                    <th>Id solicitud</th>
+                    <th>fase</th>
+                    <th>Fecha creacion</th>
+                    <th>Fecha de requerimiento </th>
+                    <th>Tipo </th>
+                    <th>Producto o servicio</th>
+                    <th>Detalle</th>
+                    <th>Descripcion</th>
+                    <th>Necesidad</th>
+                    <th>Comentario</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        02/02/2024
+                    </td>
+                    <td>
+                        15/02/2024
+                    </td>
+                    <td>
+                        Puntual
+                    </td>
+                    <td>
+                        Producto
+                    </td>
+                    <td>
+                        varilla de metal para sostener caja
+                    </td>
+                    <td>
+                        Una varilla de 20x5 cm de metal
+                    </td>
+                    <td>
+                        Se necesita para el area de mantenimiento
+                    </td>
+                    <td>
+                        Se precisa notificar al area de sst
+                    </td>
+                    <td><button class ="button-eliminar" type="button">Eliminar</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="form-solicitudes-rechazadas">
+            <thead>
+                <tr>
+                    <th>Id solicitud</th>
+                    <th>fase</th>
+                    <th>Fecha creacion</th>
+                    <th>Fecha de requerimiento </th>
+                    <th>Tipo </th>
+                    <th>Producto o servicio</th>
+                    <th>Detalle</th>
+                    <th>Descripcion</th>
+                    <th>Necesidad</th>
+                    <th>Comentario</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        02/02/2024
+                    </td>
+                    <td>
+                        15/02/2024
+                    </td>
+                    <td>
+                        Puntual
+                    </td>
+                    <td>
+                        Producto
+                    </td>
+                    <td>
+                        varilla de metal para sostener caja
+                    </td>
+                    <td>
+                        Una varilla de 20x5 cm de metal
+                    </td>
+                    <td>
+                        Se necesita para el area de mantenimiento
+                    </td>
+                    <td>
+                        Se precisa notificar al area de sst
+                    </td>
+                    <td><button class ="button-eliminar" type="button">Eliminar</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="form-solicitudes-pendientes">
+            <thead>
+                <tr>
+                    <th>Id solicitud</th>
+                    <th>fase</th>
+                    <th>Fecha creacion</th>
+                    <th>Fecha de requerimiento </th>
+                    <th>Tipo </th>
+                    <th>Producto o servicio</th>
+                    <th>Detalle</th>
+                    <th>Descripcion</th>
+                    <th>Necesidad</th>
+                    <th>Comentario</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        02/02/2024
+                    </td>
+                    <td>
+                        15/02/2024
+                    </td>
+                    <td>
+                        Puntual
+                    </td>
+                    <td>
+                        Producto
+                    </td>
+                    <td>
+                        varilla de metal para sostener caja
+                    </td>
+                    <td>
+                        Una varilla de 20x5 cm de metal
+                    </td>
+                    <td>
+                        Se necesita para el area de mantenimiento
+                    </td>
+                    <td>
+                        Se precisa notificar al area de sst
+                    </td>
+                    <td><button class ="button-eliminar" type="button">Eliminar</button></td>
+                </tr>
+            </tbody>
+        </table>
+        
     </main>
 </body>
 
