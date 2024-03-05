@@ -127,3 +127,14 @@ tr:nth-child(odd) {
 tr:hover {
     background-color: #f1f1f117;
 }
+
+.button-eliminar{
+    
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    
+}

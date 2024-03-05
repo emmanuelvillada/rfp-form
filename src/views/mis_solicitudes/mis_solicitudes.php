@@ -93,6 +93,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <td>
                         Se precisa notificar al area de sst
                     </td>
+                    <td><button class ="button-eliminar" type="button">Eliminar</button></td>
                 </tr>
             </tbody>
         </table>
