@@ -1,5 +1,5 @@
 <?php
-class SolicitudController
+class solicitud_controller
 {
         public function __CONSTRUCT()
     {
@@ -76,6 +76,13 @@ class SolicitudController
     {
         try
             {
+                $txtfecha_creacion_rfp_creacion = getdate();
+
+                $id__rfp_presupuesto_solicitud = 
+ 
+                $txtEmail = $_POST['txtEmail'];
+ 
+                $txtMessage = $_POST['txtMessage'];
             $sql = "INSERT INTO smart_center_rfp_solicitudes (id..,modelo,kilometros)
             VALUES (?, ?, ?)";
             $this->pdo->prepare($sql)
