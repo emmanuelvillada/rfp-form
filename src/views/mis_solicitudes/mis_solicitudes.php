@@ -37,13 +37,18 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
     </header>
     <main class="container-main">
         <h2 class="h2">Mis Solicitudes</h2>
+        <div class="button-filtro">
+            <button>Solicitudes Aceptadas</button>
+            <button>Solicitudes Rechazadas</button>
+            <button>Solicitudes Pendientes</button>
+        </div>
         <?php
         include '../../controllers/solicitud_controller/SolicitudController.php';
         $solicitudes = new SolicitudController();
 
         $solicitudes_usuario = $solicitudes->get($id);
 
-        echo "";
+        echo "$solicitudes_usuario";
         ?>
         <table>
             <thead>

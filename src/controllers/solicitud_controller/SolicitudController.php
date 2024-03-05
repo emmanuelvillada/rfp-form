@@ -14,10 +14,10 @@ class SolicitudController
     die($e->getMessage());
     }
     }
-}
 
 
-    // función para enlistar solicitudes
+
+    // función para enlistar todas las solicitudes solicitudes
     public function get_solicitudes()
     {
         
@@ -49,90 +49,100 @@ class SolicitudController
     // Función para mostrar las solicitudes de un usuario solicitud en específico
     public function get_solicitud($id)
     {
-        // Datos de conexión a la base de datos
-        $host = 'localhost';
-        $dbname = 'rfp';
-        $username = 'localhost';
-        $password = '1903';
-
-        try {
-            // Crear una instancia de la clase PDO para establecer la conexión
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-
-            // Configurar PDO para que lance excepciones en caso de errores
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            // Consulta SQL para seleccionar todos los datos de la tabla solicitudes
-            $sql = "SELECT * FROM smart_center_rfp_solicitudes where id_rfp_usuario = $id";
-
-            // Preparar la consulta
-            $stmt = $pdo->prepare($sql);
-
-            // Ejecutar la consulta
-            $stmt->execute();
-
-            // Obtener todos los resultados como un array asociativo
-            $solicitudes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            return $solicitudes;
-
-            // Mostrar los resultados
-            foreach ($solicitudes as $solicitud) {
-                echo "ID: " . $solicitud['id'] . ", Nombre: " . $solicitud['nombre'] . ", Edad: " . $solicitud['edad'] . "<br>";
+        try
+            {
+            $result = array();
+            $stm = $this->pdo->prepare("SELECT * FROM smart_center_rfp_solicitudes WHERE id_usuario_solicitud = $id");
+            $stm->execute();
+            foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
+            {
+            $alm = new Solicitud();
+            $alm->__SET('id', $r->id);
+            $alm->__SET('marca', $r->marca);
+            $alm->__SET('modelo', $r->modelo);
+            $alm->__SET('kilometros', $r->kilometros);
+            $result[] = $alm;
             }
-        } catch (PDOException $e) {
-            // Manejar errores de conexión
-            echo "Error de conexión: " . $e->getMessage();
-        }
-
-        echo "Mostrar usuario con ID: " . $id;
+            return $result;
+            }
+            catch(Exception $e)
+            {
+            die($e->getMessage());
+            }
     }
 
-    public function create_solicitud($solicitud)
+    // crear una solicitud
+    public function create_solicitud(Solicitud $data)
     {
-        // Función para la creación de una solicitud
-        // Datos de conexión a la base de datos
-        $host = 'localhost';
-        $dbname = 'rfp';
-        $username = 'localhost';
-        $password = '1903';
-
-        try {
-            // Crear una instancia de la clase PDO para establecer la conexión
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-
-            // Configurar PDO para que lance excepciones en caso de errores
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            // Consulta SQL para seleccionar todos los datos de la tabla solicitudes
-            $sql = "INSERT INTO smart_center_rfp_solicitudes ";
-
-            // Preparar la consulta
-            $stmt = $pdo->prepare($sql);
-
-            // Ejecutar la consulta
-            $stmt->execute();
+        try
+            {
+            $sql = "INSERT INTO smart_center_rfp_solicitudes (id..,modelo,kilometros)
+            VALUES (?, ?, ?)";
+            $this->pdo->prepare($sql)
+            ->execute(
+            array(
+            $data->__GET('marca'),
+            $data->__GET('modelo'),
+            $data->__GET('kilometros')
+            )
+            );
+            } catch (Exception $e)
+            {
+            die($e->getMessage());
+            }
 
         echo "Mostrar formulario de creación de usuario";
     }
 
-    
 
-    public function edit($id)
+
+    public function update(Solicitud $data)
     {
-        // Lógica para mostrar el formulario de edición de usuario
-        echo "Mostrar formulario de edición de usuario para el usuario con ID: " . $id;
+        try
+            {
+            $sql = "UPDATE smart_center_rfp_solicitud SET
+            marca = ?,
+            modelo = ?,
+            kilometros = ?
+            WHERE id = ?";
+            $this->pdo->prepare($sql)
+            ->execute(
+            array(
+            $data->__GET('marca'),
+            $data->__GET('modelo'),
+            $data->__GET('kilometros'),
+            $data->__GET('id')
+            )
+            );
+            } catch (Exception $e)
+            {
+            die($e->getMessage());
+            }
+
     }
 
-    public function update($id)
+    // eliminar una solicitud con soft delete
+    public function delete($id)
     {
-        // Lógica para actualizar un usuario en la base de datos
-        echo "Actualizar usuario con ID: " . $id;
-    }
-
-    public function destroy($id)
-    {
-        // Lógica para eliminar un usuario de la base de datos
-        echo "Eliminar usuario con ID: " . $id;
+        
+        try
+        {
+        $sql = "UPDATE smart_center_rfp_solicitud SET
+        eliminado = 1,
+        WHERE id = $id";
+        $this->pdo->prepare($sql)
+        ->execute(
+        array(
+        $data->__GET('marca'),
+        $data->__GET('modelo'),
+        $data->__GET('kilometros'),
+        $data->__GET('id')
+        )
+        );
+        } catch (Exception $e)
+        {
+        die($e->getMessage());
+        }
+        
     }
 }
