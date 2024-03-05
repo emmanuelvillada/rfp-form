@@ -81,7 +81,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         </span>
                     </label>
                     <div class="radio-buttons">
-                        <input type="radio" name=" " value="capex" id="capexRadio" checked>
+                        <input type="radio" name="tipo_presupuesto" value="capex" id="capexRadio" checked>
                         <label for="capexRadio">Capex</label>
                         <input type="radio" name="tipo_presupuesto" value="opex" id="opexRadio">
                         <label for="opexRadio">Opex</label>

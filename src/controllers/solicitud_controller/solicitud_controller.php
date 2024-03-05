@@ -76,9 +76,12 @@ class solicitud_controller
     {
         try
             {
+                // creando el presupuesto de la solicitud con el controlador presupuesto
+                $presupuesto = new Presupuesto;
+                $presupuesto->__SET('tipo_presupuesto_rfp_presupuesto', $tipo_presupuesto = $_POST['tipo_presupuesto'])
                 $txtfecha_creacion_rfp_creacion = getdate();
 
-                $id__rfp_presupuesto_solicitud = 
+                $id__rfp_presupuesto_solicitud =  
  
                 $txtEmail = $_POST['txtEmail'];
  
