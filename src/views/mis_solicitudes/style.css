@@ -138,3 +138,10 @@ tr:hover {
         cursor: pointer;
     
 }
+
+.button-filtro{
+    display: flex;
+    flex-direction: row;
+    max-width: 80px;
+    justify-content: center;
+}
