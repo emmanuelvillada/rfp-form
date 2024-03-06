@@ -32,10 +32,22 @@ toggleCampos();
 //script para limitar el calendario a una echa de 8 dias
 
 // Obtener la fecha actual
+const inputFecha = document.getElementById('fecha_requerimiento');
 const fechaActual = new Date();
 // Sumar 8 días a la fecha actual
 fechaActual.setDate(fechaActual.getDate() + 8);
 
 const fechaMinima = fechaActual.toISOString().split('T')[0];
 // Establecer la fecha mínima en el input date
-document.getElementById('fecha_requerimiento').setAttribute('min', fechaMinima);
+inputFecha.setAttribute('min', fechaMinima);
+
+//funcion para que al pasar el mouse por encima de una fecha bloqueada salga un aviso
+inputFecha.addEventListener('mouseover', function(event) {
+    const fechaSeleccionada = new Date(event.target.value);
+    const fechaMinimaObj = new Date(fechaMinima); // Convertir fechaMinima a un objeto Date
+    console.log("llega al evento");
+    if (fechaSeleccionada < fechaMinimaObj) {
+        console.log("llega al alert");
+        alert("¡El tiempo mínimo para la negociación de una solicitud son 8 días!");
+    }
+});

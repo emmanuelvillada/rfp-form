@@ -114,6 +114,7 @@ input[type="text"]{
     border: 1px solid var(--blue1);
     border-radius: 5px;
     box-sizing: border-box;
+    text-align: start;
 }
 input[type="number"],
 input[type="date"]{

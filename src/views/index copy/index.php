@@ -44,7 +44,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
             </div>
             <form action="public\controllers\solicitud_controller\SolicitudController.php" method="post">
 
-                <div>
+                <div class="div1">
 
                     <label for="tipo_solicitud">1. Elija si su solicitud es puntual o regular:
                         <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
@@ -59,7 +59,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     </div>
                 </div>
 
-                <div>
+                <div class="div2">
                     <label for="producto_servicio">2. Elija si su solicitud es un suministro o un servicio:
                         <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
@@ -74,7 +74,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 </div>
 
 
-                <div>
+                <div class="div3">
                     <label for="tipo_presupuesto">3. Elija su tipo de presupuesto:
                         <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
@@ -92,47 +92,57 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
 
                     <div id="seq_rn" class="hidden">
-                        <label for="seq_rn"> Digite su Seq_rn:</label>
+                        <label for="seq_rn"> Digite su RN:</label>
+                        <br>
                         <input type="number" name="seq_rn">
+                        <br>
+                        <label for="monto_presupuesto">Digite el monto de su presupuesto :</label>
+                        <input type="number" name="monto_presupuesto" id="monto_presupuesto">
                     </div>
 
                     <div id="ceco" class="hidden">
-                        <label for="ceco"> Digite su CECO:</label>
-                        <input type="number" name="ceco">
+                        <label for="ceco"> Seleccione su CeCo:</label>
+                        <br>        
+                        <select name="ceco-select" id="ceco-select">
+                            <option value="ceco1">CeCo1</option>
+                        </select>
+                        <br>
+                        <label for="monto_presupuesto">Digite el monto de su presupuesto :</label>
+                        <input type="number" name="monto_presupuesto" id="monto_presupuesto">
                     </div>
 
                 </div>
 
-                <div>
-                    <label for="detalle_solicitud">4. Detalle el producto y/o servicio que requiere:
+                <div class="div4">
+                    <label for="detalle_solicitud">4. ¿Que?:
                         <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
                         </span>
                     </label>
-                    <input type="text" name="detalle_solicitud" id="detalle_solicitud">
+                    <input placeholder="Describa que producto o servicio requiere." type="text" name="detalle_solicitud" id="detalle_solicitud">
                 </div>
 
-                <div>
-                    <label for="descripcion_solicitud">5. Describa minuciosamente el producto y/o servicio que requiere:
+                <div class="div5">
+                    <label for="requerimiento_solicitud">5. ¿Para que?
                         <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
                         </span>
                     </label>
-                    <input type="text" name="descripcion_solicitud" id="descripcion_solicitud">
-                </div>
+                    <input placeholder="indique " type="text" name="requerimiento_solicitud" id="requerimiento_solicitud">
+                    </div>
 
-                <div>
-                    <label for="requerimiento_solicitud">6. Informe para qué se requiere el producto y/o servicio que requiere:
+                <div class="div6">
+                    <label for="descripcion_solicitud">6. ¿Como?
                         <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
                         </span>
                     </label>
-                    <input type="text" name="requerimiento_solicitud" id="requerimiento_solicitud">
+                    <input placeholder="especifique como necesita el producto o servicio, no omita informacion." type="text" name="descripcion_solicitud" id="descripcion_solicitud">
                 </div>
 
-                <div>
-                    <label for="fecha_requerimiento">7. Indique la fecha para la cual requiere su producto y/o servicio,
-                        la fecha debe ser mayor a 8 días desde la fecha actual:
+                <div class="div7">
+                    <label for="fecha_requerimiento">7. Indique la fecha para la cual requiere su producto y/o servicio:
+                        <br>
                         <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
                         </span>
@@ -140,7 +150,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <input type="date" name="fecha_requerimiento" id="fecha_requerimiento">
                 </div>
 
-                <div>
+                <div class="div8">
                     <label for="archivos">8. Adjunte los archivos que considere necesarios para su solicitud:
                         <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
@@ -149,7 +159,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <input type="file" name="archivos" id="archivos" multiple>
                 </div>
 
-                <div>
+                <div class="div9">
                     <label for="comentario">9. Comentarios:
                         <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
@@ -158,7 +168,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <input type="text" name="comentario" id="comentario">
                 </div>
 
-                <input class="boton-submit" type="submit" value="Crear Solicitud">
+                <div class="div10"><input class="button-submit" type="submit" value="Crear Solicitud"></div>
             </form>
         </section>
     </main>

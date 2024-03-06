@@ -119,7 +119,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                             Regular es una compra que se repetira varias veces a través del tiempo.
                         </span>
                     </label>
-                    <input placeholder="" type="text" name="detalle_solicitud" id="detalle_solicitud">
+                    <input placeholder="Describa que producto o servicio requiere." type="text" name="detalle_solicitud" id="detalle_solicitud">
                 </div>
 
                 <div class="div5">
@@ -128,7 +128,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                             Regular es una compra que se repetira varias veces a través del tiempo.
                         </span>
                     </label>
-                    <input type="text" name="requerimiento_solicitud" id="requerimiento_solicitud">
+                    <input placeholder="indique " type="text" name="requerimiento_solicitud" id="requerimiento_solicitud">
                     </div>
 
                 <div class="div6">
@@ -137,7 +137,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                             Regular es una compra que se repetira varias veces a través del tiempo.
                         </span>
                     </label>
-                    <input type="text" name="descripcion_solicitud" id="descripcion_solicitud">
+                    <input placeholder="especifique como necesita el producto o servicio, no omita informacion." type="text" name="descripcion_solicitud" id="descripcion_solicitud">
                 </div>
 
                 <div class="div7">

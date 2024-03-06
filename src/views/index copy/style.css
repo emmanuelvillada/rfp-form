@@ -50,7 +50,7 @@ p, label, input, select {
 }
 
 .index-container {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 20px auto;
     padding: 20px;
     background-color: white;
@@ -67,13 +67,25 @@ p, label, input, select {
 }
 
 form {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-column-gap: 24px;
-    grid-row-gap: 20px;
-
-    .boton-submit { grid-area: 4 / 2 / 5 / 3; }
+    
+    
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 20px;
+        
+        
+        .div1 { grid-area: 1 / 1 / 2 / 2; }
+        .div2 { grid-area: 2 / 1 / 3 / 2; }
+        .div3 { grid-area: 3 / 1 / 4 / 2; }
+        .div4 { grid-area: 4 / 1 / 5 / 2; }
+        .div5 { grid-area: 5 / 1 / 6 / 2; }
+        .div6 { grid-area: 1 / 2 / 2 / 3; }
+        .div7 { grid-area: 2 / 2 / 3 / 3; }
+        .div8 { grid-area: 3 / 2 / 4 / 3; }
+        .div9 { grid-area: 4 / 2 / 5 / 3; }
+        .div10 { grid-area: 5 / 2 / 6 / 3; }
 
 }
 
@@ -95,9 +107,23 @@ label {
     flex: 1;
 }
 
-input[type="text"],
+input[type="text"]{
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid var(--blue1);
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: start;
+}
 input[type="number"],
-input[type="date"],
+input[type="date"]{
+    width: 40%;
+    padding: 10px;
+    border: 1px solid var(--blue1);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
 input[type="file"] {
     width: 100%;
     padding: 10px;
@@ -150,3 +176,38 @@ label:hover .tooltip {
     
 }
 
+.div1,
+.div2,
+.div3,
+.div4,
+.div5,
+.div6,
+.div7,
+.div8,
+.div9
+    {
+        width: 351px;
+        height:154px;
+    }
+
+.button-submit{
+    max-width: 250px;
+}
+
+.div10
+{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+select{
+    width: 120px;
+    height: 20ppx;
+    padding: 10px;
+    border: 1px solid var(--blue1);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
