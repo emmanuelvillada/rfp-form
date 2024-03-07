@@ -43,7 +43,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 <h2>FORMULARIO RFP</h2>
             </div>
             <form action="public\controllers\solicitud_controller\SolicitudController.php" method="post">
-
+                <input type="hidden" name="action" value="crear_solicitud">
                 <div class="div1">
 
                     <label for="tipo_solicitud">1. Elija si su solicitud es puntual o regular:
