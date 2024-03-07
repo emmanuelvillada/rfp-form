@@ -1,7 +1,7 @@
 <?php
 class solicitud_controller
 {
-        public function __CONSTRUCT()
+        public function __construct()
     {
     try
     {
