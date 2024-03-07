@@ -18,7 +18,7 @@ class Solicitud
  private $necesidad_rfp_solicitud;
  private $comentario_rfp_solicitud;
  private $estado_rfp_solicitud;
- private eliminado_rfp_solicitud;
+ private $eliminado_rfp_solicitud;
 //fuunciones para retornar y cambiar atributos
  public function __GET($k){ return $this->$k; }
  public function __SET($k, $v){ return $this->$k = $v; }
