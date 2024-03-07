@@ -138,21 +138,22 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     </div>
 
                 <div class="div6">
-                    <label for="descripcion_solicitud">6. ¿Como?
+                    <label for="descripcion_rfp_solicitud">6. ¿Como?
                         <span class="tooltip">Necesito tres sillas ergonómica, <br>
                          de color negro con una altura de 1 metro y 60cm de ancho.
                         </span>
                     </label>
-                    <input placeholder="Especifique como necesita el producto o servicio, no omita informacion." type="text" name="descripcion_solicitud" id="descripcion_solicitud">
+                    <input placeholder="Especifique como necesita el producto o servicio, no omita informacion." 
+                    type="text" name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
                 </div>
 
                 <div class="div7">
-                    <label for="fecha_requerimiento">7. Indique la fecha para la cual requiere su producto y/o servicio:
+                    <label for="fecha_requerimiento_rfp_solicitud">7. Indique la fecha para la cual requiere su producto y/o servicio:
                         <br>
                         <span class="tooltip">En el flujo básico de negociación el tiempo mínimo es de 8 días.
                         </span>
                     </label>
-                    <input type="date" name="fecha_requerimiento" id="fecha_requerimiento">
+                    <input type="date" name="fecha_requerimiento_rfp_solicitud" id="fecha_requerimiento">
                 </div>
 
                 <div class="div8">
@@ -165,12 +166,12 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 </div>
 
                 <div class="div9">
-                    <label for="comentario">9. Comentarios:
+                    <label for="comentario_rfp_solicitud">9. Comentarios:
                         <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
                         </span>
                     </label>
-                    <input type="text" name="comentario" id="comentario">
+                    <input type="text" name="comentario_rfp_solicitud" id="comentario">
                 </div>
 
                 <div class="div10"><input class="button-submit" type="submit" value="Crear Solicitud"></div>
