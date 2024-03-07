@@ -1,4 +1,7 @@
 <?php
+require_once('presupuestos_controller.php');
+require_once('Solicitud.php');
+require_once('Presupuesto.php');
 
 class solicitud_controller
 {
@@ -100,8 +103,17 @@ class solicitud_controller
 
     public function create_solicitud(Solicitud $data)
     {
-        try
+        try 
         {
+             $presupuesto = new Presupuesto();
+                //todos los atributos de presupuesto, para enviar el objeto al controlador.
+             $presupuesto->__SET(('id', $data->id);)
+
+            $presupuesto_controller = new PresupuestoController();
+
+            // Crear el presupuesto utilizando el controlador de presupuestos
+            $id_presupuesto = $presupuesto_controller->crear_presupuesto();
+            //se debe crear primero el presupuesto con el controlador de presupuesto
             $sql = "INSERT INTO smart_center_rfp_solicitudes (marca, modelo, kilometros) VALUES (?, ?, ?)";
             $this->pdo->prepare($sql)->execute(array(
                 $data->__GET('marca'),
@@ -117,6 +129,52 @@ class solicitud_controller
     }
 
     // Resto de los métodos
+    public function update(Solicitud $data)
+    {
+        try
+            {
+            $sql = "UPDATE smart_center_rfp_solicitud SET
+            marca = ?,
+            modelo = ?,
+            kilometros = ?
+            WHERE id = ?";
+            $this->pdo->prepare($sql)
+            ->execute(
+            array(
+            $data->__GET('marca'),
+            $data->__GET('modelo'),
+            $data->__GET('kilometros'),
+            $data->__GET('id')
+            )
+            );
+            } catch (Exception $e)
+            {
+            die($e->getMessage());
+            }
+
+    }
+
+    // eliminar una solicitud con soft delete
+    public function delete($id)
+    {
+        
+        try
+        {
+        $sql = "UPDATE smart_center_rfp_solicitud SET
+        eliminado = 1,
+        WHERE id = ?";
+        $this->pdo->prepare($sql)
+        ->execute(
+        array(
+        $id
+        )
+        );
+        } catch (Exception $e)
+        {
+        die($e->getMessage());
+        }
+        
+    }
 
 }
 
