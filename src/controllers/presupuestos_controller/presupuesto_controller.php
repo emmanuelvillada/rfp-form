@@ -18,11 +18,7 @@ class presupuestosc_ontroller
     public function create_presupuesto(Presupuesto $presupuesto){
         try
         {
-            $tipo_presupuesto_rfp_presupuesto = $presupuesto->__GET('tipo_presupuesto');
-
-            $ceco_rfp_presupuesto = $presupuesto->__GET('ceco_rfp_presupuesto');
-            
-            $seq_rn_rfp_presupuesto = $presupuesto->__GET('seq_rn_presupuestos');
+          
 
         $sql = "INSERT INTO smart_center_rfp_presupuestos (tipo_presupuesto_rfp_presupuesto,ceco_rfp_presupuesto,seq_rn_rfp_presupuesto)
         VALUES ( ?, ?,?)";
@@ -30,11 +26,11 @@ class presupuestosc_ontroller
         ->execute(
         array(
             $presupuesto->__GET('tipo_presupuesto'),
-            $presupuesto->__GET('ceco_rfp_presupuesto'),m
+            $presupuesto->__GET('ceco_rfp_presupuesto'),
             $presupuesto->__GET('seq_rn_presupuestos')
         )
         );
-        return $presupuesto->__GET('id_rfp_presupuesto');
+        return $this->pdo->lastInsertId();
         } catch (Exception $e)
         {
         die($e->getMessage());
