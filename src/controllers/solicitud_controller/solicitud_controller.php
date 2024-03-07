@@ -52,7 +52,7 @@ class solicitud_controller
         try
             {
             $result = array();
-            $stm = $this->pdo->prepare("SELECT * FROM smart_center_rfp_solicitudes WHERE id_usuario_solicitud = $id");
+            $stm = $this->pdo->prepare("SELECT * FROM smart_center_rfp_solicitudes WHERE id_usuario_solicitud = ?");
             $stm->execute();
             foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
             {
@@ -74,6 +74,7 @@ class solicitud_controller
     // crear una solicitud
     public function create_solicitud(Solicitud $data)
     {
+        include '../presupuestos_contrller.php';
         try
             {
                 // creando el presupuesto de la solicitud con el controlador presupuesto
@@ -139,14 +140,11 @@ class solicitud_controller
         {
         $sql = "UPDATE smart_center_rfp_solicitud SET
         eliminado = 1,
-        WHERE id = $id";
+        WHERE id = ?";
         $this->pdo->prepare($sql)
         ->execute(
         array(
-        $data->__GET('marca'),
-        $data->__GET('modelo'),
-        $data->__GET('kilometros'),
-        $data->__GET('id')
+        $id
         )
         );
         } catch (Exception $e)

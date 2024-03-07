@@ -61,8 +61,8 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
                 <div class="div2">
                     <label for="producto_servicio">2. Elija si su solicitud es un suministro o un servicio:
-                        <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
-                            Regular es una compra que se repetira varias veces a través del tiempo.
+                        <span class="tooltip">Suministro es un bien. <br>
+                            El servicio se trata de la prestacion de una activadad para un objetivo.
                         </span>
                     </label>
                     <div class="radio-buttons">
@@ -76,8 +76,9 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
                 <div class="div3">
                     <label for="tipo_presupuesto">3. Elija su tipo de presupuesto:
-                        <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
-                            Regular es una compra que se repetira varias veces a través del tiempo.
+                        <span class="tooltip">Capex:presupuesto para adquirir o mejorar activos <br>
+                            Opex:presupuesto para gastos operativos. <br>
+                            Sobreejecución: Cuando no se tiene presupuesto planificado.
                         </span>
                     </label>
                     <div class="radio-buttons">
@@ -105,6 +106,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <br>        
                         <select name="ceco-select" id="ceco-select">
                             <option value="ceco1">CeCo1</option>
+                            <option value="ceco2">CeCo2</option>
                         </select>
                         <br>
                         <label for="monto_presupuesto">Digite el monto de su presupuesto :</label>
@@ -115,8 +117,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
                 <div class="div4">
                     <label for="detalle_solicitud">4. ¿Que?:
-                        <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
-                            Regular es una compra que se repetira varias veces a través del tiempo.
+                        <span class="tooltip"> Ejemplo : Solicito tres sillas.
                         </span>
                     </label>
                     <input placeholder="Describa que producto o servicio requiere." type="text" name="detalle_solicitud" id="detalle_solicitud">
@@ -124,27 +125,25 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
                 <div class="div5">
                     <label for="requerimiento_solicitud">5. ¿Para que?
-                        <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
-                            Regular es una compra que se repetira varias veces a través del tiempo.
+                        <span class="tooltip">Ejemplo : para que los operadores del área x puedan descansar.
                         </span>
                     </label>
-                    <input placeholder="indique " type="text" name="requerimiento_solicitud" id="requerimiento_solicitud">
+                    <input placeholder="Indique cual va a ser la utilidad del suministro o servicio." type="text" name="requerimiento_solicitud" id="requerimiento_solicitud">
                     </div>
 
                 <div class="div6">
                     <label for="descripcion_solicitud">6. ¿Como?
-                        <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
-                            Regular es una compra que se repetira varias veces a través del tiempo.
+                        <span class="tooltip">Necesito tres sillas ergonómica, <br>
+                         de color negro con una altura de 1 metro y 60cm de ancho.
                         </span>
                     </label>
-                    <input placeholder="especifique como necesita el producto o servicio, no omita informacion." type="text" name="descripcion_solicitud" id="descripcion_solicitud">
+                    <input placeholder="Especifique como necesita el producto o servicio, no omita informacion." type="text" name="descripcion_solicitud" id="descripcion_solicitud">
                 </div>
 
                 <div class="div7">
                     <label for="fecha_requerimiento">7. Indique la fecha para la cual requiere su producto y/o servicio:
                         <br>
-                        <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
-                            Regular es una compra que se repetira varias veces a través del tiempo.
+                        <span class="tooltip">En el flujo básico de negociación el tiempo mínimo es de 8 días.
                         </span>
                     </label>
                     <input type="date" name="fecha_requerimiento" id="fecha_requerimiento">
