@@ -31,8 +31,10 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
     <header class="header">
         <img class="logo-hwi" src="../../../public\images\Logo HWI .png" alt="Logo HWI">
         <div class="buttons">
-            <a href="../mis_solicitudes/mis_solicitudes.php"><button class="button-mis-solicitudes">Mis Solicitudes</button></a>
-            <a href="../actualizar_solicitud/actualizar_solicitud.php"><button class="button-mis-solicitudes">Actualizar Solicitud</button></a>
+            <a href="../mis_solicitudes/mis_solicitudes.php"><button class="button-mis-solicitudes">
+                Mis Solicitudes</button></a>
+            <a href="../actualizar_solicitud/actualizar_solicitud.php"><button class="button-mis-solicitudes">
+                Actualizar Solicitud</button></a>
         </div>
     </header>
 
@@ -46,89 +48,93 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 <input type="hidden" name="action" value="crear_solicitud">
                 <div class="div1">
 
-                    <label for="tipo_solicitud">1. Elija si su solicitud es puntual o regular:
+                    <label for="tipo_rfp_solicitud ">1. Elija si su solicitud es puntual o regular:
                         <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
                         </span>
                     </label>
                     <div class="radio-buttons">
-                        <input type="radio" name="tipo_solicitud" value="puntual" id="puntualRadio">
+                        <input type="radio" name="tipo_rfp_solicitud " value="puntual" id="puntualRadio">
                         <label for="puntualRadio">Puntual</label>
-                        <input type="radio" name="tipo_solicitud" value="regular" id="regularRadio">
+                        <input type="radio" name="tipo_rfp_solicitud " value="regular" id="regularRadio">
                         <label for="regularRadio">Regular</label>
                     </div>
                 </div>
 
                 <div class="div2">
-                    <label for="producto_servicio">2. Elija si su solicitud es un suministro o un servicio:
+                    <label for="producto_servicio_rfp_solicitud">2. Elija si su solicitud es un suministro o un servicio:
                         <span class="tooltip">Suministro es un bien. <br>
                             El servicio se trata de la prestacion de una activadad para un objetivo.
                         </span>
                     </label>
                     <div class="radio-buttons">
-                        <input type="radio" name="producto_servicio" value="suministro" id="suministroRadio">
+                        <input type="radio" name="producto_servicio_rfp_solicitud" value="suministro" id="suministroRadio">
                         <label for="suministroRadio">Suministro</label>
-                        <input type="radio" name="producto_servicio" value="servicio" id="servicioRadio">
+                        <input type="radio" name="producto_servicio_rfp_solicitud" value="servicio" id="servicioRadio">
                         <label for="servicioRadio">Servicio</label>
                     </div>
                 </div>
 
 
                 <div class="div3">
-                    <label for="tipo_presupuesto">3. Elija su tipo de presupuesto:
+                    <label for="tipo_presupuesto_rfp_presupuesto">3. Elija su tipo de presupuesto:
                         <span class="tooltip">Capex:presupuesto para adquirir o mejorar activos <br>
                             Opex:presupuesto para gastos operativos. <br>
                             Sobreejecución: Cuando no se tiene presupuesto planificado.
                         </span>
                     </label>
                     <div class="radio-buttons">
-                        <input type="radio" name="tipo_presupuesto" value="capex" id="capexRadio" checked>
+                        <input type="radio" name="tipo_presupuesto_rfp_presupuesto" value="capex" id="capexRadio" checked>
                         <label for="capexRadio">Capex</label>
-                        <input type="radio" name="tipo_presupuesto" value="opex" id="opexRadio">
+                        <input type="radio" name="tipo_presupuesto_rfp_presupuesto" value="opex" id="opexRadio">
                         <label for="opexRadio">Opex</label>
-                        <input type="radio" name="tipo_presupuesto" value="sobreejecucion" id="sobreejecucionRadio">
+                        <input type="radio" name="tipo_presupuesto_rfp_presupuesto" value="sobreejecucion"
+                         id="sobreejecucionRadio">
                         <label for="sobreejecucionRadio">Sobreejecución</label>
                     </div>
 
 
 
                     <div id="seq_rn" class="hidden">
-                        <label for="seq_rn"> Digite su RN:</label>
+                        <label for="seq_rn_rfp_presupuesto"> Digite su RN:</label>
                         <br>
-                        <input type="number" name="seq_rn">
+                        <input type="number" name="seq_rn_rfp_presupuesto">
                         <br>
-                        <label for="monto_presupuesto">Digite el monto de su presupuesto :</label>
-                        <input type="number" name="monto_presupuesto" id="monto_presupuesto">
+                        <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto :</label>
+                        <input type="number" name="monto_rfp_presupuesto" id="monto_rfp_presupuesto">
                     </div>
 
                     <div id="ceco" class="hidden">
-                        <label for="ceco"> Seleccione su CeCo:</label>
+                        <label for="id_ rfp_centro_de_costo_presupuesto"> Seleccione su CeCo:</label>
                         <br>        
-                        <select name="ceco-select" id="ceco-select">
+                        <!-- cada opcion del select lleva el id del ceco, asi lo capturamos y se entrega al controlador. -->
+                        <select name="id_ rfp_centro_de_costo_presupuesto" id="ceco-select">
                             <option value="ceco1">CeCo1</option>
                             <option value="ceco2">CeCo2</option>
                         </select>
                         <br>
-                        <label for="monto_presupuesto">Digite el monto de su presupuesto :</label>
-                        <input type="number" name="monto_presupuesto" id="monto_presupuesto">
+                        <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto :</label>
+                        <input type="number" name="monto_rfp_presupuesto" id="monto_rfp_presupuesto">
                     </div>
 
                 </div>
 
                 <div class="div4">
-                    <label for="detalle_solicitud">4. ¿Que?:
+                    <label for="detalle_rfp_solicitud">4. ¿Que?:
                         <span class="tooltip"> Ejemplo : Solicito tres sillas.
                         </span>
                     </label>
-                    <input placeholder="Describa que producto o servicio requiere." type="text" name="detalle_solicitud" id="detalle_solicitud">
+                    <input placeholder="Describa que producto o servicio requiere." type="text" 
+                    name="detalle_rfp_solicitud" id="detalle_solicitud">
                 </div>
 
                 <div class="div5">
-                    <label for="requerimiento_solicitud">5. ¿Para que?
+                    <label for="necesidad_rfp_solicitud">5. ¿Para que?
                         <span class="tooltip">Ejemplo : para que los operadores del área x puedan descansar.
                         </span>
                     </label>
-                    <input placeholder="Indique cual va a ser la utilidad del suministro o servicio." type="text" name="requerimiento_solicitud" id="requerimiento_solicitud">
+                    <input placeholder="Indique cual va a ser la utilidad del suministro o servicio."
+                     type="text" name="necesidad_rfp_solicitud" id="necesidad_solicitud">
                     </div>
 
                 <div class="div6">
