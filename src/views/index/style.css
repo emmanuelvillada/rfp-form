@@ -152,6 +152,8 @@ input[type="submit"]:hover {
     display: none;
 }
 
+
+
 .tooltip {
     display: none;
     position: absolute;
@@ -162,6 +164,8 @@ input[type="submit"]:hover {
     border-radius: 5px;
     z-index: 1;
 }
+
+
 
 label:hover .tooltip {
     display: block;

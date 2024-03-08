@@ -42,7 +42,7 @@ const fechaMinima = fechaActual.toISOString().split('T')[0];
 inputFecha.setAttribute('min', fechaMinima);
 
 //funcion para que al pasar el mouse por encima de una fecha bloqueada salga un aviso
-inputFecha.addEventListener('mouseover', function(event) {
+inputFecha.addEventListener('mouseover', function (event) {
     const fechaSeleccionada = new Date(event.target.value);
     const fechaMinimaObj = new Date(fechaMinima); // Convertir fechaMinima a un objeto Date
     console.log("llega al evento");
@@ -51,3 +51,31 @@ inputFecha.addEventListener('mouseover', function(event) {
         alert("¡El tiempo mínimo para la negociación de una solicitud son 8 días!");
     }
 });
+
+console.log(document.querySelector('input[name="producto_servicio_rfp_solicitud"]:checked').value);
+
+//script para cambiar el mensaje dependiendo de si es suministro o servicio
+function cambiarMensaje() {
+    var suministroRadio = document.getElementById('suministroRadio');
+    var servicioRadio = document.getElementById('servicioRadio');
+    var mensajeSpan1 = document.getElementById("ejemplo_span1");
+    var mensajeSpan2 = document.getElementById("ejemplo_span2");
+
+    function cambiarMensaje() {
+        var opcion_suministro = document.querySelector('input[name="producto_servicio_rfp_solicitud"]:checked').value;
+        if (opcion === 'suministro') {
+            mensajeSpan1.textContent = "Ejemplo de suministro";
+            mensajeSpan2.textContent = "suministro";
+        } else if (opcion === 'servicio') {
+            mensajeSpan1.textContent = "Ejemplo de servicio";
+            mensajeSpan2.textContent = "Servicio";
+        }
+    }
+
+// Llamar a la función una vez para que el mensaje inicial se muestre correctamente
+};
+
+suministroRadio.addEventListener('change', cambiarMensaje);
+servicioRadio.addEventListener('change', cambiarMensaje);
+
+cambiarMensaje(); 

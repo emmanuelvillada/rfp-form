@@ -54,7 +54,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         </span>
                     </label>
                     <div class="radio-buttons">
-                        <input type="radio" name="tipo_rfp_solicitud " value="puntual" id="puntualRadio">
+                        <input type="radio" name="tipo_rfp_solicitud " value="puntual" id="puntualRadio" checked>
                         <label for="puntualRadio">Puntual</label>
                         <input type="radio" name="tipo_rfp_solicitud " value="regular" id="regularRadio">
                         <label for="regularRadio">Regular</label>
@@ -66,11 +66,11 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <span class="tooltip">Suministro es un bien. <br>
                             El servicio se trata de la prestacion de una activadad para un objetivo.
                         </span>
-                    </label>
+                    </label>    
                     <div class="radio-buttons">
-                        <input type="radio" name="producto_servicio_rfp_solicitud" value="suministro" id="suministroRadio">
+                        <input  type="radio" name="producto_servicio_rfp_solicitud" value="suministro" id="suministroRadio" checked>
                         <label for="suministroRadio">Suministro</label>
-                        <input type="radio" name="producto_servicio_rfp_solicitud" value="servicio" id="servicioRadio">
+                        <input  type="radio" name="producto_servicio_rfp_solicitud" value="servicio" id="servicioRadio">
                         <label for="servicioRadio">Servicio</label>
                     </div>
                 </div>
@@ -119,20 +119,20 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 </div>
 
                 <div class="div4">
-                    <label for="detalle_rfp_solicitud">4. ¿Que?:
-                        <span class="tooltip"> Ejemplo : Solicito tres sillas.
+                    <label for="detalle_rfp_solicitud">4. ¿Que se requiere?:
+                        <span class="tooltip" id="ejemplo_span1"> 
                         </span>
                     </label>
                     <input placeholder="Describa brevemente que producto y/o servicio requiere." type="text" name="detalle_rfp_solicitud" id="detalle_solicitud">
                 </div>
 
                 <div class="div5">
-                    <label for="descripcion_rfp_solicitud">5. ¿Como?
-                        <span class="tooltip">Necesito tres sillas ergonómica, <br>
-                            de color negro con una altura de 1 metro y 60cm de ancho.
+                    <label for="descripcion_rfp_solicitud">5. Especificaciones tecnicas del suministro y/o servicio.
+                        <span class="tooltip" id="ejemplo_span2"> 
                         </span>
                     </label>
-                    <input placeholder="Especifique detalladamente como requiere el producto y/o servicio (altura, grosor, color, material,forma, etc..)." type="text" name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
+                    <input placeholder="Especifique detalladamente como requiere el producto y/o servicio:
+                        (altura, grosor, color, material, forma, etc.)." type="text" name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
                 </div>
 
                 <div class="div6">
