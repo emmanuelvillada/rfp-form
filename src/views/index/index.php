@@ -32,9 +32,9 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
         <img class="logo-hwi" src="../../../public\images\Logo HWI .png" alt="Logo HWI">
         <div class="buttons">
             <a href="../mis_solicitudes/mis_solicitudes.php"><button class="button-mis-solicitudes">
-                Mis Solicitudes</button></a>
+                    Mis Solicitudes</button></a>
             <a href="../actualizar_solicitud/actualizar_solicitud.php"><button class="button-mis-solicitudes">
-                Actualizar Solicitud</button></a>
+                    Actualizar Solicitud</button></a>
         </div>
     </header>
 
@@ -49,7 +49,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 <div class="div1">
 
                     <label for="tipo_rfp_solicitud ">1. Elija si su solicitud es puntual o regular:
-                        <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
+                        <span class="tooltip">Solicitud puntual se trata de una compra única en el tiempo.<br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
                         </span>
                     </label>
@@ -88,8 +88,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <label for="capexRadio">Capex</label>
                         <input type="radio" name="tipo_presupuesto_rfp_presupuesto" value="opex" id="opexRadio">
                         <label for="opexRadio">Opex</label>
-                        <input type="radio" name="tipo_presupuesto_rfp_presupuesto" value="sobreejecucion"
-                         id="sobreejecucionRadio">
+                        <input type="radio" name="tipo_presupuesto_rfp_presupuesto" value="sobreejecucion" id="sobreejecucionRadio">
                         <label for="sobreejecucionRadio">Sobreejecución</label>
                     </div>
 
@@ -106,7 +105,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
                     <div id="ceco" class="hidden">
                         <label for="id_ rfp_centro_de_costo_presupuesto"> Seleccione su CeCo:</label>
-                        <br>        
+                        <br>
                         <!-- cada opcion del select lleva el id del ceco, asi lo capturamos y se entrega al controlador. -->
                         <select name="id_ rfp_centro_de_costo_presupuesto" id="ceco-select">
                             <option value="ceco1">CeCo1</option>
@@ -124,31 +123,20 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <span class="tooltip"> Ejemplo : Solicito tres sillas.
                         </span>
                     </label>
-                    <input placeholder="Describa que producto o servicio requiere." type="text" 
-                    name="detalle_rfp_solicitud" id="detalle_solicitud">
+                    <input placeholder="Describa brevemente que producto y/o servicio requiere." type="text" name="detalle_rfp_solicitud" id="detalle_solicitud">
                 </div>
 
                 <div class="div5">
-                    <label for="necesidad_rfp_solicitud">5. ¿Para que?
-                        <span class="tooltip">Ejemplo : para que los operadores del área x puedan descansar.
-                        </span>
-                    </label>
-                    <input placeholder="Indique cual va a ser la utilidad del suministro o servicio."
-                     type="text" name="necesidad_rfp_solicitud" id="necesidad_solicitud">
-                    </div>
-
-                <div class="div6">
-                    <label for="descripcion_rfp_solicitud">6. ¿Como?
+                    <label for="descripcion_rfp_solicitud">5. ¿Como?
                         <span class="tooltip">Necesito tres sillas ergonómica, <br>
-                         de color negro con una altura de 1 metro y 60cm de ancho.
+                            de color negro con una altura de 1 metro y 60cm de ancho.
                         </span>
                     </label>
-                    <input placeholder="Especifique como necesita el producto o servicio, no omita informacion." 
-                    type="text" name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
+                    <input placeholder="Especifique detalladamente como requiere el producto y/o servicio (altura, grosor, color, material,forma, etc..)." type="text" name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
                 </div>
 
-                <div class="div7">
-                    <label for="fecha_requerimiento_rfp_solicitud">7. Indique la fecha para la cual requiere su producto y/o servicio:
+                <div class="div6">
+                    <label for="fecha_requerimiento_rfp_solicitud">6. Indique la fecha para la cual requiere su producto y/o servicio:
                         <br>
                         <span class="tooltip">En el flujo básico de negociación el tiempo mínimo es de 8 días.
                         </span>
@@ -156,8 +144,8 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <input type="date" name="fecha_requerimiento_rfp_solicitud" id="fecha_requerimiento">
                 </div>
 
-                <div class="div8">
-                    <label for="archivos">8. Adjunte los archivos que considere necesarios para su solicitud:
+                <div class="div7">
+                    <label for="archivos">7. Adjunte los archivos que considere necesarios para su solicitud:
                         <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
                         </span>
@@ -165,16 +153,9 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <input type="file" name="archivos" id="archivos" multiple>
                 </div>
 
-                <div class="div9">
-                    <label for="comentario_rfp_solicitud">9. Comentarios:
-                        <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
-                            Regular es una compra que se repetira varias veces a través del tiempo.
-                        </span>
-                    </label>
-                    <input type="text" name="comentario_rfp_solicitud" id="comentario">
-                </div>
 
-                <div class="div10"><input class="button-submit" type="submit" value="Crear Solicitud"></div>
+
+                <div class="div8"><input class="button-submit" type="submit" value="Crear Solicitud"></div>
             </form>
         </section>
     </main>
