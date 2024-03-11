@@ -62,7 +62,8 @@ function cambiarMensaje() {
     var mensajeSpan2 = document.getElementById("ejemplo_span2");
 
     function cambiarMensaje() {
-        var opcion_suministro = document.querySelector('input[name="producto_servicio_rfp_solicitud"]:checked').value;
+        var opcion_suministro = document.querySelector('input[name="producto_servicio_rfp_solicitud"]:checked').value.toString();
+        console.log(opcion_suministro);
         if (opcion === 'suministro') {
             mensajeSpan1.textContent = "Ejemplo de suministro";
             mensajeSpan2.textContent = "suministro";
@@ -75,7 +76,9 @@ function cambiarMensaje() {
 // Llamar a la función una vez para que el mensaje inicial se muestre correctamente
 };
 
-suministroRadio.addEventListener('change', cambiarMensaje);
-servicioRadio.addEventListener('change', cambiarMensaje);
+suministroRadio.addEventListener('change', cambiarMensaje());
+servicioRadio.addEventListener('change', cambiarMensaje());
 
 cambiarMensaje(); 
+
+document.getElementById('detalle_solicitud').setAttribute('placeholder', 'Describa brevemente\nque producto y/o servicio requiere.');

@@ -119,24 +119,24 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 </div>
 
                 <div class="div4">
-                    <label for="detalle_rfp_solicitud">4. ¿Que se requiere?:
-                        <span class="tooltip" id="ejemplo_span1"> 
+                    <label for="detalle_rfp_solicitud">4. ¿Que se requiere?: <br>
+                        <span  id="ejemplo_span1"> 
                         </span>
                     </label>
-                    <input placeholder="Describa brevemente que producto y/o servicio requiere." type="text" name="detalle_rfp_solicitud" id="detalle_solicitud">
+                    <input placeholder="Describa brevemente
+                    que producto y/o servicio requiere." type="text" name="detalle_rfp_solicitud" id="detalle_solicitud">
                 </div>
 
                 <div class="div5">
-                    <label for="descripcion_rfp_solicitud">5. Especificaciones tecnicas del suministro y/o servicio.
-                        <span class="tooltip" id="ejemplo_span2"> 
+                    <label for="descripcion_rfp_solicitud">5. Especificaciones tecnicas del suministro y/o servicio. <br>
+                        <span id="ejemplo_span2"> 
                         </span>
                     </label>
-                    <input placeholder="Especifique detalladamente como requiere el producto y/o servicio:
-                        (altura, grosor, color, material, forma, etc.)." type="text" name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
+                    <input placeholder="(altura, grosor, color, material, forma, etc.)." type="text" name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
                 </div>
 
                 <div class="div6">
-                    <label for="fecha_requerimiento_rfp_solicitud">6. Indique la fecha para la cual requiere su producto y/o servicio:
+                    <label for="fecha_requerimiento_rfp_solicitud">6. Indique la fecha para la cual requiere su suministro o servicio:
                         <br>
                         <span class="tooltip">En el flujo básico de negociación el tiempo mínimo es de 8 días.
                         </span>
@@ -153,9 +153,13 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <input type="file" name="archivos" id="archivos" multiple>
                 </div>
 
+                <div class="div8">
+                        <label for="riesgos">Seleccione si su solicitud conlleva alguno de los siguientes riegos. <br> </label>
+                        <input type="checkbox" name="riesgo" id=""> riesgo. <br>
+                        <input type="checkbox" name="riesgo" id="">riesgo.
+                </div>
 
-
-                <div class="div8"><input class="button-submit" type="submit" value="Crear Solicitud"></div>
+                <div class="div9"><input class="button-submit" type="submit" value="Crear Solicitud"></div>
             </form>
         </section>
     </main>
@@ -163,7 +167,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
     <footer> </footer>
 </body>
 
-<script src="../index/index_script.js">
+<script src="../index/script.js">
 </script>
 
 </html>
