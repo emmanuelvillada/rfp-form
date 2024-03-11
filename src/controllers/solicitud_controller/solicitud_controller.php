@@ -153,15 +153,16 @@ class solicitud_controller
             $presupuesto->__SET('tipo_presupuesto_rfp_presupuesto', $data->tipo_presupuesto_rfp_presupuesto);
             $presupuesto->__SET('monto_rfp_presupuesto', $data->monto_rfp_presupuesto);
 
-            // Crear el presupuesto utilizando el controlador de presupuestos
+            // Crear el presupuesto antes de crear la solicitud utilizando el controlador de presupuestos
             $id_presupuesto = $presupuesto_controller->create_presupuesto($presupuesto);
 
 
             //se debe crear primero el presupuesto con el controlador de presupuesto
-            $sql = "INSERT INTO smart_center_rfp_solicitudes (marca, modelo, kilometros) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO smart_center_rfp_solicitudes (tipo_rfp_solicitud, producto_servicio_rfp_solicitud, tipo_presupuesto_rfp_presupuesto,) VALUES (?, ?, ?)";
             $this->$pdo->prepare($sql)->execute(array(
-                $data->__GET('marca'),
-                $data->__GET('modelo'),
+                $data->__GET('tipo_rfp_solicitud'),
+                $data->__GET('producto_servicio_rfp_solicitud'),
+                $data->__GET('tipo_presupuesto_rfp_presupuesto'),
                 $data->__GET('kilometros')
             ));
             return $this->$pdo->lastInsertId();
