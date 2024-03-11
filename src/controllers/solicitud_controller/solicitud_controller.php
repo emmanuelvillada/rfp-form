@@ -61,21 +61,30 @@ class solicitud_controller
                         
                         //capturamos el id de la solicitud para crear la instancia de los archivos relacionados con el id de la solicitud creada.
                         $id_solicitud = $this->create_solicitud($solicitud);
+
+                        if (isset($_POST['archivos']))
+                        {
                         $archivos = $_FILES['archivos'];
                         $num_archivos = count($archivos['name']);
+                        $archivo_controller = new archivo_controller();
                     
                         // Iterar sobre cada archivo adjunto
                         for ($i = 0; $i < $num_archivos; $i++) {
                             // Guardar el archivo en el sistema de archivos
-                            $nombre_archivo = $archivos['name'][$i];
+                            $nombre_rfp_archivo = $archivos['name'][$i];
                             $ruta_temporal = $archivos['tmp_name'][$i];
-                            $ruta_destino = "ruta/destino/$nombre_archivo";
+                            $ruta_destino = "ruta/deseada/$nombre_rfp_archivo";
+                            $tipo_rfp_archivo = $archivos['type'][$i];
+                            $fecha_subida_rfp_archivo =  date("Y-m-d");
                             move_uploaded_file($ruta_temporal, $ruta_destino);
                     
                             // Guardar la información del archivo en la base de datos
-                            guardarArchivoEnBD($nombre_archivo, $ruta_destino, $id_solicitud);
+                            $archivo_controller->create($id_solicitud, $nombre_rfp_archivo, $tipo_rfp_archivo,$ruta_destino,$fecha_subida_rfp_archivo );
                         }
                     }
+                }
+                
+                
                     break;
                 case 'actualizar_solicitud':
                     // Aquí iría el código para actualizar una solicitud
