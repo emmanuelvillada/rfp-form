@@ -1,5 +1,5 @@
 <?php
- class Presupuesto 
+class Presupuesto 
 {
     private $id_rfp_presupuesto;
     private $tipo_presupuesto_rfp_presupuesto;
