@@ -155,8 +155,8 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
                 <div class="div8">
                         <label for="riesgos">Seleccione si su solicitud conlleva alguno de los siguientes riegos. <br> </label>
-                        <input type="checkbox" name="riesgo" id=""> riesgo. <br>
-                        <input type="checkbox" name="riesgo" id="">riesgo. <br>
+                        <input type="checkbox" name="riesgo_rfp_soliciutd" id=""> riesgo. <br>
+                        <input type="checkbox" name="riesgo_rfp_soliciutd" id="">riesgo. <br>
                 </div>
 
                 <div class="div9"><input class="button-submit" type="submit" value="Crear Solicitud"></div>
