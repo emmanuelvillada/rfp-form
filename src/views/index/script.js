@@ -92,13 +92,28 @@ cambiarMensaje();
 
 const email = document.getElementById("mail");
 
-email.addEventListener("input", function (event) {
-  if (email.validity.typeMismatch) {
+email.addEventListener("input", function (event) 
+{
+  if (email.validity.typeMismatch) 
+  {
     email.setCustomValidity(
       "¡Se esperaba una dirección de correo electrónico!",
     );
-  } else {
+  } else 
+  {
     email.setCustomValidity("");
   }
-});
+}
+);
+//script para que se desabilite el boton de crear solicitud hasta que se llenen todos los campos
+
+function habilitar_submit() {
+    detalle_solicitud = document.getElementById('detalle_solicitud');
+    descripcion_solicitud = document.getElementById('descripcion_rfp_solicitud');
+    fecha_requqerimiento_solicitud = document.getElementById('fecha_requerimiento');
+
+    while (detalle_solicitud. && descripcion_solicitud && fecha_requqerimiento_solicitud) {
+        
+    }
+}
 

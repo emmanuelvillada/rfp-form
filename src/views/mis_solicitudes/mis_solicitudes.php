@@ -119,7 +119,8 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     $solicitud_controller = new solicitud_controller();
                     $solicitudes_aceptadas = $solicitud_controller->get_solicitud($id_rfp_usuario_solicitud,"aceptada");
                     foreach ($solicitudes_aceptadas as $solicitud) {
-                        echo = '<tr>
+                        echo = '
+                        <tr>
                         <td>
                             . $solicitud->id_rfp_solicitud . // que puede y debe ver el usuario de la solicitud?.
                         </td>
