@@ -60,14 +60,22 @@ function cambiarMensaje() {
     var servicioRadio = document.getElementById('servicioRadio');
     var mensajeSpan1 = document.getElementById("ejemplo_span1");
     var mensajeSpan2 = document.getElementById("ejemplo_span2");
+    var mensajeSpan1_1 = document.getElementById("ejemplo_span1.1");
+    var mensajeSpan2_1 = document.getElementById("ejemplo_span2.1");
 
      
-        var opcion_suministro = document.querySelector('input[name="producto_servicio_rfp_solicitud"]:checked').value.toString();
-        console.log(opcion_suministro);
-        if (opcion_suministro === 'suministro') {
+        var opcion = document.querySelector('input[name="producto_servicio_rfp_solicitud"]:checked').value.toString();
+        
+        if (opcion === 'suministro') {
+            mensajeSpan1.style.display = "inline";
+            mensajeSpan1_1.style.display = "inline";
             mensajeSpan2.style.display = "none";
-        } else if (opcion_suministro === 'servicio') {
+            mensajeSpan2_1.style.display = "none";
+        } else if (opcion === 'servicio') {
             mensajeSpan1.style.display = "none";
+            mensajeSpan1_1.style.display = "none";
+            mensajeSpan2.style.display = "inline";
+            mensajeSpan2_1.style.display = "inline";
             
         }
     

@@ -63,8 +63,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
                 <div class="div2">
                     <label for="producto_servicio_rfp_solicitud">2. Elija si su solicitud es un suministro o un servicio:
-                        <span class="tooltip">Suministro es un bien. 
-                            El servicio se trata de la prestacion de una activadad para un objetivo.
+                        <span class="tooltip">El suministro es un bien. En cambio, el servicio se trata de la prestación de una actividad para un objetivo.
                         </span>
                     </label>    
                     <div class="radio-buttons">
@@ -126,16 +125,15 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <span  id="ejemplo_span2"> ejemplo_servicio
                     </span>
                     
-                    <input placeholder="Describa brevemente
-                    que producto y/o servicio requiere." type="text" name="detalle_rfp_solicitud" id="detalle_solicitud">
+                    <input placeholder="Describa brevemente que producto y/o servicio requiere." type="text" name="detalle_rfp_solicitud" id="detalle_solicitud">
                 </div>
 
                 <div class="div5">
                     <label for="descripcion_rfp_solicitud">5. Especificaciones tecnicas del suministro y/o servicio. <br>
                     </label>                   
-                    <span  id="ejemplo_span1"> ejemplo_suministro
+                    <span  id="ejemplo_span1.1"> ejemplo_suministro
                     </span>
-                    <span  id="ejemplo_span2"> ejemplo_servicio
+                    <span  id="ejemplo_span2.1"> ejemplo_servicio
                     </span>
                     
                     <input placeholder="(altura, grosor, color, material, forma, etc.)." type="text" name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
