@@ -124,16 +124,16 @@ class solicitud_controller
         }
     }
 
-    public function get_solicitud($id)
+    public function get_solicitud($id_rfp_usuario_solicitud, $estado_rfp_solicitud)
     {
         $pdo  = $this->db_connection->pdo;
         try {
             $result = array();
-            $stm = $this->$pdo->prepare("SELECT * FROM smart_center_rfp_solicitudes WHERE id = ?");
-            $stm->execute(array($id));
+            $stm = $this->$pdo->prepare("SELECT * FROM smart_center_rfp_solicitudes WHERE id_rfp_usuario_solicitud = ? AND estado_rfp_solicitud = $estado_rfp_solicitud");
+            $stm->execute(array($id_rfp_usuario_solicitud));
             foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
                 $alm = new Solicitud();
-                $alm->__SET('id', $r->id);
+                $alm->__SET('id_rfp_usuario_solicitud', $r->id_rfp_usuario_solicitud);
                 $alm->__SET('marca', $r->marca);
                 $alm->__SET('modelo', $r->modelo);
                 $alm->__SET('kilometros', $r->kilometros);

@@ -42,14 +42,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
             <button Onclick="mostrar_form(solicitudes_rechazadas)">Solicitudes Rechazadas</button>
             <button Onclick="mostrar_form(solicitudes_pendientes)">Solicitudes Pendientes</button>
         </div>
-        <?php
-        include '../../controllers/solicitud_controller/SolicitudController.php';
-        $solicitudes = new SolicitudController();
-
-        $solicitudes_usuario = $solicitudes->get($id);
-
-        echo "$solicitudes_usuario";
-        ?>
+        
         <table id="form-complete">
             <thead>
                 <tr>
@@ -119,39 +112,50 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        02/02/2024
-                    </td>
-                    <td>
-                        15/02/2024
-                    </td>
-                    <td>
-                        Puntual
-                    </td>
-                    <td>
-                        Producto
-                    </td>
-                    <td>
-                        varilla de metal para sostener caja
-                    </td>
-                    <td>
-                        Una varilla de 20x5 cm de metal
-                    </td>
-                    <td>
-                        Se necesita para el area de mantenimiento
-                    </td>
-                    <td>
-                        Se precisa notificar al area de sst
-                    </td>
-                    <td><button class ="button-eliminar" type="button">Eliminar</button></td>
-                </tr>
+                <?php
+                if(isset($_SESSION['id_rfp_usuario_solicitud']))
+                {
+                    $id_rfp_usuario_solicitud = $_SESSION['id_rfp_usuario_solicitud'];
+                    $solicitud_controller = new solicitud_controller();
+                    $solicitudes_aceptadas = $solicitud_controller->get_solicitud($id_rfp_usuario_solicitud,"aceptada");
+                    foreach ($solicitudes_aceptadas as $solicitud) {
+                        echo = '<tr>
+                        <td>
+                            . $solicitud->id_rfp_solicitud . // que puede y debe ver el usuario de la solicitud?.
+                        </td>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            02/02/2024
+                        </td>
+                        <td>
+                            15/02/2024
+                        </td>
+                        <td>
+                            Puntual
+                        </td>
+                        <td>
+                            Producto
+                        </td>
+                        <td>
+                            varilla de metal para sostener caja
+                        </td>
+                        <td>
+                            Una varilla de 20x5 cm de metal
+                        </td>
+                        <td>
+                            Se necesita para el area de mantenimiento
+                        </td>
+                        <td>
+                            Se precisa notificar al area de sst
+                        </td>
+                        <td><button class ="button-eliminar" type="button">Eliminar</button></td>
+                    </tr>'
+                    }
+                }
+                
+                ?>
             </tbody>
         </table>
         <table id="form-solicitudes-rechazadas">

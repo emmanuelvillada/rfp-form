@@ -144,4 +144,14 @@ tr:hover {
     flex-direction: row;
     max-width: 80px;
     justify-content: center;
+    background-color: var(--blue2);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-filtro:hover {
+    background-color: #087795;
 }
