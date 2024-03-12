@@ -106,7 +106,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <label for="id_ rfp_centro_de_costo_presupuesto"> Seleccione su CeCo:</label>
                         <br>
                         <!-- cada opcion del select lleva el id del ceco, asi lo capturamos y se entrega al controlador. -->
-                        <select name="id_ rfp_centro_de_costo_presupuesto" id="ceco-select">
+                        <select name="id_rfp_centro_de_costo_presupuesto" id="ceco-select">
                             <option value="ceco1">CeCo1</option>
                             <option value="ceco2">CeCo2</option>
                         </select>
