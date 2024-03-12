@@ -107,8 +107,18 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <br>
                         <!-- cada opcion del select lleva el id del ceco, asi lo capturamos y se entrega al controlador. -->
                         <select name="id_rfp_centro_de_costo_presupuesto" id="ceco-select">
-                            <option value="ceco1">CeCo1</option>
-                            <option value="ceco2">CeCo2</option>
+                            <?php
+                            if (isset($_SESSION['id_area'])) {
+                                $id_area = $_SESSION['id_area'];
+                                $cecos = new centro_de_costo_controller();
+                                $cecos->get($id_area);
+                                foreach ($cecos as $ceco) {
+                                    echo '<option value="' . $ceco->id_rfp_centro_de_costo . '">' . $ceco->nombre_rfp_centro_de_costo . '</option>';
+                                }
+                            }
+                            ?>
+                            
+                            
                         </select>
                         <br>
                         <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto :</label>

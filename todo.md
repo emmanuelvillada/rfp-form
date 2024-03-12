@@ -1,9 +1,9 @@
 To do list
 
-seeder de los cecos
+seeder de los cecos, faltaria obtener el id de cada area relacionada y cambiarlo por el nombre
 
 '''sql
-INSERT INTO tabla (Ceco, Dirección, Descripción)
+INSERT INTO tabla (id_rfp_centro_de_cosotos, id_rfp_area, nombre_rfp_centro_de_costos)
 VALUES
 ('H001701', 'D. Manufactura', 'CELULA EMPAQUE TERMO'),
 ('H001702', 'D. Manufactura', 'CONFORMADO DE GABINE'),
