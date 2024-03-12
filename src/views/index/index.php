@@ -63,14 +63,14 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
                 <div class="div2">
                     <label for="producto_servicio_rfp_solicitud">2. Elija si su solicitud es un suministro o un servicio:
-                        <span class="tooltip">Suministro es un bien. <br>
+                        <span class="tooltip">Suministro es un bien. 
                             El servicio se trata de la prestacion de una activadad para un objetivo.
                         </span>
                     </label>    
                     <div class="radio-buttons">
-                        <input  type="radio" name="producto_servicio_rfp_solicitud" value="suministro" id="suministroRadio" checked>
+                        <input  type="radio" name="producto_servicio_rfp_solicitud" value="suministro" id="suministroRadio" onChange="cambiarMensaje()" checked>
                         <label for="suministroRadio">Suministro</label>
-                        <input  type="radio" name="producto_servicio_rfp_solicitud" value="servicio" id="servicioRadio">
+                        <input  type="radio" name="producto_servicio_rfp_solicitud" value="servicio" onChange="cambiarMensaje()" id="servicioRadio">
                         <label for="servicioRadio">Servicio</label>
                     </div>
                 </div>
@@ -78,8 +78,8 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
                 <div class="div3">
                     <label for="tipo_presupuesto_rfp_presupuesto">3. Elija su tipo de presupuesto:
-                        <span class="tooltip">Capex:presupuesto para adquirir o mejorar activos <br>
-                            Opex:presupuesto para gastos operativos. <br>
+                        <span class="tooltip">Capex: presupuesto para adquirir o mejorar activos. <br>
+                            Opex: presupuesto para gastos operativos. <br>
                             Sobreejecución: Cuando no se tiene presupuesto planificado.
                         </span>
                     </label>
@@ -120,18 +120,24 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
                 <div class="div4">
                     <label for="detalle_rfp_solicitud">4. ¿Que se requiere?: <br>
-                        <span  id="ejemplo_span1"> 
-                        </span>
                     </label>
+                    <span  id="ejemplo_span1"> ejemplo_suministro
+                    </span>
+                    <span  id="ejemplo_span2"> ejemplo_servicio
+                    </span>
+                    
                     <input placeholder="Describa brevemente
                     que producto y/o servicio requiere." type="text" name="detalle_rfp_solicitud" id="detalle_solicitud">
                 </div>
 
                 <div class="div5">
                     <label for="descripcion_rfp_solicitud">5. Especificaciones tecnicas del suministro y/o servicio. <br>
-                        <span id="ejemplo_span2"> 
-                        </span>
-                    </label>
+                    </label>                   
+                    <span  id="ejemplo_span1"> ejemplo_suministro
+                    </span>
+                    <span  id="ejemplo_span2"> ejemplo_servicio
+                    </span>
+                    
                     <input placeholder="(altura, grosor, color, material, forma, etc.)." type="text" name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
                 </div>
 
@@ -146,15 +152,14 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
                 <div class="div7">
                     <label for="archivos">7. Adjunte los archivos que considere necesarios para su solicitud:
-                        <span class="tooltip">Solicitud puntual se trata de una unica compra en el tiempo. <br>
-                            Regular es una compra que se repetira varias veces a través del tiempo.
+                        <span class="tooltip">Pueden ser cotizaciones, planos, simulaciones, etc.
                         </span>
                     </label>
                     <input type="file" name="archivos" id="archivos" multiple>
                 </div>
 
                 <div class="div8">
-                        <label for="riesgos">Seleccione si su solicitud conlleva alguno de los siguientes riegos. <br> </label>
+                        <label for="riesgos">8. Seleccione si su solicitud conlleva alguno de los siguientes riegos. <br> </label>
                         <input type="checkbox" name="riesgo_rfp_soliciutd" id=""> riesgo. <br>
                         <input type="checkbox" name="riesgo_rfp_soliciutd" id="">riesgo. <br>
                 </div>
