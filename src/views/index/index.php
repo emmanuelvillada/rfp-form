@@ -135,7 +135,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <span  id="ejemplo_span2"> ejemplo_servicio
                     </span>
                     
-                    <input placeholder="Describa brevemente que producto y/o servicio requiere." type="text" name="detalle_rfp_solicitud" id="detalle_solicitud">
+                    <input required placeholder="Describa brevemente que producto y/o servicio requiere." type="text" name="detalle_rfp_solicitud" id="detalle_solicitud">
                 </div>
 
                 <div class="div5">
@@ -146,7 +146,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <span  id="ejemplo_span2.1"> ejemplo_servicio
                     </span>
                     
-                    <input placeholder="(altura, grosor, color, material, forma, etc.)." type="text" name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
+                    <input required placeholder="(altura, grosor, color, material, forma, etc.)." type="text" name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
                 </div>
 
                 <div class="div6">
@@ -155,7 +155,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <span class="tooltip">En el flujo básico de negociación el tiempo mínimo es de 8 días.
                         </span>
                     </label>
-                    <input type="date" name="fecha_requerimiento_rfp_solicitud" id="fecha_requerimiento">
+                    <input required type="date" name="fecha_requerimiento_rfp_solicitud" id="fecha_requerimiento">
                 </div>
 
                 <div class="div7">

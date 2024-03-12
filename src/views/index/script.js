@@ -88,3 +88,17 @@ servicioRadio.addEventListener('change', cambiarMensaje());
 
 cambiarMensaje(); 
 
+//script para mostrar aviso cuando se este cometiendo error en el input analizar en que casos aplica
+
+const email = document.getElementById("mail");
+
+email.addEventListener("input", function (event) {
+  if (email.validity.typeMismatch) {
+    email.setCustomValidity(
+      "¡Se esperaba una dirección de correo electrónico!",
+    );
+  } else {
+    email.setCustomValidity("");
+  }
+});
+
