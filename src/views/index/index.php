@@ -46,6 +46,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
             </div>
             <form action="public\controllers\solicitud_controller\SolicitudController.php" method="post" id="form">
                 <input type="hidden" name="action" value="crear_solicitud">
+                <input type="hidden" name="id_rfp_usuario_solicitud" value="<?php echo $_SESSION['documento']; ?>">
                 <div class="div1">
 
                     <label for="tipo_rfp_solicitud ">1. Elija si su solicitud es puntual o regular:
