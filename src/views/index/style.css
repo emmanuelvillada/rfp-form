@@ -230,4 +230,19 @@ input[type=number]::-webkit-outer-spin-button {
         padding: 10px; 
         border-radius: 5px; 
         display: none; 
+        width: 320px;
+        height: 240px;
     }
+
+    .mensaje_submit img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .mensaje_submit span{
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 20px;
+    }
+
