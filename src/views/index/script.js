@@ -63,57 +63,60 @@ function cambiarMensaje() {
     var mensajeSpan1_1 = document.getElementById("ejemplo_span1.1");
     var mensajeSpan2_1 = document.getElementById("ejemplo_span2.1");
 
-     
-        var opcion = document.querySelector('input[name="producto_servicio_rfp_solicitud"]:checked').value.toString();
-        
-        if (opcion === 'suministro') {
-            mensajeSpan1.style.display = "inline";
-            mensajeSpan1_1.style.display = "inline";
-            mensajeSpan2.style.display = "none";
-            mensajeSpan2_1.style.display = "none";
-        } else if (opcion === 'servicio') {
-            mensajeSpan1.style.display = "none";
-            mensajeSpan1_1.style.display = "none";
-            mensajeSpan2.style.display = "inline";
-            mensajeSpan2_1.style.display = "inline";
-            
-        }
-    
 
-// Llamar a la función una vez para que el mensaje inicial se muestre correctamente
+    var opcion = document.querySelector('input[name="producto_servicio_rfp_solicitud"]:checked').value.toString();
+
+    if (opcion === 'suministro') {
+        mensajeSpan1.style.display = "inline";
+        mensajeSpan1_1.style.display = "inline";
+        mensajeSpan2.style.display = "none";
+        mensajeSpan2_1.style.display = "none";
+    } else if (opcion === 'servicio') {
+        mensajeSpan1.style.display = "none";
+        mensajeSpan1_1.style.display = "none";
+        mensajeSpan2.style.display = "inline";
+        mensajeSpan2_1.style.display = "inline";
+
+    }
+
+
+    // Llamar a la función una vez para que el mensaje inicial se muestre correctamente
 };
 
 suministroRadio.addEventListener('change', cambiarMensaje());
 servicioRadio.addEventListener('change', cambiarMensaje());
 
-cambiarMensaje(); 
+cambiarMensaje();
 
-//script para mostrar aviso cuando se este cometiendo error en el input analizar en que casos aplica
 
-const email = document.getElementById("mail");
-
-email.addEventListener("input", function (event) 
-{
-  if (email.validity.typeMismatch) 
-  {
-    email.setCustomValidity(
-      "¡Se esperaba una dirección de correo electrónico!",
-    );
-  } else 
-  {
-    email.setCustomValidity("");
-  }
-}
-);
 //script para que se desabilite el boton de crear solicitud hasta que se llenen todos los campos
 
 function habilitar_submit() {
-    detalle_solicitud = document.getElementById('detalle_solicitud');
-    descripcion_solicitud = document.getElementById('descripcion_rfp_solicitud');
-    fecha_requqerimiento_solicitud = document.getElementById('fecha_requerimiento');
+    var detalle_solicitud = document.getElementById('detalle_solicitud').value.trim();
+    var descripcion_solicitud = document.getElementById('descripcion_rfp_solicitud').value.trim();
+    var fecha_requerimiento_solicitud = document.getElementById('fecha_requerimiento').value.trim();
+    var submitBtn = document.getElementById('button-submit');
 
-    while (detalle_solicitud. && descripcion_solicitud && fecha_requqerimiento_solicitud) {
-        
+    if (detalle_solicitud !== "" && descripcion_solicitud !== "" && fecha_requerimiento_solicitud !== "") {
+        submitBtn.disabled = false;
+    } else {
+        submitBtn.disabled = true;
     }
 }
+
+ //script para mostrar aviso al enviar el formulario 
+
+document.getElementById("form").addEventListener("submit", function(event){
+    event.preventDefault(); // Evita que se recargue la página al enviar el formulario
+
+        // Mostrar el mensaje si el envío fue exitoso
+        var mensaje = document.getElementById("mensaje_submit");
+        mensaje.style.display = "block";
+
+        // Ocultar el mensaje después de tres segundos
+        setTimeout(function(){
+            mensaje.style.display = "none";
+        }, 3000); // 3000 milisegundos = 3 segundos
+    
+});
 
