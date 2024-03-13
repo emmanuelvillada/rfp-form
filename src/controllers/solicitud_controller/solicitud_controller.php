@@ -15,7 +15,13 @@ class solicitud_controller
         if (isset($_POST['action'])) {
             switch ($_POST['action']) {
                 case 'listar_solicitudes':
-                    return $this->get_solicitudes();
+                    if (isset($_POST['id_rfp_usuario_solicitud']) && isset($_POST['estado_rfp_solicitud'])) {
+                        # code...
+                        $id_rfp_usuario_solicitud = $_POST['id_rfp_usuario_solicitud'];
+                        $estado_rfp_solicitud = $_POST['estado_rfp_solicitud'];
+                        return $this->get_solicitudes($id_rfp_usuario_solicitud, $estado_rfp_solicitud);
+                    }
+                    
                     break;
                 case 'ver_solicitud':
                     if (isset($_POST['id'])) {
@@ -103,12 +109,12 @@ class solicitud_controller
         return "No se especificó ninguna acción";
     }
 
-    public function get_solicitudes()
+    public function get_solicitudes($id_rfp_usuario_solicitud, $estado_rfp_solicitud)
     {
         $pdo  = $this->db_connection->pdo;
         try {
             $result = array();
-            $stm = $this->$pdo->prepare("SELECT * FROM smart_center_rfp_solicitudes");
+            $stm = $this->$pdo->prepare("SELECT * FROM smart_center_rfp_solicitudes WHERE id_rfp_usuario_solicitud = ? AND estado_rfp_solicitud = $estado_rfp_solicitud");
             $stm->execute();
             foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
                 $alm = new Solicitud();
@@ -124,13 +130,13 @@ class solicitud_controller
         }
     }
 
-    public function get_solicitud($id_rfp_usuario_solicitud, $estado_rfp_solicitud)
+    public function get_solicitud($id_rfp_solicitud)
     {
         $pdo  = $this->db_connection->pdo;
         try {
             $result = array();
-            $stm = $this->$pdo->prepare("SELECT * FROM smart_center_rfp_solicitudes WHERE id_rfp_usuario_solicitud = ? AND estado_rfp_solicitud = $estado_rfp_solicitud");
-            $stm->execute(array($id_rfp_usuario_solicitud));
+            $stm = $this->$pdo->prepare("SELECT * FROM smart_center_rfp_solicitudes WHERE id_rfp_solicitud = ?");
+            $stm->execute(array($id_rfp_solicitud));
             foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
                 $alm = new Solicitud();
                 $alm->__SET('id_rfp_usuario_solicitud', $r->id_rfp_usuario_solicitud);
