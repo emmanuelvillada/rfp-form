@@ -34,8 +34,14 @@ class solicitud_controller
                         && isset($_POST['descripcion_rfp_solicitud'])) 
                         {
                         $solicitud = new Solicitud();
+                        $solicitud->__SET('id_rfp_usuario_solicitud', $_POST['id_rfp_usuario_solicitud']);
                         $solicitud->__SET('tipo_rfp_solicitud', $_POST['tipo_rfp_solicitud']);
+                        $solicitud->__SET('fecha_creacion_rfp_solicitud', date("Y-m-d"));
                         $solicitud->__SET('producto_servicio_rfp_solicitud', $_POST['producto_servicio_rfp_solicitud']);
+                        $solicitud->__SET('detalle_rfp_solicitud', $_POST['detalle_rfp_solicitud']);
+                        $solicitud->__SET('descripcion_rfp_solicitud', $_POST['descripcion_rfp_solicitud']);
+                        $solicitud->__SET('fecha_requerimiento_rfp_solicitud', $_POST['fecha_requerimiento_rfp_solicitud']);
+                        $solicitud->__SET('estado_rfp_solicitud', 1);
                         $solicitud->__SET('tipo_presupuesto_rfp_presupuesto', $_POST['tipo_presupuesto_rfp_presupuesto']);
                         // Dependiendo del tipo de presupuesto, capturar los datos correspondientes
                         $tipo_presupuesto = $solicitud->__GET('tipo_presupuesto_rfp_presupuesto');
@@ -68,9 +74,7 @@ class solicitud_controller
                             $solicitud->__SET('seq_rn_rfp_presupuesto', $seq_rn);
                             
                         } 
-                        $solicitud->__SET('detalle_rfp_solicitud', $_POST['detalle_rfp_solicitud']);
-                        $solicitud->__SET('descripcion_rfp_solicitud', $_POST['descripcion_rfp_solicitud']);
-                        $solicitud->__SET('fecha_requerimiento_rfp_solicitud', $_POST['fecha_requerimiento_rfp_solicitud']);
+                        
                         if (isset($_POST['riesgo_rfp_soliciutd'])){
                             $solicitud->__SET('riesgo_rfp_soliciutd',$_POST['riesgo_rfp_soliciutd']);
                         }else{
@@ -176,16 +180,31 @@ class solicitud_controller
 
             // Crear el presupuesto antes de crear la solicitud utilizando el controlador de presupuestos
             $id_presupuesto = $presupuesto_controller->create_presupuesto($presupuesto);
-
+            $data->__SET('id_rfp_presupuesto_solicitud', $id_presupuesto);
 
             //se debe crear primero el presupuesto con el controlador de presupuesto
-            $sql = "INSERT INTO smart_center_rfp_solicitudes (tipo_rfp_solicitud, producto_servicio_rfp_solicitud, detalle_rfp_solicitud, descripcion_rfp_solicitud, fecha_requerimiento_rfp_solicitud, riesgo_rfp_soliciutd) VALUES (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO smart_center_rfp_solicitudes (
+                id_rfp_usuario_solicitud,
+                id_rfp_presupuesto_solicitud,
+                fecha_creacion_rfp_solicitud,
+                fecha_requerimiento_rfp_solicitud,
+                tipo_rfp_solicitud,
+                producto_servicio_rfp_solicitud,
+                detalle_rfp_solicitud,
+                descripcion_rfp_solicitud,
+                estado_rfp_solicitud,
+                riesgo_rfp_solicitud
+              ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $this->$pdo->prepare($sql)->execute(array(
+                $data->__GET('id_rfp_usuario_solicitud'),
+                $data->__GET('id_rfp_presupuesto_solicitud'),
+                $data->__GET('fecha_creacion_rfp_solicitud'),
+                $data->__GET('fecha_requerimiento_rfp_solicitud'),
                 $data->__GET('tipo_rfp_solicitud'),
                 $data->__GET('producto_servicio_rfp_solicitud'),
                 $data->__GET('detalle_rfp_solicitud'),
                 $data->__GET('descripcion_rfp_solicitud'),
-                $data->__GET('fecha_requerimiento_rfp_solicitud'),
+                $data->__GET('estado_rfp_solicitud'),
                 $data->__GET('riesgo_rfp_soliciutd')
             ));
             return $this->$pdo->lastInsertId();
