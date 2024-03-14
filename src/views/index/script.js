@@ -130,24 +130,26 @@ document.getElementById("form").addEventListener("submit", function (event) {
 
 //script para modificar el valor del input monto del presupuesto a un formato de dinero.
 
-function formatCurrency(inputId) {
-    let input = document.getElementById(inputId);
-    if (input) {
-        let value = input.value.trim(); // Eliminar espacios en blanco al inicio y al final
-        value = value.replace(/[^\d.,]/g, ''); // Eliminar caracteres no numéricos excepto , y .
-        value = value.replace(',', '.'); // Reemplazar , por . para decimales
-        value = parseFloat(value); // Convertir a número
-        if (!isNaN(value)) {
-            // Formatear el valor como moneda colombiana
-            let formattedValue = value.toLocaleString('es-CO', {
-                style: 'currency',
-                currency: 'COP'
-            });
-            // Actualizar el valor del input
-            input.value = formattedValue;
-        }
-    }
+monto_ceco = document.getElementById('monto_rfp_presupuesto_ceco');
+monto_seq = document.getElementById('monto_rfp_presupuesto_seq');
+
+monto_ceco.addEventListener('input', function() {
+    convertir_decimal('monto_rfp_presupuesto_ceco');
+});
+
+monto_seq.addEventListener('input', function() {
+    convertir_decimal('monto_rfp_presupuesto_seq');
+});
+
+function convertir_decimal(inputId) {
+    let inputValue = document.getElementById(inputId).value;
+    // Remover caracteres no numéricos y el separador de miles
+    let cleanedValue = inputValue.replace(/[^0-9,.]/g, '');
+    // Reemplazar la coma por punto para que JavaScript lo reconozca como decimal
+    cleanedValue = cleanedValue.replace(',', '.');
+    // Convertir a número con dos decimales
+    let formattedValue = parseFloat(cleanedValue).toFixed(2);
+    // Actualizar el valor del input con el formato deseado
+    document.getElementById(inputId).value = formattedValue;
 }
-
-
 

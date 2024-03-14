@@ -100,7 +100,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <input type="number" value = 0 name="seq_rn_rfp_presupuesto">
                         <br>
                         <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto :</label>
-                        <input type="number" step="0.01" placeholder="0.00" min="0" name="monto_rfp_presupuesto_seq" oninput="formatCurrency('monto_rfp_presupuesto_seq')" id="monto_rfp_presupuesto_seq">
+                        <input type="number" step="0.01" placeholder="0.00" min="0" name="monto_rfp_presupuesto_seq" id="monto_rfp_presupuesto_seq">
                     </div>
 
                     <div id="ceco" class="hidden">
@@ -123,7 +123,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         </select>
                         <br>
                         <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto :</label>
-                        <input type="number" step="0.01" placeholder="0.00" min="0" name="monto_rfp_presupuesto_ceco" oninput="formatCurrency('monto_rfp_presupuesto_ceco')" id="monto_rfp_presupuesto_ceco">
+                        <input type="number" step="0.01" placeholder="0.00" min="0" name="monto_rfp_presupuesto_ceco"  id="monto_rfp_presupuesto_ceco">
                     </div>
 
                 </div>
