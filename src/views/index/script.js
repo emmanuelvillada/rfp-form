@@ -133,20 +133,18 @@ document.getElementById("form").addEventListener("submit", function (event) {
 monto_ceco = document.getElementById('monto_rfp_presupuesto_ceco');
 monto_seq = document.getElementById('monto_rfp_presupuesto_seq');
 
-monto_ceco.addEventListener('input', function() {
+monto_ceco.addEventListener('blur', function() {
     convertir_decimal('monto_rfp_presupuesto_ceco');
 });
 
-monto_seq.addEventListener('input', function() {
+monto_seq.addEventListener('blur', function() {
     convertir_decimal('monto_rfp_presupuesto_seq');
 });
 
 function convertir_decimal(inputId) {
     let inputValue = document.getElementById(inputId).value;
     // Remover caracteres no numéricos y el separador de miles
-    let cleanedValue = inputValue.replace(/[^0-9,.]/g, '');
-    // Reemplazar la coma por punto para que JavaScript lo reconozca como decimal
-    cleanedValue = cleanedValue.replace(',', '.');
+    let cleanedValue = inputValue.replace(/[^\d.-]/g, '');
     // Convertir a número con dos decimales
     let formattedValue = parseFloat(cleanedValue).toFixed(2);
     // Actualizar el valor del input con el formato deseado

@@ -1,6 +1,6 @@
-:root{
-    --blue1 : #002931;
-    --blue2 : #0B95BB;
+:root {
+    --blue1: #002931;
+    --blue2: #0B95BB;
 
 }
 
@@ -11,12 +11,14 @@ body {
 }
 
 .header {
-    background-color:  #ffffff;;
+    background-color: #ffffff;
+    ;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ddd; /* Borde inferior para separación */
+    border-bottom: 1px solid #ddd;
+    /* Borde inferior para separación */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -24,13 +26,17 @@ body {
     margin: 0;
 }
 
-h1, h2 {
+h1,
+h2 {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-style: normal;
 }
 
-p, label, input, select {
+p,
+label,
+input,
+select {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -67,23 +73,54 @@ p, label, input, select {
 }
 
 form {
-    
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(4, 1fr);
-        grid-column-gap: 24px;
-        
-        
-        .div1 { grid-area: 1 / 1 / 2 / 2; }
-        .div2 { grid-area: 2 / 1 / 3 / 2; }
-        .div3 { grid-area: 3 / 1 / 4 / 2; }
-        .div4 { grid-area: 1 / 2 / 2 / 3; }
-        .div5 { grid-area: 2 / 2 / 3 / 3; }
-        .div6 { grid-area: 3 / 2 / 4 / 3; }
-        .div7 { grid-area: 1 / 3 / 2 / 4; }
-        .div8 { grid-area: 2 / 3 / 3 / 4; }
-        .div9 { grid-area: 4 / 2 / 5 / 3; }
+
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 24px;
+    grid-row-gap: 0px;
+
 }
+
+.div1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.div2 {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.div3 {
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+.div4 {
+    grid-area: 1 / 2 / 2 / 3;
+    padding-left: 14px;
+}
+
+.div5 {
+    grid-area: 2 / 2 / 3 / 3;
+    padding-left: 14px;
+}
+
+.div6 {
+    grid-area: 3 / 2 / 4 / 3;
+    padding-left: 14px;
+}
+
+.div7 {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.div8 {
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+.div9 {
+    grid-area: 4 / 2 / 5 / 3;
+}
+
 
 .label-container {
     display: flex;
@@ -103,7 +140,7 @@ label {
     flex: 1;
 }
 
-input[type="text"]{
+input[type="text"] {
     width: 100%;
     height: 80px;
     padding: 10px;
@@ -111,23 +148,26 @@ input[type="text"]{
     border-radius: 5px;
     box-sizing: border-box;
     text-align: start;
-    
+
 }
-input[type = "checkbox"]{
+
+input[type="checkbox"] {
     padding: 10px;
     border: 1px solid var(--blue1);
     border-radius: 5px;
     box-sizing: border-box;
-    
+
 }
+
 input[type="number"],
-input[type="date"]{
+input[type="date"] {
     width: 40%;
     padding: 10px;
     border: 1px solid var(--blue1);
     border-radius: 5px;
     box-sizing: border-box;
 }
+
 input[type="file"] {
     width: 100%;
     padding: 10px;
@@ -151,7 +191,7 @@ input[type="submit"]:hover {
     background-color: #087795;
 }
 
-.button-mis-solicitudes:hover{
+.button-mis-solicitudes:hover {
     background-color: #087795;
 }
 
@@ -181,7 +221,7 @@ label:hover .tooltip {
 .logo-hwi {
     width: 100;
     height: 80px;
-    
+
 }
 
 .div1,
@@ -192,19 +232,18 @@ label:hover .tooltip {
 .div6,
 .div7,
 .div8,
-.div9
-    {
-        width: 351px;
-        height:154px;
-    }
+.div9 {
+    width: 351px;
+    height: 154px;
+}
 
-.button-submit{
+.button-submit {
     max-width: 250px;
 }
 
 
 
-select{
+select {
     width: 120px;
     height: 20ppx;
     padding: 10px;
@@ -217,32 +256,31 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
-    }
+}
 
-    .mensaje_submit {
-        position: fixed; 
-        top: 50%; 
-        left: 50%; 
-        transform: translate(-50%, -50%); 
-        z-index: 9999; 
-        background-color: #dff0d8; 
-        border: 1px solid #c3e6cb; 
-        padding: 10px; 
-        border-radius: 5px; 
-        display: none; 
-        width: 320px;
-        height: 240px;
-    }
+.mensaje_submit {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: #dff0d8;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    width: 320px;
+    height: 240px;
+}
 
-    .mensaje_submit img{
-        width: 100%;
-        height: 100%;
-    }
+.mensaje_submit img {
+    width: 100%;
+    height: 100%;
+}
 
-    .mensaje_submit span{
-        font-family: "Roboto", sans-serif;
-        font-weight: 700;
-        font-style: normal;
-        font-size: 20px;
-    }
-
+.mensaje_submit span {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+}

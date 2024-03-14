@@ -99,7 +99,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <br>
                         <input type="number" value = 0 name="seq_rn_rfp_presupuesto">
                         <br>
-                        <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto :</label>
+                        <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto sin puntos ni comas : <br></label>
                         <input type="number" step="0.01" placeholder="0.00" min="0" name="monto_rfp_presupuesto_seq" id="monto_rfp_presupuesto_seq">
                     </div>
 
@@ -122,7 +122,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                             
                         </select>
                         <br>
-                        <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto :</label>
+                        <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto sin puntos ni comas : <br></label>
                         <input type="number" step="0.01" placeholder="0.00" min="0" name="monto_rfp_presupuesto_ceco"  id="monto_rfp_presupuesto_ceco">
                     </div>
 
@@ -131,7 +131,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 <div class="div4">
                     <label for="detalle_rfp_solicitud">4. ¿Que se requiere?: <br>
                     </label>
-                    <span  id="ejemplo_span1"> ejemplo_suministro
+                    <span  id="ejemplo_span1"> Ejemplo : Compra de un Ipad 
                     </span>
                     <span  id="ejemplo_span2"> ejemplo_servicio
                     </span>
@@ -142,7 +142,8 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 <div class="div5">
                     <label for="descripcion_rfp_solicitud">5. Especificaciones tecnicas del suministro y/o servicio. <br>
                     </label>                   
-                    <span  id="ejemplo_span1.1"> ejemplo_suministro
+                    <span  id="ejemplo_span1.1"> Se requiere un Ipad de 10,9" con capacidad de almacenamiento de 64 Gb - 256 Gb / Modelo <br>
+                     10ma generación / color azul o gris /  Wifi / No SIM /.
                     </span>
                     <span  id="ejemplo_span2.1"> ejemplo_servicio
                     </span>
@@ -151,7 +152,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 </div>
 
                 <div class="div6">
-                    <label for="fecha_requerimiento_rfp_solicitud">6. Indique la fecha para la cual requiere su suministro o servicio:
+                    <label for="fecha_requerimiento_rfp_solicitud"><br> 6. Indique la fecha para la cual requiere su suministro o servicio:
                         <br>
                         <span class="tooltip">En el flujo básico de negociación el tiempo mínimo es de 8 días.
                         </span>
