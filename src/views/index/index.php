@@ -97,7 +97,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <div id="seq_rn" class="hidden">
                         <label for="seq_rn_rfp_presupuesto"> Digite su RN:</label>
                         <br>
-                        <input type="number" name="seq_rn_rfp_presupuesto">
+                        <input type="number" value = 0 name="seq_rn_rfp_presupuesto">
                         <br>
                         <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto :</label>
                         <input type="number" name="monto_rfp_presupuesto" id="monto_rfp_presupuesto">

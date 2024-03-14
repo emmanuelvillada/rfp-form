@@ -120,3 +120,20 @@ document.getElementById("form").addEventListener("submit", function(event){
     
 });
 
+//script para modificar el valor del input monto del presupuesto a un formato de dinero.
+input_monto_presupuesto = document.getElementById("monto_rfp_presupuesto");
+
+function formatCurrency(input) {
+    // Formatear el valor como moneda colombiana
+    let formattedValue = parseFloat(input.value.replace(/[^\d.-]/g, '')).toLocaleString('es-CO', {
+        style: 'currency',
+        currency: 'COP'
+    });
+
+    // Actualizar el valor del input
+    input.value = formattedValue;
+}
+
+input_monto_presupuesto.addEventListener('change', function formato_dinero(event) {
+    formatCurrency(input_monto_presupuesto);
+})
