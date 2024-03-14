@@ -177,7 +177,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 <div class="div9"><input id="button-submit" class="button-submit" type="submit" value="Crear Solicitud"></div>
             </form>
         </section>
-        <div id="" class="mensaje_submit" >
+        <div id="mensaje_submit" class="mensaje_submit" >
                         <span>¡Formulario enviado con éxito!</span>
                         <img src="../../../public/images/check-svgrepo-com.svg" alt="" srcset="">
     </div>
