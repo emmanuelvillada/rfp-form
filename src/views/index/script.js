@@ -6,18 +6,26 @@ const opexRadio = document.getElementById('opexRadio');
 const sobreejecucionRadio = document.getElementById('sobreejecucionRadio');
 const pregunta1 = document.getElementById('seq_rn');
 const pregunta2 = document.getElementById('ceco');
+const monto_rfp_presupuesto_seq = document.getElementById('monto_rfp_presupuesto_seq');
+const monto_rfp_presupuesto_ceco = document.getElementById('monto_rfp_presupuesto_ceco')
 
 // Función para mostrar u ocultar campos según la selección del radio
 function toggleCampos() {
     if (capexRadio.checked) {
         pregunta1.classList.remove('hidden');
         pregunta2.classList.add('hidden');
+        monto_rfp_presupuesto_ceco.classList.add('hidden');
+        monto_rfp_presupuesto_seq.classList.remove('hidden');
     } else if (opexRadio.checked) {
         pregunta1.classList.add('hidden');
         pregunta2.classList.remove('hidden');
+        monto_rfp_presupuesto_seq.classList.add('hidden');
+        monto_rfp_presupuesto_ceco.classList.remove('hidden')
     } else if (sobreejecucionRadio.checked) {
         pregunta1.classList.add('hidden');
         pregunta2.classList.add('hidden');
+        monto_rfp_presupuesto_ceco.classList.add('hidden');
+        monto_rfp_presupuesto_seq.classList.add('hidden');
     }
 }
 
@@ -45,9 +53,9 @@ inputFecha.setAttribute('min', fechaMinima);
 inputFecha.addEventListener('mouseover', function (event) {
     const fechaSeleccionada = new Date(event.target.value);
     const fechaMinimaObj = new Date(fechaMinima); // Convertir fechaMinima a un objeto Date
-    console.log("llega al evento");
+    
     if (fechaSeleccionada < fechaMinimaObj) {
-        console.log("llega al alert");
+       
         alert("¡El tiempo mínimo para la negociación de una solicitud son 8 días!");
     }
 });
@@ -104,36 +112,42 @@ function habilitar_submit() {
     }
 }
 
- //script para mostrar aviso al enviar el formulario 
+//script para mostrar aviso al enviar el formulario 
 
-document.getElementById("form").addEventListener("submit", function(event){
+document.getElementById("form").addEventListener("submit", function (event) {
     event.preventDefault(); // Evita que se recargue la página al enviar el formulario
 
-        // Mostrar el mensaje si el envío fue exitoso
-        var mensaje = document.getElementById("mensaje_submit");
-        mensaje.style.display = "block";
+    // Mostrar el mensaje si el envío fue exitoso
+    var mensaje = document.getElementById("mensaje_submit");
+    mensaje.style.display = "block";
 
-        // Ocultar el mensaje después de tres segundos
-        setTimeout(function(){
-            mensaje.style.display = "none";
-        }, 3000); // 3000 milisegundos = 3 segundos
-    
+    // Ocultar el mensaje después de tres segundos
+    setTimeout(function () {
+        mensaje.style.display = "none";
+    }, 3000); // 3000 milisegundos = 3 segundos
+
 });
 
 //script para modificar el valor del input monto del presupuesto a un formato de dinero.
-input_monto_presupuesto = document.getElementById("monto_rfp_presupuesto");
 
-function formatCurrency(input) {
-    // Formatear el valor como moneda colombiana
-    let formattedValue = parseFloat(input.value.replace(/[^\d.-]/g, '')).toLocaleString('es-CO', {
-        style: 'currency',
-        currency: 'COP'
-    });
-
-    // Actualizar el valor del input
-    input.value = formattedValue;
+function formatCurrency(inputId) {
+    let input = document.getElementById(inputId);
+    if (input) {
+        let value = input.value.trim(); // Eliminar espacios en blanco al inicio y al final
+        value = value.replace(/[^\d.,]/g, ''); // Eliminar caracteres no numéricos excepto , y .
+        value = value.replace(',', '.'); // Reemplazar , por . para decimales
+        value = parseFloat(value); // Convertir a número
+        if (!isNaN(value)) {
+            // Formatear el valor como moneda colombiana
+            let formattedValue = value.toLocaleString('es-CO', {
+                style: 'currency',
+                currency: 'COP'
+            });
+            // Actualizar el valor del input
+            input.value = formattedValue;
+        }
+    }
 }
 
-input_monto_presupuesto.addEventListener('change', function formato_dinero(event) {
-    formatCurrency(input_monto_presupuesto);
-})
+
+

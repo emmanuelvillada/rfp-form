@@ -42,19 +42,30 @@ class solicitud_controller
                         if ($tipo_presupuesto === 'capex') {
                             // Si es Capex, capturar la RN y el monto del presupuesto
                             $rn = $_POST['seq_rn_rfp_presupuesto'];
-                            $monto = $_POST['monto_rfp_presupuesto'];
+                            $monto = $_POST['monto_rfp_presupuesto_seq'];
+                            $id_ceco = null;
                             //se añaden los datos al objeto solicitud que se envia al controlador.
                             $solicitud->__SET('seq_rn_rfp_presupuesto', $rn);
                             $solicitud->__SET('monto_rfp_presupuesto', $monto);
+                            $solicitud->__SET('id_rfp_centro_de_costo_area', $id_ceco);
+                            
                         } elseif ($tipo_presupuesto === 'opex') {
                             // Si es Opex, capturar el CeCo y el monto del presupuesto
                             $ceco = $_POST['id_rfp_centro_de_costo_presupuesto'];
                             $monto = $_POST['monto_rfp_presupuesto'];
+                            $seq_rn = null;
                             //se añaden los datos al objeto solicitud que se envia al controlador.
                             $solicitud->__SET('id_rfp_centro_de_costo_presupuesto', $ceco);
                             $solicitud->__SET('monto_rfp_presupuesto', $monto);
+                            $solicitud->__SET('seq_rn_rfp_presupuesto', $seq_rn);
                         } elseif ($tipo_presupuesto === 'sobreejecucion') {
-                            // Si es Sobreejecución, no se captura ningún dato adicional
+                            $ceco = null;
+                            $monto = null;
+                            $seq_rn = null;
+                            //se añaden los datos al objeto solicitud que se envia al controlador.
+                            $solicitud->__SET('id_rfp_centro_de_costo_presupuesto', $ceco);
+                            $solicitud->__SET('monto_rfp_presupuesto', $monto);
+                            $solicitud->__SET('seq_rn_rfp_presupuesto', $seq_rn);
                             
                         } 
                         $solicitud->__SET('detalle_rfp_solicitud', $_POST['detalle_rfp_solicitud']);
@@ -168,14 +179,13 @@ class solicitud_controller
 
 
             //se debe crear primero el presupuesto con el controlador de presupuesto
-            $sql = "INSERT INTO smart_center_rfp_solicitudes (tipo_rfp_solicitud, producto_servicio_rfp_solicitud, detalle_rfp_solicitud, descripcion_rfp_solicitud, fecha_requerimiento_rfp_solicitud, riesgo_rfp_soliciutd) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO smart_center_rfp_solicitudes (tipo_rfp_solicitud, producto_servicio_rfp_solicitud, detalle_rfp_solicitud, descripcion_rfp_solicitud, fecha_requerimiento_rfp_solicitud, riesgo_rfp_soliciutd) VALUES (?, ?, ?, ?, ?, ?)";
             $this->$pdo->prepare($sql)->execute(array(
                 $data->__GET('tipo_rfp_solicitud'),
                 $data->__GET('producto_servicio_rfp_solicitud'),
                 $data->__GET('detalle_rfp_solicitud'),
                 $data->__GET('descripcion_rfp_solicitud'),
                 $data->__GET('fecha_requerimiento_rfp_solicitud'),
-                $data->__GET('descripcion_rfp_solicitud'),
                 $data->__GET('riesgo_rfp_soliciutd')
             ));
             return $this->$pdo->lastInsertId();
@@ -214,7 +224,7 @@ class solicitud_controller
         $pdo  = $this->db_connection->pdo;
         try {
             $sql = "UPDATE smart_center_rfp_solicitud SET
-        eliminado = 1,
+        eliminado = 1
         WHERE id = ?";
             $this->$pdo->prepare($sql)
                 ->execute(
@@ -227,3 +237,4 @@ class solicitud_controller
         }
     }
 }
+?>

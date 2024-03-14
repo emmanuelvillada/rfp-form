@@ -3,7 +3,7 @@ class Presupuesto
 {
     private $id_rfp_presupuesto;
     private $tipo_presupuesto_rfp_presupuesto;
-    private $ceco_rfp_presupuesto;
+    private $id_rfp_centro_de_costo_area;
     private $seq_rn_rfp_presupuesto;
     //fuunciones para retornar y cambiar atributos
     public function __GET($k){ return $this->$k; }

@@ -46,7 +46,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
             </div>
             <form action="public\controllers\solicitud_controller\SolicitudController.php" method="post" id="form">
                 <input type="hidden" name="action" value="crear_solicitud">
-                <input type="hidden" name="id_rfp_usuario_solicitud" value="<?php echo $_SESSION['documento']; ?>">
+                <input type="hidden" name="id_rfp_usuario_solicitud" value="<?php $documento = (isset($_SESSION['documento'])) ? $_SESSION['documento'] : '0000000'; echo $documento; ?>">
                 <div class="div1">
 
                     <label for="tipo_rfp_solicitud ">1. Elija si su solicitud es puntual o regular:
@@ -100,7 +100,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <input type="number" value = 0 name="seq_rn_rfp_presupuesto">
                         <br>
                         <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto :</label>
-                        <input type="number" name="monto_rfp_presupuesto" id="monto_rfp_presupuesto">
+                        <input type="number" step="0.01" placeholder="0.00" min="0" name="monto_rfp_presupuesto_seq" oninput="formatCurrency('monto_rfp_presupuesto_seq')" id="monto_rfp_presupuesto_seq">
                     </div>
 
                     <div id="ceco" class="hidden">
@@ -123,7 +123,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         </select>
                         <br>
                         <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto :</label>
-                        <input type="number" name="monto_rfp_presupuesto" id="monto_rfp_presupuesto">
+                        <input type="number" step="0.01" placeholder="0.00" min="0" name="monto_rfp_presupuesto_ceco" oninput="formatCurrency('monto_rfp_presupuesto_ceco')" id="monto_rfp_presupuesto_ceco">
                     </div>
 
                 </div>
