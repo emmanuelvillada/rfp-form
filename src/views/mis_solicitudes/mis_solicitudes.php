@@ -94,6 +94,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <td><button class ="button-eliminar" type="button">Eliminar</button></td>
                 </tr>
             </tbody>
+            
         </table>
         <table id="form-solicitudes-aceptadas">
             <thead>
@@ -114,6 +115,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 if(isset($_SESSION['id_rfp_usuario_solicitud'])) {
     $id_rfp_usuario_solicitud = $_SESSION['id_rfp_usuario_solicitud'];
     $solicitud_controller = new solicitud_controller();
+    // se puede cambiar el parametro que se le enviara a el metodo get-SOLICITUD
     $solicitudes_aceptadas = $solicitud_controller->get_solicitud($id_rfp_usuario_solicitud, "aceptada");
     foreach ($solicitudes_aceptadas as $solicitud) {
         echo '<tr>';
