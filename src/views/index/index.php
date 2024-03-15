@@ -1,4 +1,7 @@
+
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);  
 session_start();
 
 // Verificar si las credenciales de sesión existen, queda pendiente revisar el area para saber si es administrador o usuario
@@ -46,7 +49,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
             </div>
             <form action="public\controllers\solicitud_controller\SolicitudController.php" method="post" id="form">
                 <input type="hidden" name="action" value="crear_solicitud">
-                <?php $documento = (isset($_SESSION['documento'])) ? $_SESSION['documento'] : '000'; ?>
+                <?php $documento = (isset($_SESSION['documento'])) ? $_SESSION['documento'] : '1'; ?>
                 <input type="hidden" name="id_rfp_usuario_solicitud" value="<?php echo $documento; ?>">
                 <div class="div1">
 
@@ -67,11 +70,11 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <label for="producto_servicio_rfp_solicitud">2. Elija si su solicitud es un suministro o un servicio:
                         <span class="tooltip">El suministro es un bien. En cambio, el servicio se trata de la prestación de una actividad para un objetivo.
                         </span>
-                    </label>    
+                    </label>
                     <div class="radio-buttons">
-                        <input  type="radio" name="producto_servicio_rfp_solicitud" value="suministro" id="suministroRadio" onChange="cambiarMensaje()" checked>
+                        <input type="radio" name="producto_servicio_rfp_solicitud" value="suministro" id="suministroRadio" onChange="cambiarMensaje()" checked>
                         <label for="suministroRadio">Suministro</label>
-                        <input  type="radio" name="producto_servicio_rfp_solicitud" value="servicio" onChange="cambiarMensaje()" id="servicioRadio">
+                        <input type="radio" name="producto_servicio_rfp_solicitud" value="servicio" onChange="cambiarMensaje()" id="servicioRadio">
                         <label for="servicioRadio">Servicio</label>
                     </div>
                 </div>
@@ -98,7 +101,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <div id="seq_rn" class="hidden">
                         <label for="seq_rn_rfp_presupuesto"> Digite su RN:</label>
                         <br>
-                        <input type="number" value = 0 name="seq_rn_rfp_presupuesto">
+                        <input type="number"  name="seq_rn_rfp_presupuesto">
                         <br>
                         <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto sin puntos ni comas : <br></label>
                         <input type="number" step="0.01" placeholder="0.00" min="0" name="monto_rfp_presupuesto_seq" id="monto_rfp_presupuesto_seq">
@@ -107,26 +110,32 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <div id="ceco" class="hidden">
                         <label for="id_ rfp_centro_de_costo_presupuesto"> Seleccione su CeCo:</label>
                         <br>
-                        <!-- cada opcion del select lleva el id del ceco, asi lo capturamos y se entrega al controlador. -->
                         <select name="id_rfp_centro_de_costo_presupuesto" id="ceco-select">
-                            <?php
-                            if (isset($_SESSION['documento'])) {
-                                $documento = $_SESSION['documento'];
-                                $cecos = new centro_de_costo_controller();
-                                //prueba
-                                $prueba = 000;
-                                $cecos->get($prueba);
+                        <!-- cada opcion del select lleva el id del ceco, asi lo capturamos y se entrega al controlador. -->
+                        <?php
+                        ini_set('display_errors', 1);
+                        error_reporting(E_ALL);  
+                        require_once('../../controllers/centro_de_costo_controller/centro_de_costo_controller.php');
+                        require_once('../../models/Centro_de_costo.php');
+                            
+                            $cecos_controller = new centro_de_costo_controller();
+                            $prueba = 1;
+                            $cecos = $cecos_controller->get($prueba); // Obtener los centros de costo
+                            // Verificar si se obtuvieron resultados
+                            if (!empty($cecos)) {
                                 foreach ($cecos as $ceco) {
                                     echo '<option value="' . $ceco->id_rfp_centro_de_costo . '">' . $ceco->nombre_rfp_centro_de_costo . '</option>';
                                 }
+                            } else {
+                                echo '<option value="0">No hay centros de costo disponibles</option>';
                             }
                             ?>
-                            
+                        
                             
                         </select>
                         <br>
                         <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto sin puntos ni comas : <br></label>
-                        <input type="number" step="0.01" placeholder="0.00" min="0" name="monto_rfp_presupuesto_ceco"  id="monto_rfp_presupuesto_ceco">
+                        <input type="number" step="0.01" placeholder="0.00" min="0" name="monto_rfp_presupuesto_ceco" id="monto_rfp_presupuesto_ceco">
                     </div>
 
                 </div>
@@ -134,23 +143,23 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 <div class="div4">
                     <label for="detalle_rfp_solicitud">4. ¿Que se requiere?: <br>
                     </label>
-                    <span  id="ejemplo_span1"> Ejemplo : Compra de un Ipad 
+                    <span id="ejemplo_span1"> Ejemplo : Compra de un Ipad
                     </span>
-                    <span  id="ejemplo_span2"> ejemplo_servicio
+                    <span id="ejemplo_span2"> ejemplo_servicio
                     </span>
-                    
+
                     <input required placeholder="Describa brevemente que producto y/o servicio requiere." type="text" name="detalle_rfp_solicitud" id="detalle_solicitud">
                 </div>
 
                 <div class="div5">
                     <label for="descripcion_rfp_solicitud">5. Especificaciones tecnicas del suministro y/o servicio. <br>
-                    </label>                   
-                    <span  id="ejemplo_span1.1"> Se requiere un Ipad de 10,9" con capacidad de almacenamiento de 64 Gb - 256 Gb / Modelo <br>
-                     10ma generación / color azul o gris /  Wifi / No SIM /.
+                    </label>
+                    <span id="ejemplo_span1.1"> Se requiere un Ipad de 10,9" con capacidad de almacenamiento de 64 Gb - 256 Gb / Modelo <br>
+                        10ma generación / color azul o gris / Wifi / No SIM /.
                     </span>
-                    <span  id="ejemplo_span2.1"> ejemplo_servicio
+                    <span id="ejemplo_span2.1"> ejemplo_servicio
                     </span>
-                    
+
                     <input required placeholder="(altura, grosor, color, material, forma, etc.)." type="text" name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
                 </div>
 
@@ -172,18 +181,19 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 </div>
 
                 <div class="div8">
-                        <label for="riesgos">8. Seleccione si su solicitud conlleva alguno de los siguientes riegos. <br> </label>
-                        <input type="checkbox" name="riesgo_rfp_soliciutd" id=""> riesgo. <br>
-                        <input type="checkbox" name="riesgo_rfp_soliciutd" id="">riesgo. <br>
+                    <label for="riesgos">8. Seleccione si su solicitud conlleva alguno de los siguientes riegos. <br> </label>
+                    <input type="checkbox" name="riesgo_rfp_soliciutd" id=""> riesgo. <br>
+                    <input type="checkbox" name="riesgo_rfp_soliciutd" id="">riesgo. <br>
                 </div>
 
                 <div class="div9"><input id="button-submit" class="button-submit" type="submit" value="Crear Solicitud"></div>
             </form>
         </section>
-        <div id="mensaje_submit" class="mensaje_submit" >
-                        <span>¡Formulario enviado con éxito!</span>
-                        <img src="../../../public/images/check-svgrepo-com.svg" alt="" srcset="">
-    </div>
+
+        <div id="mensaje_submit" class="mensaje_submit">
+            <span>¡Formulario enviado con éxito!</span>
+            <img src="../../../public/images/check-svgrepo-com.svg" alt="" srcset="">
+        </div>
     </main>
 
     <footer> </footer>

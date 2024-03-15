@@ -12,12 +12,14 @@ class centro_de_costo_controller
         $pdo  = $this->db_connection->pdo;
         try {
             $result = array();
+            var_dump($result);
             $stm = $pdo->prepare("SELECT cc.*
             FROM usuarios u
-            JOIN areas a ON u.id_area = a.id
-            JOIN smart_center_rfp_direcciones d ON a.id_rfp_direccion = d.id_rfp_direccion
+            JOIN areas a ON u.id_area = a.id_area
+            JOIN smart_center_rfp_direcciones d ON a.id_rfp_direccion_areas = d.id_rfp_direccion
             JOIN smart_center_rfp_centro_de_costos cc ON d.id_rfp_direccion = cc.id_rfp_direccion_centro_de_costo
             WHERE u.documento = ?;
+            
             ");
             $stm->execute(array($documento));
             foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {

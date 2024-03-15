@@ -114,19 +114,37 @@ function habilitar_submit() {
 
 //script para mostrar aviso al enviar el formulario 
 
-document.getElementById("form").addEventListener("submit", function (event) {
+// Captura el formulario
+var form = document.getElementById("form");
+
+// Agrega un evento de escucha para el evento submit
+form.addEventListener("submit", function(event) {
     event.preventDefault(); // Evita que se recargue la página al enviar el formulario
 
     // Mostrar el mensaje si el envío fue exitoso
     var mensaje = document.getElementById("mensaje_submit");
     mensaje.style.display = "block";
 
+    // Recorrer todos los divs dentro del formulario
+    var divs = form.querySelectorAll("div");
+    divs.forEach(function(div) {
+        // Buscar los inputs dentro de cada div
+        var inputs = div.querySelectorAll("input");
+        inputs.forEach(function(input) {
+            // Verificar si el input no es de tipo "submit" o "reset"
+            if (input.type !== "submit" && input.type !== "reset") {
+                // Restablecer el valor del campo de entrada a vacío
+                input.value = "";
+            }
+        });
+    });
+
     // Ocultar el mensaje después de tres segundos
-    setTimeout(function () {
+    setTimeout(function() {
         mensaje.style.display = "none";
     }, 3000); // 3000 milisegundos = 3 segundos
-
 });
+
 
 //script para modificar el valor del input monto del presupuesto a un formato de dinero.
 
@@ -150,4 +168,3 @@ function convertir_decimal(inputId) {
     // Actualizar el valor del input con el formato deseado
     document.getElementById(inputId).value = formattedValue;
 }
-

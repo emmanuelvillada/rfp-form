@@ -112,6 +112,8 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
             </thead>
             <tbody>
             <?php
+            include_once('../../controllers/solicitud_controller/solicitud_controller.php');
+            include_once('../../models/Solicitud.php');
 if(isset($_SESSION['id_rfp_usuario_solicitud'])) {
     $id_rfp_usuario_solicitud = $_SESSION['id_rfp_usuario_solicitud'];
     $solicitud_controller = new solicitud_controller();
@@ -121,12 +123,12 @@ if(isset($_SESSION['id_rfp_usuario_solicitud'])) {
         echo '<tr>';
         echo '<td>' . $solicitud->__GET('id_rfp_solicitud') . '</td>';
         echo '<td>' . $solicitud->__GET('id_rfp_fase_solicitud') . '</td>';
-        echo '<td>'. $solicitud->__GET('fecha_creacion_rfp_solicitud')'</td>'; // Este es solo un ejemplo, deberías obtener la fecha correcta de algún lugar
-        echo '<td>'. $solicitud->__GET('fecha_requerimiento_rfp_solicitud')'</td>'; // Este es solo un ejemplo, deberías obtener la fecha correcta de algún lugar
-        echo '<td>'. $solicitud->__GET('tipo_rfp_solicitud')'</td>'; // Este es solo un ejemplo, deberías obtener este dato de algún lugar
-        echo '<td>'. $solicitud->__GET('producto_servicio_rfp_solicitud')'</td>'; // Este es solo un ejemplo, deberías obtener este dato de algún lugar
-        echo '<td>'. $solicitud->__GET('detalle_rfp_solicitud')'</td>'; // Este es solo un ejemplo, deberías obtener este dato de algún lugar
-        echo '<td>'. $solicitud->__GET('descripcion_rfp_solicitud')'</td>'; // Este es solo un ejemplo, deberías obtener este dato de algún lugar
+        echo '<td>'. $solicitud->__GET('fecha_creacion_rfp_solicitud') . '</td>'; // Este es solo un ejemplo, deberías obtener la fecha correcta de algún lugar
+        echo '<td>'. $solicitud->__GET('fecha_requerimiento_rfp_solicitud'). '</td>'; // Este es solo un ejemplo, deberías obtener la fecha correcta de algún lugar
+        echo '<td>'. $solicitud->__GET('tipo_rfp_solicitud').'</td>'; // Este es solo un ejemplo, deberías obtener este dato de algún lugar
+        echo '<td>'. $solicitud->__GET('producto_servicio_rfp_solicitud').'</td>'; // Este es solo un ejemplo, deberías obtener este dato de algún lugar
+        echo '<td>'. $solicitud->__GET('detalle_rfp_solicitud').'</td>'; // Este es solo un ejemplo, deberías obtener este dato de algún lugar
+        echo '<td>'. $solicitud->__GET('descripcion_rfp_solicitud').'</td>'; // Este es solo un ejemplo, deberías obtener este dato de algún lugar
         echo '</tr>';
     }
 }

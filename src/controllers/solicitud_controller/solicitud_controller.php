@@ -1,5 +1,10 @@
 <?php
-require_once '../../db_connection/db_connection.php';
+include_once('../../db_conection/db_connection.php');
+include_once('../presupuesto_controller');
+include_once('../archivo_controller/archivo_controller.php');
+include_once('../../models/Solicitud.php');
+include_once('../../models/Presupuesto.php');
+include_once('../../models/Archivo.php');
 
 class solicitud_controller
 {
@@ -194,7 +199,7 @@ class solicitud_controller
                 descripcion_rfp_solicitud,
                 estado_rfp_solicitud,
                 riesgo_rfp_solicitud
-              ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $this->$pdo->prepare($sql)->execute(array(
                 $data->__GET('id_rfp_usuario_solicitud'),
                 $data->__GET('id_rfp_presupuesto_solicitud'),
@@ -207,7 +212,9 @@ class solicitud_controller
                 $data->__GET('estado_rfp_solicitud'),
                 $data->__GET('riesgo_rfp_soliciutd')
             ));
+            var_dump($data);
             return $this->$pdo->lastInsertId();
+            echo $this->$pdo->lastUpdateId();
         } catch (Exception $e) {
             die($e->getMessage());
         }
