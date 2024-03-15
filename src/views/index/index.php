@@ -46,7 +46,8 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
             </div>
             <form action="public\controllers\solicitud_controller\SolicitudController.php" method="post" id="form">
                 <input type="hidden" name="action" value="crear_solicitud">
-                <input type="hidden" name="id_rfp_usuario_solicitud" value="<?php $documento = (isset($_SESSION['documento'])) ? $_SESSION['documento'] : '0000000'; echo $documento; ?>">
+                <?php $documento = (isset($_SESSION['documento'])) ? $_SESSION['documento'] : '000'; ?>
+                <input type="hidden" name="id_rfp_usuario_solicitud" value="<?php echo $documento; ?>">
                 <div class="div1">
 
                     <label for="tipo_rfp_solicitud ">1. Elija si su solicitud es puntual o regular:
@@ -109,10 +110,12 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <!-- cada opcion del select lleva el id del ceco, asi lo capturamos y se entrega al controlador. -->
                         <select name="id_rfp_centro_de_costo_presupuesto" id="ceco-select">
                             <?php
-                            if (isset($_SESSION['id_area'])) {
-                                $id_area = $_SESSION['id_area'];
+                            if (isset($_SESSION['documento'])) {
+                                $documento = $_SESSION['documento'];
                                 $cecos = new centro_de_costo_controller();
-                                $cecos->get($id_area);
+                                //prueba
+                                $prueba = 000;
+                                $cecos->get($prueba);
                                 foreach ($cecos as $ceco) {
                                     echo '<option value="' . $ceco->id_rfp_centro_de_costo . '">' . $ceco->nombre_rfp_centro_de_costo . '</option>';
                                 }
