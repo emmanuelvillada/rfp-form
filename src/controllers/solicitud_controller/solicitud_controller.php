@@ -90,7 +90,6 @@ class solicitud_controller
                         }else{
                             $solicitud->__SET('riesgo_rfp_soliciutd','n/a');
                         }
-                        echo $solicitud;
                         //capturamos el id de la solicitud para crear la instancia de los archivos relacionados con el id de la solicitud creada.
                         $presupuesto_controller = new presupuesto_controller();
                         $id_solicitud = $this->create_solicitud($solicitud, $presupuesto_controller);

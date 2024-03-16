@@ -48,7 +48,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
             <div class="h2-container">
                 <h2>FORMULARIO RFP</h2>
             </div>
-            <form action="../../controllers//solicitud_controller/solicitud_controller.php" method="post" id="form">
+            <form action="../../controllers/solicitud_controller/solicitud_controller.php" method="post" id="form">
                 <input type="hidden" name="action" value="crear_solicitud">
                 <?php $documento = (isset($_SESSION['documento'])) ? $_SESSION['documento'] : '1'; ?>
                 <input type="hidden" name="id_rfp_usuario_solicitud" value="<?php echo $documento; ?>">
