@@ -12,7 +12,6 @@ class centro_de_costo_controller
         $pdo  = $this->db_connection->pdo;
         try {
             $result = array();
-            var_dump($result);
             $stm = $pdo->prepare("SELECT cc.*
             FROM usuarios u
             JOIN areas a ON u.id_area = a.id_area

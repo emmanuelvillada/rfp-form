@@ -1,15 +1,16 @@
 <?php
 include_once('../../db_conection/db_connection.php');
-include_once('../presupuesto_controller');
+include_once('../presupuesto_controller/presupuesto_controller.php');
 include_once('../archivo_controller/archivo_controller.php');
 include_once('../../models/Solicitud.php');
 include_once('../../models/Presupuesto.php');
 include_once('../../models/Archivo.php');
-
+ini_set('display_errors', 1);
+error_reporting(E_ALL);  
 class solicitud_controller
 {
     private $db_connection;
-
+    
     public function __construct()
     {
         $this->db_connection = new db_connection();
@@ -17,6 +18,9 @@ class solicitud_controller
 
     public function handle_request()
     {
+        
+        $action = $_POST['action'];
+        echo $action;
         if (isset($_POST['action'])) {
             switch ($_POST['action']) {
                 case 'listar_solicitudes':
@@ -34,6 +38,7 @@ class solicitud_controller
                     }
                     break;
                 case 'crear_solicitud':
+                    echo$_POST['tipo_rfp_solicitud'];
                     if (
                         isset($_POST['tipo_rfp_solicitud']) && isset($_POST['producto_servicio_rfp_solicitud']) && isset($_POST['tipo_presupuesto_rfp_presupuesto']) && isset($_POST['detalle_rfp_solicitud'])
                         && isset($_POST['descripcion_rfp_solicitud'])) 
@@ -41,7 +46,7 @@ class solicitud_controller
                         $solicitud = new Solicitud();
                         $solicitud->__SET('id_rfp_usuario_solicitud', $_POST['id_rfp_usuario_solicitud']);
                         $solicitud->__SET('tipo_rfp_solicitud', $_POST['tipo_rfp_solicitud']);
-                        $solicitud->__SET('fecha_creacion_rfp_solicitud', date("Y-m-d"));
+                        $solicitud->__SET('fecha_creacion_rfp_solicitud', date("d-m-y"));
                         $solicitud->__SET('producto_servicio_rfp_solicitud', $_POST['producto_servicio_rfp_solicitud']);
                         $solicitud->__SET('detalle_rfp_solicitud', $_POST['detalle_rfp_solicitud']);
                         $solicitud->__SET('descripcion_rfp_solicitud', $_POST['descripcion_rfp_solicitud']);
@@ -85,9 +90,10 @@ class solicitud_controller
                         }else{
                             $solicitud->__SET('riesgo_rfp_soliciutd','n/a');
                         }
-                        
+                        echo $solicitud;
                         //capturamos el id de la solicitud para crear la instancia de los archivos relacionados con el id de la solicitud creada.
-                        $id_solicitud = $this->create_solicitud($solicitud);
+                        $presupuesto_controller = new presupuesto_controller();
+                        $id_solicitud = $this->create_solicitud($solicitud, $presupuesto_controller);
 
                         //guardamos los archivos si es que el usuario inserto en la tabla archivos relacionados con la fk de la solicitud
                         if (isset($_POST['archivos']))
@@ -171,9 +177,9 @@ class solicitud_controller
         }
     }
 
-    public function create_solicitud(Solicitud $data)
+    public function create_solicitud(Solicitud $data, presupuesto_controller $presupuesto_controller)
     {
-        $presupuesto_controller = new presupuesto_controller();
+        
         $pdo  = $this->db_connection->pdo;
         try {
             $presupuesto = new Presupuesto();
@@ -200,7 +206,7 @@ class solicitud_controller
                 estado_rfp_solicitud,
                 riesgo_rfp_solicitud
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $this->$pdo->prepare($sql)->execute(array(
+            $pdo->prepare($sql)->execute(array(
                 $data->__GET('id_rfp_usuario_solicitud'),
                 $data->__GET('id_rfp_presupuesto_solicitud'),
                 $data->__GET('fecha_creacion_rfp_solicitud'),
@@ -213,10 +219,10 @@ class solicitud_controller
                 $data->__GET('riesgo_rfp_soliciutd')
             ));
             var_dump($data);
-            return $this->$pdo->lastInsertId();
-            echo $this->$pdo->lastUpdateId();
+            return $pdo->lastInsertId();
+            
         } catch (Exception $e) {
-            die($e->getMessage());
+            echo 'Error: ' . $e->getMessage();
         }
     }
 
@@ -264,3 +270,4 @@ class solicitud_controller
     }
 }
 ?>
+

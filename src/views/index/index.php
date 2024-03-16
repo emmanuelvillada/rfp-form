@@ -15,8 +15,9 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 } else {
     echo "Las credenciales de sesión no existen.";
 }
-
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,7 +48,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
             <div class="h2-container">
                 <h2>FORMULARIO RFP</h2>
             </div>
-            <form action="public\controllers\solicitud_controller\SolicitudController.php" method="post" id="form">
+            <form action="../../controllers//solicitud_controller/solicitud_controller.php" method="post" id="form">
                 <input type="hidden" name="action" value="crear_solicitud">
                 <?php $documento = (isset($_SESSION['documento'])) ? $_SESSION['documento'] : '1'; ?>
                 <input type="hidden" name="id_rfp_usuario_solicitud" value="<?php echo $documento; ?>">
@@ -169,7 +170,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <span class="tooltip">En el flujo básico de negociación el tiempo mínimo es de 8 días.
                         </span>
                     </label>
-                    <input required type="date" name="fecha_requerimiento_rfp_solicitud" id="fecha_requerimiento">
+                    <input required   type="date" name="fecha_requerimiento_rfp_solicitud" id="fecha_requerimiento">
                 </div>
 
                 <div class="div7">
