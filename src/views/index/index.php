@@ -161,7 +161,9 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <span id="ejemplo_span2.1"> ejemplo_servicio
                     </span>
 
-                    <input required placeholder="(altura, grosor, color, material, forma, etc.)." type="text" name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
+                    <input required placeholder="(altura, grosor, color, material, forma, etc.)." type="text" 
+                    name="descripcion_rfp_solicitud" id="descripcion_rfp_solicitud">
+                    <br>
                 </div>
 
                 <div class="div6">
