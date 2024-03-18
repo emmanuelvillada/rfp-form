@@ -48,7 +48,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
             <div class="h2-container">
                 <h2>FORMULARIO RFP</h2>
             </div>
-            <form  method="post" id="form" enctype="multipart/form-data">
+            <form  method="post" action="../../controllers/solicitud_controller/form_post.php" id="form" enctype="multipart/form-data">
 
                 <input type="hidden" name="action" value="crear_solicitud">
 
@@ -189,7 +189,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <input type="checkbox" name="riesgo_rfp_soliciutd" id=""> riesgo. <br>
                 </div>
 
-                <div class="div9"><input id="button-submit" class="button-submit" type="submit" name="submit"></div>
+                <div class="div9"><input id="button-submit" class="button-submit" type="submit"  name="submit"></div>
             </form>
         </section>
 

@@ -11,7 +11,6 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);  
 
 
-// Verificar si se han enviado datos mediante POST
 if (isset($_POST['submit'])) {
     // Imprimir el array $_POST
     echo "<pre>";
