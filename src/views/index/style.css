@@ -92,6 +92,7 @@ form {
 
 .div3 {
     grid-area: 3 / 1 / 4 / 2;
+    margin : 20px;
 }
 
 .div4 {
@@ -107,6 +108,7 @@ form {
 .div6 {
     grid-area: 3 / 2 / 4 / 3;
     padding-left: 14px;
+    margin : 10px;
 }
 
 .div7 {
