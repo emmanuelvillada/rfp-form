@@ -168,3 +168,4 @@ function convertir_decimal(inputId) {
     // Actualizar el valor del input con el formato deseado
     document.getElementById(inputId).value = formattedValue;
 }
+

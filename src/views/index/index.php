@@ -1,6 +1,5 @@
 
 <?php
-include_once('../../controllers/solicitud_controller/solicitud_controller.php');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);  
 session_start();
@@ -49,12 +48,15 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
             <div class="h2-container">
                 <h2>FORMULARIO RFP</h2>
             </div>
-            <form action="../../controllers/solicitud_controller/solicitud_controller.php" method="post" id="form">
+            <form  method="post" id="form" enctype="multipart/form-data">
+
                 <input type="hidden" name="action" value="crear_solicitud">
+
                 <?php $documento = (isset($_SESSION['documento'])) ? $_SESSION['documento'] : '1'; ?>
                 <input type="hidden" name="id_rfp_usuario_solicitud" value="<?php echo $documento; ?>">
-                <div class="div1">
+                <input type="hidden" name="estado_rfp_solicitud" value="1">
 
+                <div class="div1">
                     <label for="tipo_rfp_solicitud ">1. Elija si su solicitud es puntual o regular:
                         <span class="tooltip">Solicitud puntual se trata de una compra única en el tiempo.<br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
@@ -185,10 +187,9 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 <div class="div8">
                     <label for="riesgos">8. Seleccione si su solicitud conlleva alguno de los siguientes riegos. <br> </label>
                     <input type="checkbox" name="riesgo_rfp_soliciutd" id=""> riesgo. <br>
-                    <input type="checkbox" name="riesgo_rfp_soliciutd" id="">riesgo. <br>
                 </div>
 
-                <div class="div9"><input id="button-submit" class="button-submit" type="submit" value="Crear Solicitud"></div>
+                <div class="div9"><input id="button-submit" class="button-submit" type="submit" name="submit"></div>
             </form>
         </section>
 
@@ -196,9 +197,14 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
             <span>¡Formulario enviado con éxito!</span>
             <img src="../../../public/images/check-svgrepo-com.svg" alt="" srcset="">
         </div>
+        <?php
+        include('../../controllers/solicitud_controller/form_post.php')
+        ?>
     </main>
 
-    <footer> </footer>
+    <footer>
+        <div id="mensaje"></div>
+</footer>
 </body>
 
 <script src="../index/script.js">
