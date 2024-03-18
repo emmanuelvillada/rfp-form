@@ -1,5 +1,6 @@
 
 <?php
+include_once('../../controllers/solicitud_controller/solicitud_controller.php');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);  
 session_start();
@@ -114,8 +115,6 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <select name="id_rfp_centro_de_costo_presupuesto" id="ceco-select">
                         <!-- cada opcion del select lleva el id del ceco, asi lo capturamos y se entrega al controlador. -->
                         <?php
-                        ini_set('display_errors', 1);
-                        error_reporting(E_ALL);  
                         require_once('../../controllers/centro_de_costo_controller/centro_de_costo_controller.php');
                         require_once('../../models/Centro_de_costo.php');
                             

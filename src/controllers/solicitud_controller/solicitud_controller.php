@@ -1,7 +1,7 @@
 <?php
 include_once('../../db_conection/db_connection.php');
-include_once('../presupuesto_controller/presupuesto_controller.php');
-include_once('../archivo_controller/archivo_controller.php');
+include_once('../../controllers/presupuesto_controller/presupuesto_controller.php');
+include_once('../../controllers/archivo_controller/archivo_controller.php');
 include_once('../../models/Solicitud.php');
 include_once('../../models/Presupuesto.php');
 include_once('../../models/Archivo.php');

@@ -99,18 +99,18 @@ cambiarMensaje();
 
 //script para que se desabilite el boton de crear solicitud hasta que se llenen todos los campos
 
-function habilitar_submit() {
-    var detalle_solicitud = document.getElementById('detalle_solicitud').value.trim();
-    var descripcion_solicitud = document.getElementById('descripcion_rfp_solicitud').value.trim();
-    var fecha_requerimiento_solicitud = document.getElementById('fecha_requerimiento').value.trim();
-    var submitBtn = document.getElementById('button-submit');
+// function habilitar_submit() {
+//     var detalle_solicitud = document.getElementById('detalle_solicitud').value.trim();
+//     var descripcion_solicitud = document.getElementById('descripcion_rfp_solicitud').value.trim();
+//     var fecha_requerimiento_solicitud = document.getElementById('fecha_requerimiento').value.trim();
+//     var submitBtn = document.getElementById('button-submit');
 
-    if (detalle_solicitud !== "" && descripcion_solicitud !== "" && fecha_requerimiento_solicitud !== "") {
-        submitBtn.disabled = false;
-    } else {
-        submitBtn.disabled = true;
-    }
-}
+//     if (detalle_solicitud !== "" && descripcion_solicitud !== "" && fecha_requerimiento_solicitud !== "") {
+//         submitBtn.disabled = false;
+//     } else {
+//         submitBtn.disabled = true;
+//     }
+// }
 
 //script para mostrar aviso al enviar el formulario 
 
