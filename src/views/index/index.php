@@ -43,7 +43,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
     </header>
 
     <main class="index-container">
-
+    
         <section class="section">
             <div class="h2-container">
                 <h2>FORMULARIO RFP</h2>
@@ -57,7 +57,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 <input type="hidden" name="estado_rfp_solicitud" value="1">
 
                 <div class="div1">
-                    <label for="tipo_rfp_solicitud ">1. Elija si su solicitud es puntual o regular:
+                    <label >1. Elija si su solicitud es puntual o regular:
                         <span class="tooltip">Solicitud puntual se trata de una compra única en el tiempo.<br>
                             Regular es una compra que se repetira varias veces a través del tiempo.
                         </span>
@@ -71,7 +71,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 </div>
 
                 <div class="div2">
-                    <label for="producto_servicio_rfp_solicitud">2. Elija si su solicitud es un suministro o un servicio:
+                    <label >2. Elija si su solicitud es un suministro o un servicio:
                         <span class="tooltip">El suministro es un bien. En cambio, el servicio se trata de la prestación de una actividad para un objetivo.
                         </span>
                     </label>
@@ -85,7 +85,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
 
                 <div class="div3">
-                    <label for="tipo_presupuesto_rfp_presupuesto">3. Elija su tipo de presupuesto:
+                    <label >3. Elija su tipo de presupuesto:
                         <span class="tooltip">Capex: presupuesto para adquirir o mejorar activos. <br>
                             Opex: presupuesto para gastos operativos. <br>
                             Sobreejecución: Cuando no se tiene presupuesto planificado.
@@ -105,14 +105,14 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <div id="seq_rn" class="hidden">
                         <label for="seq_rn_rfp_presupuesto"> Digite su RN:</label>
                         <br>
-                        <input type="number"  name="seq_rn_rfp_presupuesto">
+                        <input type="number" id="seq_rn_rfp_presupuesto" name="seq_rn_rfp_presupuesto">
                         <br>
                         <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto sin puntos ni comas : <br></label>
                         <input type="number" step="0.01" placeholder="0.00" min="0" name="monto_rfp_presupuesto_seq" id="monto_rfp_presupuesto_seq">
                     </div>
 
                     <div id="ceco" class="hidden">
-                        <label for="id_ rfp_centro_de_costo_presupuesto"> Seleccione su CeCo:</label>
+                        <label for="ceco-select"> Seleccione su CeCo:</label>
                         <br>
                         <select name="id_rfp_centro_de_costo_presupuesto" id="ceco-select">
                         <!-- cada opcion del select lleva el id del ceco, asi lo capturamos y se entrega al controlador. -->
@@ -136,14 +136,14 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                             
                         </select>
                         <br>
-                        <label for="monto_rfp_presupuesto">Digite el monto de su presupuesto sin puntos ni comas : <br></label>
+                        <label for="monto_rfp_presupuesto_ceco">Digite el monto de su presupuesto sin puntos ni comas : <br></label>
                         <input type="number" step="0.01" placeholder="0.00" min="0" name="monto_rfp_presupuesto_ceco" id="monto_rfp_presupuesto_ceco">
                     </div>
 
                 </div>
 
                 <div class="div4">
-                    <label for="detalle_rfp_solicitud">4. ¿Que se requiere?: <br>
+                    <label for="detalle_solicitud">4. ¿Que se requiere?: <br>
                     </label>
                     <span id="ejemplo_span1"> Ejemplo : Compra de un Ipad
                     </span>
@@ -168,7 +168,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                 </div>
 
                 <div class="div6">
-                    <label for="fecha_requerimiento_rfp_solicitud"><br> 6. Indique la fecha para la cual requiere su suministro o servicio:
+                    <label for="fecha_requerimiento"><br> 6. Indique la fecha para la cual requiere su suministro o servicio:
                         <br>
                         <span class="tooltip">En el flujo básico de negociación el tiempo mínimo es de 8 días.
                         </span>
@@ -186,20 +186,18 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 
                 <div class="div8">
                     <label for="riesgos">8. Seleccione si su solicitud conlleva alguno de los siguientes riegos. <br> </label>
-                    <input type="checkbox" name="riesgo_rfp_soliciutd" id=""> riesgo. <br>
+                    <input type="checkbox" name="riesgo_rfp_soliciutd" id="riegos"> riesgo. <br>
                 </div>
 
-                <div class="div9"><input id="button-submit" class="button-submit" type="submit"  name="submit"></div>
+                <div class="div9"><input id="button-submit" class="button-submit" type="submit" value="Enviar" name="submit"></div>
             </form>
         </section>
 
         <div id="mensaje_submit" class="mensaje_submit">
             <span>¡Formulario enviado con éxito!</span>
-            <img src="../../../public/images/check-svgrepo-com.svg" alt="" srcset="">
+            <img src="../../../public/images/check-svgrepo-com.svg" alt="logo-envio-exitoso" >
         </div>
-        <?php
-        include('../../controllers/solicitud_controller/form_post.php')
-        ?>
+        
     </main>
 
     <footer>

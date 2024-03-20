@@ -86,7 +86,7 @@ class solicitud_controller
 
     public function create_solicitud(Solicitud $data, presupuesto_controller $presupuesto_controller)
     {
-        
+        echo 'controlador, funcion create';
         $pdo  = $this->db_connection->pdo;
         try {
             $presupuesto = new Presupuesto();

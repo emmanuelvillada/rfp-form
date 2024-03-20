@@ -117,14 +117,20 @@ cambiarMensaje();
 // Captura el formulario
 var form = document.getElementById("form");
 
-// Agrega un evento de escucha para el evento submit
+// Agregar un event listener para el evento submit
 form.addEventListener("submit", function(event) {
-    event.preventDefault(); // Evita que se recargue la página al enviar el formulario
-
     // Mostrar el mensaje si el envío fue exitoso
     var mensaje = document.getElementById("mensaje_submit");
     mensaje.style.display = "block";
 
+    // Ocultar el mensaje después de tres segundos
+    setTimeout(function() {
+        mensaje.style.display = "none";
+    }, 3000); // 3000 milisegundos = 3 segundos
+});
+
+// Limpiar los campos del formulario después de que se envíe
+form.addEventListener("submit", function(event) {
     // Recorrer todos los divs dentro del formulario
     var divs = form.querySelectorAll("div");
     divs.forEach(function(div) {
@@ -138,13 +144,7 @@ form.addEventListener("submit", function(event) {
             }
         });
     });
-
-    // Ocultar el mensaje después de tres segundos
-    setTimeout(function() {
-        mensaje.style.display = "none";
-    }, 3000); // 3000 milisegundos = 3 segundos
 });
-
 
 //script para modificar el valor del input monto del presupuesto a un formato de dinero.
 

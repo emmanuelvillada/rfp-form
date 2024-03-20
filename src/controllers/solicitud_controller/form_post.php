@@ -6,10 +6,12 @@ include_once('../../models/Solicitud.php');
 include_once('../../models/Presupuesto.php');
 include_once('../../models/Archivo.php');
 include_once('../../controllers/solicitud_controller/solicitud_controller.php');
-include_once('../../views/index/index.php');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);  
 
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
 
 if (isset($_POST['submit'])) {
     // Imprimir el array $_POST
@@ -33,7 +35,7 @@ if (isset($_POST['submit'])) {
                 }
                 break;
             case 'crear_solicitud':
-                echo$_POST['tipo_rfp_solicitud'];
+                
                 if (
                     isset($_POST['tipo_rfp_solicitud']) && isset($_POST['producto_servicio_rfp_solicitud']) && isset($_POST['tipo_presupuesto_rfp_presupuesto']) 
                     && isset($_POST['detalle_rfp_solicitud']) && isset($_POST['descripcion_rfp_solicitud']) && isset($_POST['fecha_requerimiento_rfp_solicitud'])
@@ -128,7 +130,7 @@ if (isset($_POST['submit'])) {
                 break;
         }
     }
-    echo "No se especificó ninguna acción";
+    
 }
 
 
