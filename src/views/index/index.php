@@ -63,9 +63,9 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         </span>
                     </label>
                     <div class="radio-buttons">
-                        <input type="radio" name="tipo_rfp_solicitud " value="puntual" id="puntualRadio" checked>
+                        <input type="radio" name="tipo_rfp_solicitud" value="puntual" id="puntualRadio" checked>
                         <label for="puntualRadio">Puntual</label>
-                        <input type="radio" name="tipo_rfp_solicitud " value="regular" id="regularRadio">
+                        <input type="radio" name="tipo_rfp_solicitud" value="regular" id="regularRadio">
                         <label for="regularRadio">Regular</label>
                     </div>
                 </div>

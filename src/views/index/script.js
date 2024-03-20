@@ -115,36 +115,36 @@ cambiarMensaje();
 //script para mostrar aviso al enviar el formulario 
 
 // Captura el formulario
-var form = document.getElementById("form");
+// var form = document.getElementById("form");
 
-// Agregar un event listener para el evento submit
-form.addEventListener("submit", function(event) {
-    // Mostrar el mensaje si el envío fue exitoso
-    var mensaje = document.getElementById("mensaje_submit");
-    mensaje.style.display = "block";
+// // Agregar un event listener para el evento submit
+// form.addEventListener("submit", function(event) {
+//     // Mostrar el mensaje si el envío fue exitoso
+//     var mensaje = document.getElementById("mensaje_submit");
+//     mensaje.style.display = "block";
 
-    // Ocultar el mensaje después de tres segundos
-    setTimeout(function() {
-        mensaje.style.display = "none";
-    }, 3000); // 3000 milisegundos = 3 segundos
-});
+//     // Ocultar el mensaje después de tres segundos
+//     setTimeout(function() {
+//         mensaje.style.display = "none";
+//     }, 3000); // 3000 milisegundos = 3 segundos
+// });
 
-// Limpiar los campos del formulario después de que se envíe
-form.addEventListener("submit", function(event) {
-    // Recorrer todos los divs dentro del formulario
-    var divs = form.querySelectorAll("div");
-    divs.forEach(function(div) {
-        // Buscar los inputs dentro de cada div
-        var inputs = div.querySelectorAll("input");
-        inputs.forEach(function(input) {
-            // Verificar si el input no es de tipo "submit" o "reset"
-            if (input.type !== "submit" && input.type !== "reset") {
-                // Restablecer el valor del campo de entrada a vacío
-                input.value = "";
-            }
-        });
-    });
-});
+// // Limpiar los campos del formulario después de que se envíe
+// form.addEventListener("submit", function(event) {
+//     // Recorrer todos los divs dentro del formulario
+//     var divs = form.querySelectorAll("div");
+//     divs.forEach(function(div) {
+//         // Buscar los inputs dentro de cada div
+//         var inputs = div.querySelectorAll("input");
+//         inputs.forEach(function(input) {
+//             // Verificar si el input no es de tipo "submit" o "reset"
+//             if (input.type !== "submit" && input.type !== "reset") {
+//                 // Restablecer el valor del campo de entrada a vacío
+//                 input.value = "";
+//             }
+//         });
+//     });
+// });
 
 //script para modificar el valor del input monto del presupuesto a un formato de dinero.
 

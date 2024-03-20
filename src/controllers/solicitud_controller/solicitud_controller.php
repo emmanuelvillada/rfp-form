@@ -97,7 +97,6 @@ class solicitud_controller
             $presupuesto->__SET('monto_rfp_presupuesto', $data->monto_rfp_presupuesto);
 
             // Crear el presupuesto antes de crear la solicitud utilizando el controlador de presupuestos
-            
             $id_presupuesto = $presupuesto_controller->create_presupuesto($presupuesto);
             $data->__SET('id_rfp_presupuesto_solicitud', $id_presupuesto);
 
@@ -127,7 +126,7 @@ class solicitud_controller
                 $data->__GET('estado_rfp_solicitud'),
                 $data->__GET('riesgo_rfp_solicitud')
             ));
-            var_dump($data);
+            
             return $pdo->lastInsertId();
             
         } catch (Exception $e) {

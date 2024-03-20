@@ -15,25 +15,9 @@ echo "</pre>";
 
 if (isset($_POST['submit'])) {
     // Imprimir el array $_POST
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
     if (isset($_POST['action'])) {
         switch ($_POST['action']) {
-            case 'listar_solicitudes':
-                if (isset($_POST['id_rfp_usuario_solicitud']) && isset($_POST['estado_rfp_solicitud'])) {
-                    
-                    $id_rfp_usuario_solicitud = $_POST['id_rfp_usuario_solicitud'];
-                    $estado_rfp_solicitud = $_POST['estado_rfp_solicitud'];
-                    echo $this->get_solicitudes($id_rfp_usuario_solicitud, $estado_rfp_solicitud);
-                }
-                
-                break;
-            case 'ver_solicitud':
-                if (isset($_POST['id'])) {
-                    echo $this->get_solicitud($_POST['id']);
-                }
-                break;
+            
             case 'crear_solicitud':
                 
                 if (
@@ -118,15 +102,6 @@ if (isset($_POST['submit'])) {
                 }
             echo 'se creo una solicitud';
             
-                break;
-            case 'actualizar_solicitud':
-                // Aquí iría el código para actualizar una solicitud
-                break;
-            case 'eliminar_solicitud':
-                // Aquí iría el código para eliminar una solicitud
-                break;
-            default:
-                echo "Acción no válida";
                 break;
         }
     }
