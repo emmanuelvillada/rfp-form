@@ -15,6 +15,21 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
 }
 
 ?>
+<?php
+require_once '../../controllers/solicitud_controller/solicitud_controller.php';
+
+// Crear una instancia del controlador
+$solicitud_controller = new solicitud_controller();
+//verificar si hay un id 
+if (isset($_SESSION['documentoo'])) {
+    $id_rfp_usuario_solicitud = $_SESSION['documento'];
+} else {
+    $id_rfp_usuario_solicitud = 1;
+}
+$estado = 'pendiente';
+// Obtener las solicitudes
+$solicitudes = $solicitud_controller->get_solicitudes_usuario($id_rfp_usuario_solicitud, $estado);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,210 +52,52 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
     </header>
     <main class="container-main">
         <h2 class="h2">Mis Solicitudes</h2>
-        <div class="button-filtro">
-            <button Onclick="mostrar_form(solicitudes_aceptadas)">Solicitudes Aceptadas</button>
-            <button Onclick="mostrar_form(solicitudes_rechazadas)">Solicitudes Rechazadas</button>
-            <button Onclick="mostrar_form(solicitudes_pendientes)">Solicitudes Pendientes</button>
+        <div class="buttons">
+            <button class="button-filtro" Onclick="mostrar_form(solicitudes_aceptadas)">Solicitudes Aceptadas</button>
+            <button class="button-filtro" Onclick="mostrar_form(solicitudes_rechazadas)">Solicitudes Rechazadas</button>
+            <button class="button-filtro" Onclick="mostrar_form(solicitudes_pendientes)">Solicitudes Pendientes</button>
         </div>
-        
-        <table id="form-complete">
-            <thead>
-                <tr>
-                    <th>Id solicitud</th>
-                    <th>fase</th>
-                    <th>Fecha creacion</th>
-                    <th>Fecha de requerimiento </th>
-                    <th>Tipo </th>
-                    <th>Producto o servicio</th>
-                    <th>Detalle</th>
-                    <th>Descripcion</th>
-                    <th>Necesidad</th>
-                    <th>Comentario</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        02/02/2024
-                    </td>
-                    <td>
-                        15/02/2024
-                    </td>
-                    <td>
-                        Puntual
-                    </td>
-                    <td>
-                        Producto
-                    </td>
-                    <td>
-                        varilla de metal para sostener caja
-                    </td>
-                    <td>
-                        Una varilla de 20x5 cm de metal
-                    </td>
-                    <td>
-                        Se necesita para el area de mantenimiento
-                    </td>
-                    <td>
-                        Se precisa notificar al area de sst
-                    </td>
-                    <td><button class ="button-eliminar" type="button">Eliminar</button></td>
-                </tr>
-            </tbody>
-            
-        </table>
+
+
         <table id="form-solicitudes-aceptadas">
             <thead>
-                <tr>
-                    <th>Id solicitud</th>
-                    <th>fase</th>
-                    <th>Fecha creacion</th>
-                    <th>Fecha de requerimiento </th>
-                    <th>Tipo </th>
-                    <th>Producto o servicio</th>
-                    <th>Detalle</th>
-                    <th>Descripcion</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th>ID Solicitud</th>
+                <th>Usuario</th>
+                <th>Subcategoría</th>
+                <th>Presupuesto</th>
+                <th>Fase</th>
+                <th>Fecha Creación</th>
+                <th>Tipo</th>
+                <th>Producto/Servicio</th>
+                <th>Detalle</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Riesgo</th>
+            </tr>
             </thead>
             <tbody>
-            <?php
-            include_once('../../controllers/solicitud_controller/solicitud_controller.php');
-            include_once('../../models/Solicitud.php');
-if(isset($_SESSION['id_rfp_usuario_solicitud'])) {
-    $id_rfp_usuario_solicitud = $_SESSION['id_rfp_usuario_solicitud'];
-    $solicitud_controller = new solicitud_controller();
-    // se puede cambiar el parametro que se le enviara a el metodo get-SOLICITUD
-    $solicitudes_aceptadas = $solicitud_controller->get_solicitud($id_rfp_usuario_solicitud, "aceptada");
-    foreach ($solicitudes_aceptadas as $solicitud) {
-        echo '<tr>';
-        echo '<td>' . $solicitud->__GET('id_rfp_solicitud') . '</td>';
-        echo '<td>' . $solicitud->__GET('id_rfp_fase_solicitud') . '</td>';
-        echo '<td>'. $solicitud->__GET('fecha_creacion_rfp_solicitud') . '</td>'; // Este es solo un ejemplo, deberías obtener la fecha correcta de algún lugar
-        echo '<td>'. $solicitud->__GET('fecha_requerimiento_rfp_solicitud'). '</td>'; // Este es solo un ejemplo, deberías obtener la fecha correcta de algún lugar
-        echo '<td>'. $solicitud->__GET('tipo_rfp_solicitud').'</td>'; // Este es solo un ejemplo, deberías obtener este dato de algún lugar
-        echo '<td>'. $solicitud->__GET('producto_servicio_rfp_solicitud').'</td>'; // Este es solo un ejemplo, deberías obtener este dato de algún lugar
-        echo '<td>'. $solicitud->__GET('detalle_rfp_solicitud').'</td>'; // Este es solo un ejemplo, deberías obtener este dato de algún lugar
-        echo '<td>'. $solicitud->__GET('descripcion_rfp_solicitud').'</td>'; // Este es solo un ejemplo, deberías obtener este dato de algún lugar
-        echo '</tr>';
-    }
-}
-?>
+                <?php foreach ($solicitudes as $solicitud) : ?>
+                    <tr>
+                        <td><?php echo $solicitud['id_rfp_solicitud']; ?></td>
+                        <td><?php echo $solicitud['nombre_usuario'] . ' ' . $solicitud['apellido_usuario']; ?></td>
+                        <td><?php echo $solicitud['nombre_subcategoria']; ?></td>
+                        <td><?php echo $solicitud['monto_rfp_presupuesto'] . ' (' . $solicitud['ceco_rfp_centro_de_costo'] . ')'; ?></td>
+                        <td><?php echo $solicitud['nombre_rfp_fase']; ?></td>
+                        <td><?php echo $solicitud['fecha_creacion_rfp_solicitud']; ?></td>
+                        <td><?php echo $solicitud['tipo_rfp_solicitud']; ?></td>
+                        <td><?php echo $solicitud['producto_servicio_rfp_solicitud']; ?></td>
+                        <td><?php echo $solicitud['detalle_rfp_solicitud']; ?></td>
+                        <td><?php echo $solicitud['descripcion_rfp_solicitud']; ?></td>
+                        <td><?php echo $solicitud['estado_rfp_solicitud']; ?></td>
+                        <td><?php echo $solicitud['riesgo_rfp_solicitud']; ?></td>
+                    </tr>
+                <?php endforeach; ?>
 
             </tbody>
         </table>
-        <table id="form-solicitudes-rechazadas">
-            <thead>
-                <tr>
-                    <th>Id solicitud</th>
-                    <th>fase</th>
-                    <th>Fecha creacion</th>
-                    <th>Fecha de requerimiento </th>
-                    <th>Tipo </th>
-                    <th>Producto o servicio</th>
-                    <th>Detalle</th>
-                    <th>Descripcion</th>
-                    <th>Necesidad</th>
-                    <th>Comentario</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        02/02/2024
-                    </td>
-                    <td>
-                        15/02/2024
-                    </td>
-                    <td>
-                        Puntual
-                    </td>
-                    <td>
-                        Producto
-                    </td>
-                    <td>
-                        varilla de metal para sostener caja
-                    </td>
-                    <td>
-                        Una varilla de 20x5 cm de metal
-                    </td>
-                    <td>
-                        Se necesita para el area de mantenimiento
-                    </td>
-                    <td>
-                        Se precisa notificar al area de sst
-                    </td>
-                    <td><button class ="button-eliminar" type="button">Eliminar</button></td>
-                </tr>
-            </tbody>
-        </table>
-        <table id="form-solicitudes-pendientes">
-            <thead>
-                <tr>
-                    <th>Id solicitud</th>
-                    <th>fase</th>
-                    <th>Fecha creacion</th>
-                    <th>Fecha de requerimiento </th>
-                    <th>Tipo </th>
-                    <th>Producto o servicio</th>
-                    <th>Detalle</th>
-                    <th>Descripcion</th>
-                    <th>Necesidad</th>
-                    <th>Comentario</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        02/02/2024
-                    </td>
-                    <td>
-                        15/02/2024
-                    </td>
-                    <td>
-                        Puntual
-                    </td>
-                    <td>
-                        Producto
-                    </td>
-                    <td>
-                        varilla de metal para sostener caja
-                    </td>
-                    <td>
-                        Una varilla de 20x5 cm de metal
-                    </td>
-                    <td>
-                        Se necesita para el area de mantenimiento
-                    </td>
-                    <td>
-                        Se precisa notificar al area de sst
-                    </td>
-                    <td><button class ="button-eliminar" type="button">Eliminar</button></td>
-                </tr>
-            </tbody>
-        </table>
-        
+
+
     </main>
 </body>
 

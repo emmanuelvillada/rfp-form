@@ -63,22 +63,48 @@ class solicitud_controller
         }
     }
 
-    public function get_solicitud($id_rfp_solicitud)
+    public function get_solicitudes_usuario($id_rfp_usuario_solicitud, $estado)
     {
         $pdo  = $this->db_connection->pdo;
         try {
             $result = array();
-            $stm = $this->$pdo->prepare("SELECT * FROM smart_center_rfp_solicitudes WHERE id_rfp_solicitud = ?");
-            $stm->execute(array($id_rfp_solicitud));
-            foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
-                $alm = new Solicitud();
-                $alm->__SET('id_rfp_usuario_solicitud', $r->id_rfp_usuario_solicitud);
-                $alm->__SET('marca', $r->marca);
-                $alm->__SET('modelo', $r->modelo);
-                $alm->__SET('kilometros', $r->kilometros);
-                $result[] = $alm;
-            }
-            return $result;
+            $stm = $pdo->prepare("SELECT
+            s.id_rfp_solicitud,
+            u.Nombre AS nombre_usuario,
+            u.Apellido AS apellido_usuario,
+            sc.nombre_rfp_subcategoria AS nombre_subcategoria,
+            p.id_rfp_presupuestos,
+            p.tipo_presupuesto_rfp_presupuesto,
+            p.monto_rfp_presupuesto,
+            cc.ceco_rfp_centro_de_costo,
+            f.nombre_rfp_fase,
+            s.fecha_creacion_rfp_solicitud,
+            s.tipo_rfp_solicitud,
+            s.producto_servicio_rfp_solicitud,
+            s.detalle_rfp_solicitud,
+            s.descripcion_rfp_solicitud,
+            s.estado_rfp_solicitud,
+            s.riesgo_rfp_solicitud
+        FROM
+            smart_center_rfp_solicitudes s
+        LEFT JOIN
+            usuarios u ON s.id_rfp_usuario_solicitud = u.documento
+        LEFT JOIN
+            smart_center_rfp_subcategoria sc ON s.id_rfp_subcategoria_solicitud = sc.id_smart_cente_rfpr_subcategoria
+        LEFT JOIN
+            smart_center_rfp_presupuestos p ON s.id_rfp_presupuesto_solicitud = p.id_rfp_presupuestos
+        LEFT JOIN
+            smart_center_rfp_centro_de_costos cc ON p.id_rfp_centro_de_costo_presupuesto = cc.id_rfp_centro_de_costo
+        LEFT JOIN
+            smart_center_rfp_fases f ON s.id_rfp_fase_solicitud = f.id_rfp_fase
+        WHERE
+            s.id_rfp_usuario_solicitud = ? AND
+            s.estado_rfp_solicitud = ?;
+        ");
+            $stm->execute(array($id_rfp_usuario_solicitud,$estado));
+            $solicitudes = $stm->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $solicitudes;
         } catch (Exception $e) {
             die($e->getMessage());
         }
@@ -86,7 +112,7 @@ class solicitud_controller
 
     public function create_solicitud(Solicitud $data, presupuesto_controller $presupuesto_controller)
     {
-        echo 'controlador, funcion create';
+        
         $pdo  = $this->db_connection->pdo;
         try {
             $presupuesto = new Presupuesto();
@@ -132,6 +158,7 @@ class solicitud_controller
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
         }
+        
     }
 
     // Resto de los métodos

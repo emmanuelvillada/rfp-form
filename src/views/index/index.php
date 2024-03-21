@@ -181,7 +181,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                         <span class="tooltip">Pueden ser cotizaciones, planos, simulaciones, etc.
                         </span>
                     </label>
-                    <input type="file" name="archivos" id="archivos" multiple>
+                    <input type="file" name="archivos[]" id="archivos" multiple>
                 </div>
 
                 <div class="div8">

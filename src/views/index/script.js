@@ -97,37 +97,23 @@ servicioRadio.addEventListener('change', cambiarMensaje());
 cambiarMensaje();
 
 
-//script para que se desabilite el boton de crear solicitud hasta que se llenen todos los campos
-
-// function habilitar_submit() {
-//     var detalle_solicitud = document.getElementById('detalle_solicitud').value.trim();
-//     var descripcion_solicitud = document.getElementById('descripcion_rfp_solicitud').value.trim();
-//     var fecha_requerimiento_solicitud = document.getElementById('fecha_requerimiento').value.trim();
-//     var submitBtn = document.getElementById('button-submit');
-
-//     if (detalle_solicitud !== "" && descripcion_solicitud !== "" && fecha_requerimiento_solicitud !== "") {
-//         submitBtn.disabled = false;
-//     } else {
-//         submitBtn.disabled = true;
-//     }
-// }
 
 //script para mostrar aviso al enviar el formulario 
 
-// Captura el formulario
-// var form = document.getElementById("form");
+//Captura el formulario
+var form = document.getElementById("form");
 
-// // Agregar un event listener para el evento submit
-// form.addEventListener("submit", function(event) {
-//     // Mostrar el mensaje si el envío fue exitoso
-//     var mensaje = document.getElementById("mensaje_submit");
-//     mensaje.style.display = "block";
+// Agregar un event listener para el evento submit
+form.addEventListener("submit", function(event) {
+    // Mostrar el mensaje si el envío fue exitoso
+    var mensaje = document.getElementById("mensaje_submit");
+    mensaje.style.display = "block";
 
-//     // Ocultar el mensaje después de tres segundos
-//     setTimeout(function() {
-//         mensaje.style.display = "none";
-//     }, 3000); // 3000 milisegundos = 3 segundos
-// });
+    // Ocultar el mensaje después de tres segundos
+    setTimeout(function() {
+        mensaje.style.display = "none";
+    }, 3000); // 3000 milisegundos = 3 segundos
+});
 
 // // Limpiar los campos del formulario después de que se envíe
 // form.addEventListener("submit", function(event) {

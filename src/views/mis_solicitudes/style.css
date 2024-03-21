@@ -1,13 +1,26 @@
+/* Estilos generales */
 :root {
     --blue1: #002931;
     --blue2: #0B95BB;
-
+    --gray1: #f2f2f2;
+    --gray2: #ddd;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: #f2f2f2;
+    font-family: "Roboto", sans-serif;
+    background-color: var(--gray1);
+}
+
+.container-main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
 }
 
 .header {
@@ -20,29 +33,11 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.img h1 {
-    margin: 0;
+.logo-hwi {
+    width: 150px;
+    height: auto;
 }
 
-h1,
-h2 {
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
-
-p,
-label,
-input,
-select {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.buttons {
-    text-align: right;
-}
 
 .button-volver {
     background-color: var(--blue2);
@@ -51,107 +46,63 @@ select {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-
-.container {
-    max-width: 100%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.section h1 {
-    margin-top: 0;
-}
-
-.section p {
-    margin-bottom: 20px;
-}
-
-
-
-.label-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    justify-content: flex-end;
-}
-
 
 .button-volver:hover {
     background-color: #087795;
 }
 
-.hidden {
-    display: none;
-}
-
-.logo-hwi {
-    width: 100;
-    height: 80px;
-
-}
-
-
+/* Estilos para la tabla de solicitudes */
 table {
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid black;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-
 }
 
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--gray2);
+    border-right: 1px solid var(--gray2); /* Agregado para el delineado de columnas */
+}
 
 th {
-    background-color: #f2f2f2;
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
+    background-color: var(--blue1);
+    color: white;
 }
 
-td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-
-tr:nth-child(odd) {
+tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-
 tr:hover {
-    background-color: #f1f1f117;
+    background-color: #f1f1f1;
 }
 
-.button-eliminar{
-    
-        background-color: red;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    
+/* Delineado de última columna */
+th:last-child, td:last-child {
+    border-right: none;
 }
 
-.button-filtro{
-    display: flex;
-    flex-direction: row;
-    max-width: 80px;
-    justify-content: center;
+/* Estilos para los botones de filtro */
+.button-filtro {
     background-color: var(--blue2);
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
 }
 
 .button-filtro:hover {
     background-color: #087795;
+}
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
