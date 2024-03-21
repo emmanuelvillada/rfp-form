@@ -64,7 +64,6 @@ $solicitudes = $solicitud_controller->get_solicitudes_usuario($id_rfp_usuario_so
             <tr>
                 <th>ID Solicitud</th>
                 <th>Usuario</th>
-                <th>Subcategoría</th>
                 <th>Presupuesto</th>
                 <th>Fase</th>
                 <th>Fecha Creación</th>
@@ -73,7 +72,6 @@ $solicitudes = $solicitud_controller->get_solicitudes_usuario($id_rfp_usuario_so
                 <th>Detalle</th>
                 <th>Descripción</th>
                 <th>Estado</th>
-                <th>Riesgo</th>
             </tr>
             </thead>
             <tbody>
@@ -81,7 +79,7 @@ $solicitudes = $solicitud_controller->get_solicitudes_usuario($id_rfp_usuario_so
                     <tr>
                         <td><?php echo $solicitud['id_rfp_solicitud']; ?></td>
                         <td><?php echo $solicitud['nombre_usuario'] . ' ' . $solicitud['apellido_usuario']; ?></td>
-                        <td><?php echo $solicitud['nombre_subcategoria']; ?></td>
+                        
                         <td><?php echo $solicitud['monto_rfp_presupuesto'] . ' (' . $solicitud['ceco_rfp_centro_de_costo'] . ')'; ?></td>
                         <td><?php echo $solicitud['nombre_rfp_fase']; ?></td>
                         <td><?php echo $solicitud['fecha_creacion_rfp_solicitud']; ?></td>
@@ -90,7 +88,7 @@ $solicitudes = $solicitud_controller->get_solicitudes_usuario($id_rfp_usuario_so
                         <td><?php echo $solicitud['detalle_rfp_solicitud']; ?></td>
                         <td><?php echo $solicitud['descripcion_rfp_solicitud']; ?></td>
                         <td><?php echo $solicitud['estado_rfp_solicitud']; ?></td>
-                        <td><?php echo $solicitud['riesgo_rfp_solicitud']; ?></td>
+                        
                     </tr>
                 <?php endforeach; ?>
 

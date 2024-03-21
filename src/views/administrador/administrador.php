@@ -1,4 +1,10 @@
 <?php
+if (isset[$_SESSION['id_area']]) {
+    if ($_SESSION['id_area'] != 5) {
+        header("Location: /../index/index.php");
+        exit(); 
+    }
+}
 require_once '../../controllers/solicitud_controller/solicitud_controller.php';
 
 // Crear una instancia del controlador
@@ -46,7 +52,7 @@ $solicitudes = $solicitud_controller->get_solicitudes();
                 <th>Detalle</th>
                 <th>Descripción</th>
                 <th>Estado</th>
-                <th>Riesgo</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -54,7 +60,6 @@ $solicitudes = $solicitud_controller->get_solicitudes();
                 <tr>
                     <td><?php echo $solicitud['id_rfp_solicitud']; ?></td>
                     <td><?php echo $solicitud['nombre_usuario'] . ' ' . $solicitud['apellido_usuario']; ?></td>
-                    <td><?php echo $solicitud['nombre_subcategoria']; ?></td>
                     <td><?php echo $solicitud['monto_rfp_presupuesto'] . ' (' . $solicitud['ceco_rfp_centro_de_costo'] . ')'; ?></td>
                     <td><?php echo $solicitud['nombre_rfp_fase']; ?></td>
                     <td><?php echo $solicitud['fecha_creacion_rfp_solicitud']; ?></td>
@@ -63,7 +68,6 @@ $solicitudes = $solicitud_controller->get_solicitudes();
                     <td><?php echo $solicitud['detalle_rfp_solicitud']; ?></td>
                     <td><?php echo $solicitud['descripcion_rfp_solicitud']; ?></td>
                     <td><?php echo $solicitud['estado_rfp_solicitud']; ?></td>
-                    <td><?php echo $solicitud['riesgo_rfp_solicitud']; ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

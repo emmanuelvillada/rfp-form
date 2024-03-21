@@ -79,6 +79,7 @@ form {
     grid-template-rows: repeat(4, 1fr);
     grid-column-gap: 24px;
     grid-row-gap: 0px;
+    overflow-y: auto;
 
 }
 

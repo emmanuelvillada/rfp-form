@@ -2,6 +2,7 @@
 include_once('../../db_conection/db_connection.php');
 include_once('../../controllers/presupuesto_controller/presupuesto_controller.php');
 include_once('../../controllers/archivo_controller/archivo_controller.php');
+include_once('../../controllers/correo_controller/correo_controller.php');
 include_once('../../models/Solicitud.php');
 include_once('../../models/Presupuesto.php');
 include_once('../../models/Archivo.php');
@@ -110,7 +111,7 @@ class solicitud_controller
         }
     }
 
-    public function create_solicitud(Solicitud $data, presupuesto_controller $presupuesto_controller)
+    public function create_solicitud(Solicitud $data, presupuesto_controller $presupuesto_controller, correo_controller $correo_controller)
     {
         
         $pdo  = $this->db_connection->pdo;
@@ -152,7 +153,10 @@ class solicitud_controller
                 $data->__GET('estado_rfp_solicitud'),
                 $data->__GET('riesgo_rfp_solicitud')
             ));
-            
+
+            //enviar correo al equipo de negociacion, notificando la creacion de una nueva solicitud
+            $correo_controller->enviar_correo('emmanuelvillada1903@gmail.com', 'Nueva solicitud RFP creada', '<h1>¡Hola!</h1><p>Se creo una nueva solicitud RFP.</p>');
+
             return $pdo->lastInsertId();
             
         } catch (Exception $e) {

@@ -1,19 +1,25 @@
 
 <?php
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);  
 session_start();
 
 // Verificar si las credenciales de sesión existen, queda pendiente revisar el area para saber si es administrador o usuario
-if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
+if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña']) && isset($_SESSION['id_area'])) {
     $usuario = $_SESSION['usuario'];
     $contraseña = $_SESSION['contraseña'];
-
+    $area = $_SESSION['id_area']
 
     echo "Usuario: $usuario <br>";
     echo "Contraseña: $contraseña";
+    echo "Area :" $area;
 } else {
     echo "Las credenciales de sesión no existen.";
+}
+if ($area = 5) {
+    header("Location: /../administrador/administrador.php");
+    exit();    
 }
 ?>
 
@@ -147,7 +153,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     </label>
                     <span id="ejemplo_span1"> Ejemplo : Compra de un Ipad
                     </span>
-                    <span id="ejemplo_span2"> ejemplo_servicio
+                    <span id="ejemplo_span2"> EJemplo : Instalación de paso peatonal.
                     </span>
 
                     <input required placeholder="Describa brevemente que producto y/o servicio requiere." type="text" name="detalle_rfp_solicitud" id="detalle_solicitud">
@@ -159,7 +165,8 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña'])) {
                     <span id="ejemplo_span1.1"> Se requiere un Ipad de 10,9" con capacidad de almacenamiento de 64 Gb - 256 Gb / Modelo <br>
                         10ma generación / color azul o gris / Wifi / No SIM /.
                     </span>
-                    <span id="ejemplo_span2.1"> ejemplo_servicio
+                    <span id="ejemplo_span2.1"> Se necesita un paso peatonal en la zona de la empacadora. La estructura debe ser en material metálico, <br>
+                     con las siguientes medidas: 1,20 cm de largo y un diámetro de 2 pulgadas.
                     </span>
 
                     <input required placeholder="(altura, grosor, color, material, forma, etc.)." type="text" 

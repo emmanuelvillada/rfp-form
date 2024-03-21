@@ -3,7 +3,7 @@ class db_connection {
     private $db_host = 'localhost';
     private $db_name = 'rfp';
     private $db_user = 'root';
-    private $db_password = '1903';
+    private $db_password = '';
     public  $pdo;
 
     public function __construct(){

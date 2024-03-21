@@ -6,6 +6,7 @@ include_once('../../models/Solicitud.php');
 include_once('../../models/Presupuesto.php');
 include_once('../../models/Archivo.php');
 include_once('../../controllers/solicitud_controller/solicitud_controller.php');
+include_once('../../controllers/correo_controller/correo_controller.php');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -72,7 +73,8 @@ if (isset($_POST['submit'])) {
                     //capturamos el id de la solicitud para crear la instancia de los archivos relacionados con el id de la solicitud creada.
                     $presupuesto_controller = new presupuesto_controller();
                     $solicitud_controller = new solicitud_controller();
-                    $id_solicitud = $solicitud_controller->create_solicitud($solicitud, $presupuesto_controller);
+                    $correo_controller = new correo_controller();
+                    $id_solicitud = $solicitud_controller->create_solicitud($solicitud, $presupuesto_controller,$correo_controller);
 
                     //guardamos los archivos si es que el usuario inserto en la tabla archivos relacionados con la fk de la solicitud
                     if (isset($_FILES['archivos'])) {
@@ -89,7 +91,7 @@ if (isset($_POST['submit'])) {
                             // Generar un nombre único para el archivo
                             $nombre_unico = $nombre_sin_extension . '_' . time() . '.' . $extension;
                             $ruta_temporal = $archivos['tmp_name'][$i];
-                            $ruta_destino = "C:/xampp/htdocs/archivos/$nombre_unico";
+                            $ruta_destino = "C:/xampp1/htdocs/archivos/$nombre_unico";
                             $tipo_rfp_archivo = $archivos['type'][$i];
                             $fecha_subida_rfp_archivo =  date("d/m/y");
                             move_uploaded_file($ruta_temporal, $ruta_destino);
