@@ -1,6 +1,7 @@
 :root {
     --blue1: #002931;
     --blue2: #0B95BB;
+    --gray1: #555;
     --gray2: #ddd;
 }
 
@@ -11,11 +12,21 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 h1 {
     margin-top: 20px;
     margin-bottom: 30px;
     text-align: center;
     color: var(--blue1);
+    font-size: 24px;
 }
 
 ul {
@@ -23,31 +34,20 @@ ul {
     padding: 0;
     margin: 0 auto;
     max-width: 600px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 ul li {
     padding: 15px 20px;
     border-bottom: 1px solid var(--gray2);
+    transition: background-color 0.3s;
 }
 
 ul li:last-child {
     border-bottom: none;
 }
 
-ul li:nth-child(even) {
+ul li:hover {
     background-color: #f9f9f9;
-}
-
-ul li:nth-child(odd) {
-    background-color: #ffffff;
-}
-
-ul li:nth-child(odd):hover,
-ul li:nth-child(even):hover {
-    background-color: #f1f1f1;
 }
 
 ul li strong {

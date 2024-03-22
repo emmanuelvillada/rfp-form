@@ -26,16 +26,19 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle de Solicitud</title>
-    <!-- Agrega tus enlaces a hojas de estilo y otros recursos aquí -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital
+,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,
+900&display=swap" rel="stylesheet" />
 </head>
 <body>
-    
+    <main class="container">
     <h1>Detalle de Solicitud</h1>
     <ul>
         <?php if (!empty($solicitud)): ?>
             <?php $solicitud_data = $solicitud[0]; ?> 
-            <?php var_dump($solicitud);?>
-            <?php echo $solicitud_data['id_rfp_solicitud']; ?>
             <li>ID Solicitud: <?php echo $solicitud_data['id_rfp_solicitud']; ?></li>
             <li>Usuario: <?php echo $solicitud_data['nombre_usuario']; ?></li>
             <li>Presupuesto: <?php echo $solicitud_data['monto_rfp_presupuesto']; ?> (Tipo: <?php echo $solicitud_data['tipo_presupuesto']; ?>)</li>
@@ -56,6 +59,7 @@ if (isset($_GET['id'])) {
             <li>No hay información de solicitud disponible</li>
         <?php endif; ?>
     </ul>
+    </main>
 </body>
 </html>
 
