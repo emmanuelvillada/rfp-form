@@ -4,12 +4,12 @@ class Solicitud
     private $id_rfp_solicitud;
     private $id_rfp_usuario_solicitud;
     private $id_rfp_subcategoria_solicitud;
-    private $id__rfp_presupuesto_solicitud;
+    private $id_rfp_presupuesto_solicitud; // Corregido el nombre de la propiedad
     private $id_rfp_fase_solicitud;
     private $fecha_creacion_rfp_solicitud;
     private $fecha_revision_rfp_solicitud;
     private $fecha_requerimiento_rfp_solicitud;
-    private $fecha_finalizacion_rfp_solictud;
+    private $fecha_finalizacion_rfp_solicitud; // Corregido el nombre de la propiedad
     private $fecha_eliminacion_rfp_solicitud;
     private $tipo_rfp_solicitud;
     private $producto_servicio_rfp_solicitud;
@@ -20,15 +20,16 @@ class Solicitud
     private $estado_rfp_solicitud;
     private $eliminado_rfp_solicitud;
     private $riesgo_rfp_solicitud;
-    //fuunciones para retornar y cambiar atributos
+    
+    // Funciones para retornar y cambiar atributos
     public function __GET($k)
     {
         return $this->$k;
     }
+    
     public function __SET($k, $v)
     {
-        return $this->$k = $v;
+        $this->$k = $v; // Corregido el retorno, no es necesario
     }
-    
 }
-
+?>

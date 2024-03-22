@@ -108,7 +108,7 @@ form.addEventListener("submit", function(event) {
     // Mostrar el mensaje si el envío fue exitoso
     var mensaje = document.getElementById("mensaje_submit");
     mensaje.style.display = "block";
-
+    
     // Ocultar el mensaje después de tres segundos
     setTimeout(function() {
         mensaje.style.display = "none";

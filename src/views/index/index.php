@@ -9,19 +9,22 @@ session_start();
 if (isset($_SESSION['usuario']) && isset($_SESSION['contraseña']) && isset($_SESSION['id_area'])) {
     $usuario = $_SESSION['usuario'];
     $contraseña = $_SESSION['contraseña'];
-    $area = $_SESSION['id_area']
+    $area = $_SESSION['id_area'];
 
-    echo "Usuario: $usuario <br>";
+    echo "Usuario: " . $usuario;
     echo "Contraseña: $contraseña";
-    echo "Area :" $area;
+    echo "Area : " . $area;
+    if ($area == 5) {
+        header("Location: /../administrador/administrador.php");
+        exit();    
+    }
+    
 } else {
     echo "Las credenciales de sesión no existen.";
 }
-if ($area = 5) {
-    header("Location: /../administrador/administrador.php");
-    exit();    
-}
 ?>
+
+
 
 
 <!DOCTYPE html>

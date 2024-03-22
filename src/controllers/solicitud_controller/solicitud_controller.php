@@ -2,7 +2,6 @@
 include_once('../../db_conection/db_connection.php');
 include_once('../../controllers/presupuesto_controller/presupuesto_controller.php');
 include_once('../../controllers/archivo_controller/archivo_controller.php');
-include_once('../../controllers/correo_controller/correo_controller.php');
 include_once('../../models/Solicitud.php');
 include_once('../../models/Presupuesto.php');
 include_once('../../models/Archivo.php');
@@ -111,17 +110,17 @@ class solicitud_controller
         }
     }
 
-    public function create_solicitud(Solicitud $data, presupuesto_controller $presupuesto_controller, correo_controller $correo_controller)
+    public function create_solicitud(Solicitud $data, presupuesto_controller $presupuesto_controller, Presupuesto $data_presupuesto)
     {
         
         $pdo  = $this->db_connection->pdo;
         try {
             $presupuesto = new Presupuesto();
             //todos los atributos de presupuesto, para enviar el objeto al controlador.
-            $presupuesto->__SET('tipo_presupuesto_rfp_presupuesto', $data->tipo_presupuesto_rfp_presupuesto);
-            $presupuesto->__SET('seq_rn_rfp_presupuesto', $data->seq_rn_rfp_presupuesto);
-            $presupuesto->__SET('id_rfp_centro_de_costo_presupuesto', $data->id_rfp_centro_de_costo_presupuesto);
-            $presupuesto->__SET('monto_rfp_presupuesto', $data->monto_rfp_presupuesto);
+            $presupuesto->__SET('tipo_presupuesto_rfp_presupuesto', $data_presupuesto->__GET('tipo_presupuesto_rfp_presupuesto'));
+            $presupuesto->__SET('seq_rn_rfp_presupuesto', $data_presupuesto->__GET('seq_rn_rfp_presupuesto'));
+            $presupuesto->__SET('id_rfp_centro_de_costo_presupuesto', $data_presupuesto->__GET('id_rfp_centro_de_costo_presupuesto'));
+            $presupuesto->__SET('monto_rfp_presupuesto', $data_presupuesto->__GET('monto_rfp_presupuesto'));
 
             // Crear el presupuesto antes de crear la solicitud utilizando el controlador de presupuestos
             $id_presupuesto = $presupuesto_controller->create_presupuesto($presupuesto);
@@ -153,10 +152,6 @@ class solicitud_controller
                 $data->__GET('estado_rfp_solicitud'),
                 $data->__GET('riesgo_rfp_solicitud')
             ));
-
-            //enviar correo al equipo de negociacion, notificando la creacion de una nueva solicitud
-            $correo_controller->enviar_correo('emmanuelvillada1903@gmail.com', 'Nueva solicitud RFP creada', '<h1>¡Hola!</h1><p>Se creo una nueva solicitud RFP.</p>');
-
             return $pdo->lastInsertId();
             
         } catch (Exception $e) {
