@@ -1,5 +1,6 @@
 <?php
-if (isset[$_SESSION['id_area']]) {
+session_start();
+if (isset($_SESSION['id_area'])) {
     if ($_SESSION['id_area'] != 5) {
         header("Location: /../index/index.php");
         exit(); 
@@ -12,6 +13,7 @@ $solicitud_controller = new solicitud_controller();
 
 // Obtener las solicitudes
 $solicitudes = $solicitud_controller->get_solicitudes();
+$solicitudes = array_reverse($solicitudes);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,9 +45,7 @@ $solicitudes = $solicitud_controller->get_solicitudes();
             <tr>
                 <th>ID Solicitud</th>
                 <th>Usuario</th>
-                <th>Subcategoría</th>
                 <th>Presupuesto</th>
-                <th>Fase</th>
                 <th>Fecha Creación</th>
                 <th>Tipo</th>
                 <th>Producto/Servicio</th>
@@ -57,11 +57,10 @@ $solicitudes = $solicitud_controller->get_solicitudes();
         </thead>
         <tbody>
             <?php foreach ($solicitudes as $solicitud): ?>
-                <tr>
+                <tr onclick="window.location.href = '../detalle_solicitud/detalle_solicitud.php?id=<?php echo $solicitud['id_rfp_solicitud']; ?>'">
                     <td><?php echo $solicitud['id_rfp_solicitud']; ?></td>
                     <td><?php echo $solicitud['nombre_usuario'] . ' ' . $solicitud['apellido_usuario']; ?></td>
                     <td><?php echo $solicitud['monto_rfp_presupuesto'] . ' (' . $solicitud['ceco_rfp_centro_de_costo'] . ')'; ?></td>
-                    <td><?php echo $solicitud['nombre_rfp_fase']; ?></td>
                     <td><?php echo $solicitud['fecha_creacion_rfp_solicitud']; ?></td>
                     <td><?php echo $solicitud['tipo_rfp_solicitud']; ?></td>
                     <td><?php echo $solicitud['producto_servicio_rfp_solicitud']; ?></td>

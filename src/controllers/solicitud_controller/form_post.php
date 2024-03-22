@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
                     if (isset($_POST['riesgo_rfp_soliciutd'])) {
                         $solicitud->__SET('riesgo_rfp_soliciutd', $_POST['riesgo_rfp_soliciutd']);
                     } else {
-                        $solicitud->__SET('riesgo_rfp_soliciutd', null);
+                        $solicitud->__SET('riesgo_rfp_soliciutd', 'n/a');
                     }
                     //capturamos el id de la solicitud para crear la instancia de los archivos relacionados con el id de la solicitud creada.
                     $presupuesto_controller = new presupuesto_controller();
@@ -106,7 +106,6 @@ if (isset($_POST['submit'])) {
                 $tema = 'Asunto : Notificacion RFP';
                 $contenido = 'Se ha generado una nueva solicitud RFP';
                 $correoEnviado = $correo_controller->enviar_correo($correo_destinatario, $tema, $contenido);
-
             if ($correoEnviado) {
 
                 header("Location: ../../views/mis_solicitudes/mis_solicitudes.php");

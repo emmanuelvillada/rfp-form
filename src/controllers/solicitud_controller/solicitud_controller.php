@@ -109,6 +109,60 @@ class solicitud_controller
             die($e->getMessage());
         }
     }
+    public function get_solicitud($id_rfp_solicitud)
+    {
+        $pdo  = $this->db_connection->pdo;
+        try {
+            $result = array();
+            $stm = $pdo->prepare("SELECT
+            s.id_rfp_solicitud,
+            s.id_rfp_usuario_solicitud,
+            CONCAT(u.Nombre, ' ', u.Apellido) AS nombre_usuario,
+            s.id_rfp_subcategoria_solicitud,
+            sc.nombre_rfp_subcategoria AS nombre_subcategoria,
+            s.id_rfp_presupuesto_solicitud,
+            p.tipo_presupuesto_rfp_presupuesto AS tipo_presupuesto,
+            p.monto_rfp_presupuesto,
+            s.id_rfp_fase_solicitud,
+            f.nombre_rfp_fase AS nombre_fase,
+            s.fecha_creacion_rfp_solicitud,
+            s.fecha_revision_rfp_solicitud,
+            s.fecha_requerimiento_rfp_solicitud,
+            s.fecha_finalizacion_rfp_solicitud,
+            s.fecha_eliminacion_rfp_solicitud,
+            s.tipo_rfp_solicitud,
+            s.producto_servicio_rfp_solicitud,
+            s.detalle_rfp_solicitud,
+            s.descripcion_rfp_solicitud,
+            s.estado_rfp_solicitud,
+            s.riesgo_rfp_solicitud,
+            c.ceco_rfp_centro_de_costo,
+            c.nombre_rfp_centro_de_costo AS nombre_centro_costo
+        FROM
+            smart_center_rfp_solicitudes s
+        LEFT JOIN
+            usuarios u ON s.id_rfp_usuario_solicitud = u.documento
+        LEFT JOIN
+            smart_center_rfp_subcategoria sc ON s.id_rfp_subcategoria_solicitud = sc.id_smart_cente_rfpr_subcategoria
+        LEFT JOIN
+            smart_center_rfp_presupuestos p ON s.id_rfp_presupuesto_solicitud = p.id_rfp_presupuestos
+        LEFT JOIN
+            smart_center_rfp_fases f ON s.id_rfp_fase_solicitud = f.id_rfp_fase
+        LEFT JOIN
+            smart_center_rfp_centro_de_costos c ON p.id_rfp_centro_de_costo_presupuesto = c.id_rfp_centro_de_costo
+        WHERE
+            s.id_rfp_solicitud = ?;
+        
+        ");
+            $stm->execute(array($id_rfp_solicitud));
+            $solicitud = $stm->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $solicitud;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
 
     public function create_solicitud(Solicitud $data, presupuesto_controller $presupuesto_controller, Presupuesto $data_presupuesto)
     {
