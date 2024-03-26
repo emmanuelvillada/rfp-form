@@ -215,35 +215,34 @@ class solicitud_controller
     }
 
     // Resto de los métodos
-    public function update(Solicitud $data)
+    public function update_estado_solicitud($id_solicitud, $estado)
     {
-        $pdo  = $this->db_connection->pdo;
+        //creamos la fecha actual para añadirla en la fecha de revision cuando el  admin de aceptar o rechazar
+        $fecha_revision = date('d/m/y');
+        $pdo = $this->db_connection->pdo;
         try {
-            $sql = "UPDATE smart_center_rfp_solicitud SET
-            marca = ?,
-            modelo = ?,
-            kilometros = ?
-            WHERE id = ?";
-            $this->$pdo->prepare($sql)
-                ->execute(
-                    array(
-                        $data->__GET('marca'),
-                        $data->__GET('modelo'),
-                        $data->__GET('kilometros'),
-                        $data->__GET('id')
-                    )
-                );
+            $sql = "UPDATE smart_center_rfp_solicitudes SET
+                estado_rfp_solicitud = ?,
+                fecha_revision_rfp_solicitud = ?
+                WHERE id_rfp_solicitud = ?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(array(
+                $estado,
+                $fecha_revision,
+                $id_solicitud
+            ));
         } catch (Exception $e) {
             die($e->getMessage());
         }
     }
+    
 
     // eliminar una solicitud con soft delete
     public function delete($id)
     {
         $pdo  = $this->db_connection->pdo;
         try {
-            $sql = "UPDATE smart_center_rfp_solicitud SET
+            $sql = "UPDATE smart_center_rfp_solicitudes SET
         eliminado = 1
         WHERE id = ?";
             $this->$pdo->prepare($sql)

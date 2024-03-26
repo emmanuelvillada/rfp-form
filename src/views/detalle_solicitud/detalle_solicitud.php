@@ -1,27 +1,31 @@
 <?php
 session_start();
+if (isset($_SESSION['id_area'])) {
+    if ($_SESSION['id_area'] != 5) {
+        header("Location: /../index/index.php");
+        exit(); 
+    }
+}
+require_once '../../controllers/solicitud_controller/solicitud_controller.php';
 
 // Definir $solicitud fuera del bloque if e inicializarlo como un array vacío
 
-
-require_once '../../controllers/solicitud_controller/solicitud_controller.php';
-
-// Crear una instancia del controlador
 $solicitud = [];
 
+//recibir el id de la solicitud
 if (isset($_GET['id'])) {
     $id_solicitud = $_GET['id'];
-
+    // Crear una instancia del controlador
     $solicitud_controller = new solicitud_controller();
 
     // Obtener la solicitud
     $solicitud = $solicitud_controller->get_solicitud($id_solicitud);
-    
 }
-// Cerrar el bloque PHP antes de comenzar el HTML
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,33 +37,62 @@ if (isset($_GET['id'])) {
 ,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,
 900&display=swap" rel="stylesheet" />
 </head>
+<header class="header">
+        <img class="logo-hwi" src="../../../public\images\Logo HWI .png" alt="Logo HWI">
+        <div class="buttons">
+            <a href="../administrador/administrador.php"><button class="button-volver">Volver</button></a>
+        </div>
+    </header>
 <body>
     <main class="container">
-    <h1>Detalle de Solicitud</h1>
-    <ul>
-        <?php if (!empty($solicitud)): ?>
-            <?php $solicitud_data = $solicitud[0]; ?> 
-            <li>ID Solicitud: <?php echo $solicitud_data['id_rfp_solicitud']; ?></li>
-            <li>Usuario: <?php echo $solicitud_data['nombre_usuario']; ?></li>
-            <li>Presupuesto: <?php echo $solicitud_data['monto_rfp_presupuesto']; ?> (Tipo: <?php echo $solicitud_data['tipo_presupuesto']; ?>)</li>
-            <li>Fecha Creación: <?php echo $solicitud_data['fecha_creacion_rfp_solicitud']; ?></li>
-            <li>Fecha Revisión: <?php echo $solicitud_data['fecha_revision_rfp_solicitud']; ?></li>
-            <li>Fecha Requerimiento: <?php echo $solicitud_data['fecha_requerimiento_rfp_solicitud']; ?></li>
-            <li>Fecha Finalización: <?php echo $solicitud_data['fecha_finalizacion_rfp_solicitud']; ?></li>
-            <li>Tipo: <?php echo $solicitud_data['tipo_rfp_solicitud']; ?></li>
-            <li>Producto/Servicio: <?php echo $solicitud_data['producto_servicio_rfp_solicitud']; ?></li>
-            <li>Detalle: <?php echo $solicitud_data['detalle_rfp_solicitud']; ?></li>
-            <li>Descripción: <?php echo $solicitud_data['descripcion_rfp_solicitud']; ?></li>
-            <li>Estado: <?php echo $solicitud_data['estado_rfp_solicitud']; ?></li>
-            <li>Riesgo: <?php echo $solicitud_data['riesgo_rfp_solicitud']; ?></li>
-            <?php if (!empty($solicitud_data['ceco_rfp_centro_de_costo']) && !empty($solicitud_data['nombre_centro_costo'])): ?>
-                <li>Centro de Costo: <?php echo $solicitud_data['ceco_rfp_centro_de_costo'] . ' (' . $solicitud_data['nombre_centro_costo'] . ')'; ?></li>
+        <h1>Detalle de Solicitud</h1>
+        <ul>
+            <?php if (!empty($solicitud)) : ?>
+                <?php $solicitud_data = $solicitud[0]; ?>
+                <li>ID Solicitud: <?php echo $solicitud_data['id_rfp_solicitud']; ?></li>
+                <li>Usuario: <?php echo $solicitud_data['nombre_usuario']; ?></li>
+                <li>Presupuesto: <?php echo $solicitud_data['monto_rfp_presupuesto']; ?> (Tipo: <?php echo $solicitud_data['tipo_presupuesto']; ?>)</li>
+                <li>Fecha Creación: <?php echo $solicitud_data['fecha_creacion_rfp_solicitud']; ?></li>
+                <li>Fecha Revisión: <?php echo $solicitud_data['fecha_revision_rfp_solicitud']; ?></li>
+                <li>Fecha Requerimiento: <?php echo $solicitud_data['fecha_requerimiento_rfp_solicitud']; ?></li>
+                <li>Fecha Finalización: <?php echo $solicitud_data['fecha_finalizacion_rfp_solicitud']; ?></li>
+                <li>Tipo: <?php echo $solicitud_data['tipo_rfp_solicitud']; ?></li>
+                <li>Producto/Servicio: <?php echo $solicitud_data['producto_servicio_rfp_solicitud']; ?></li>
+                <li>Detalle: <?php echo $solicitud_data['detalle_rfp_solicitud']; ?></li>
+                <li>Descripción: <?php echo $solicitud_data['descripcion_rfp_solicitud']; ?></li>
+                <li>Estado: <?php echo $solicitud_data['estado_rfp_solicitud']; ?></li>
+                <li>Riesgo: <?php echo $solicitud_data['riesgo_rfp_solicitud']; ?></li>
+                <?php if (!empty($solicitud_data['ceco_rfp_centro_de_costo']) && !empty($solicitud_data['nombre_centro_costo'])) : ?>
+                    <li>Centro de Costo: <?php echo $solicitud_data['ceco_rfp_centro_de_costo'] . ' (' . $solicitud_data['nombre_centro_costo'] . ')'; ?></li>
+                <?php endif; ?>
+            <?php else : ?>
+                <li>No hay información de solicitud disponible</li>
             <?php endif; ?>
-        <?php else: ?>
-            <li>No hay información de solicitud disponible</li>
-        <?php endif; ?>
-    </ul>
+        </ul>
+        <div class="button-container">
+        <button type="button" class="btn btn-aceptar" onclick="updateEstado('aceptada')">Aceptar</button>
+        <button type="button" class="btn btn-rechazar" onclick="updateEstado('rechazada')">Rechazar</button>
+
+        </div>
     </main>
 </body>
 </html>
+<script>
+function updateEstado(estado) {
+    var idSolicitud = <?php echo $solicitud_data['id_rfp_solicitud']; ?>;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            
+            alert(this.responseText); // Muestra el mensaje de éxito o error
+            window.location.href = "../administrador/administrador.php";// Recargar la página después de actualizar el estado
+        }
+    };
+    // Enviar los datos por POST al archivo ajax_handler.php
+    xhttp.open("POST", "../../controllers/solicitud_controller/detalle_solicitud_post.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("id_solicitud=" + idSolicitud + "&estado=" + estado);
+}
 
+
+</script>

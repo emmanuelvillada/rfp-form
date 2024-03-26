@@ -59,3 +59,60 @@ ul li span {
     font-weight: 400;
     color: var(--blue2);
 }
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-aceptar {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+
+.btn-rechazar {
+    background-color: #f44336; /* Rojo */
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+.button-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+.header {
+    background-color:  #ffffff;;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd; /* Borde inferior para separación */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.buttons {
+    text-align: right;
+}
+
+.button-volver {
+    background-color: var(--blue2);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-volver:hover{
+    background-color: #087795;
+}
+
+.logo-hwi {
+    width: 100px;
+    height: 80px;
+    
+}
