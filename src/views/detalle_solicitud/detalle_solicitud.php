@@ -8,7 +8,6 @@ if (isset($_SESSION['id_area'])) {
 }
 require_once '../../controllers/solicitud_controller/solicitud_controller.php';
 require_once '../../controllers/archivo_controller/archivo_controller.php';
-
 // Definir $solicitud fuera del bloque if e inicializarlo como un array vacío
 
 $solicitud = [];
@@ -78,21 +77,23 @@ if (isset($_GET['id'])) {
         <h2>Archivos de la Solicitud</h2>
         <ul>
             <?php
+            // Obtener los archivos relacionados a la solicitud
+
             // Verificar si hay archivos
             if (!empty($archivos)) {
                 // Iterar sobre cada archivo y mostrar un enlace para descargar o visualizar
                 foreach ($archivos as $archivo) {
-                    $ruta_archivo = $archivo['ruta_rfp_archivo'];
                     $nombre_archivo = $archivo['nombre_rfp_archivo'];
-            ?>
-                    <li><a href="<?php echo $ruta_archivo; ?>" target="_blank"><?php echo $nombre_archivo; ?></a></li>
-            <?php
+                    // Generar la ruta relativa al archivo dentro de la carpeta "archivos"
+                    $ruta_archivo = '../../../../../archivos/' . $archivo['nombre_rfp_archivo'];
+                    echo "<li><a href='$ruta_archivo' target='_blank'>$nombre_archivo</a></li>";
                 }
             } else {
                 echo "<li>No hay archivos asociados a esta solicitud</li>";
             }
             ?>
         </ul>
+
 
 
         <div class="button-container">

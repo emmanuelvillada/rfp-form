@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
                     // $correo_controller = new correo_controller();
                     $id_solicitud = $solicitud_controller->create_solicitud($solicitud, $presupuesto_controller, $presupuesto);
 
-                    //guardamos los archivos si es que el usuario inserto en la tabla archivos relacionados con la fk de la solicitud
+                    //guardamos los archivos si es que el usuario inserto en la tabla archivos relacionados 
                     if (isset($_FILES['archivos'])) {
                         $archivos = $_FILES['archivos'];
                         $num_archivos = count($archivos['name']);
@@ -96,7 +96,7 @@ if (isset($_POST['submit'])) {
                             move_uploaded_file($ruta_temporal, $ruta_destino);
 
                             // Guardar la información del archivo en la base de datos
-                            $archivo_controller->create($id_solicitud, $nombre_rfp_archivo, $tipo_rfp_archivo, $ruta_destino, $fecha_subida_rfp_archivo);
+                            $archivo_controller->create($id_solicitud, $nombre_unico, $tipo_rfp_archivo, $ruta_destino, $fecha_subida_rfp_archivo);
                         }
                     }
                     //enviar correo al equipo de negociacion, notificando la creacion de una nueva solicitud
