@@ -39,7 +39,7 @@ $solicitudes = array_reverse($solicitudes);
         </div>
     </header>
     <main class="container-main">
-    <h1>Listado de Solicitudes</h1>
+    <h1>Listado de Solicitudes Pendientes</h1>
     <table>
         <thead>
             <tr>

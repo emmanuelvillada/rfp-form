@@ -53,7 +53,8 @@ class solicitud_controller
         LEFT JOIN
             smart_center_rfp_centro_de_costos cc ON p.id_rfp_centro_de_costo_presupuesto = cc.id_rfp_centro_de_costo
         LEFT JOIN
-            smart_center_rfp_fases f ON s.id_rfp_fase_solicitud = f.id_rfp_fase;
+            smart_center_rfp_fases f ON s.id_rfp_fase_solicitud = f.id_rfp_fase
+            where estado_rfp_solicitud = 'pendiente';
         ");
             $stm->execute();
             $solicitudes = $stm->fetchAll(PDO::FETCH_ASSOC);

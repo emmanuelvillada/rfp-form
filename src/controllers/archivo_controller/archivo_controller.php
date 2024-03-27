@@ -20,6 +20,16 @@ class archivo_controller{
                 $fecha_subida_rfp_archivo
             ));
     }
+    public function get_archivos($id_solicitud_archivo){
+        $pdo = $this->db_connection->pdo;
+        $sql = "SELECT * FROM smart_center_rfp_archivos WHERE id_rfp_solicitud_archivo = ?;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array($id_solicitud_archivo));
+        // Obtener los resultados de la consulta
+        $archivos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $archivos;
+    }
+    
 }
 
 ?>

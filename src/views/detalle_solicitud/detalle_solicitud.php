@@ -3,10 +3,11 @@ session_start();
 if (isset($_SESSION['id_area'])) {
     if ($_SESSION['id_area'] != 5) {
         header("Location: /../index/index.php");
-        exit(); 
+        exit();
     }
 }
 require_once '../../controllers/solicitud_controller/solicitud_controller.php';
+require_once '../../controllers/archivo_controller/archivo_controller.php';
 
 // Definir $solicitud fuera del bloque if e inicializarlo como un array vacío
 
@@ -20,6 +21,10 @@ if (isset($_GET['id'])) {
 
     // Obtener la solicitud
     $solicitud = $solicitud_controller->get_solicitud($id_solicitud);
+
+    //crear instancia del controlador de archivos
+    $archivo_controller = new archivo_controller();
+    $archivos = $archivo_controller->get_archivos($id_solicitud);
 }
 
 ?>
@@ -38,11 +43,12 @@ if (isset($_GET['id'])) {
 900&display=swap" rel="stylesheet" />
 </head>
 <header class="header">
-        <img class="logo-hwi" src="../../../public\images\Logo HWI .png" alt="Logo HWI">
-        <div class="buttons">
-            <a href="../administrador/administrador.php"><button class="button-volver">Volver</button></a>
-        </div>
-    </header>
+    <img class="logo-hwi" src="../../../public\images\Logo HWI .png" alt="Logo HWI">
+    <div class="buttons">
+        <a href="../administrador/administrador.php"><button class="button-volver">Volver</button></a>
+    </div>
+</header>
+
 <body>
     <main class="container">
         <h1>Detalle de Solicitud</h1>
@@ -69,30 +75,49 @@ if (isset($_GET['id'])) {
                 <li>No hay información de solicitud disponible</li>
             <?php endif; ?>
         </ul>
+        <h2>Archivos de la Solicitud</h2>
+        <ul>
+            <?php
+            // Verificar si hay archivos
+            if (!empty($archivos)) {
+                // Iterar sobre cada archivo y mostrar un enlace para descargar o visualizar
+                foreach ($archivos as $archivo) {
+                    $ruta_archivo = $archivo['ruta_rfp_archivo'];
+                    $nombre_archivo = $archivo['nombre_rfp_archivo'];
+            ?>
+                    <li><a href="<?php echo $ruta_archivo; ?>" target="_blank"><?php echo $nombre_archivo; ?></a></li>
+            <?php
+                }
+            } else {
+                echo "<li>No hay archivos asociados a esta solicitud</li>";
+            }
+            ?>
+        </ul>
+
+
         <div class="button-container">
-        <button type="button" class="btn btn-aceptar" onclick="updateEstado('aceptada')">Aceptar</button>
-        <button type="button" class="btn btn-rechazar" onclick="updateEstado('rechazada')">Rechazar</button>
+            <button type="button" class="btn btn-aceptar" onclick="updateEstado('aceptada')">Aceptar</button>
+            <button type="button" class="btn btn-rechazar" onclick="updateEstado('rechazada')">Rechazar</button>
 
         </div>
     </main>
 </body>
+
 </html>
 <script>
-function updateEstado(estado) {
-    var idSolicitud = <?php echo $solicitud_data['id_rfp_solicitud']; ?>;
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            
-            alert(this.responseText); // Muestra el mensaje de éxito o error
-            window.location.href = "../administrador/administrador.php";// Recargar la página después de actualizar el estado
-        }
-    };
-    // Enviar los datos por POST al archivo ajax_handler.php
-    xhttp.open("POST", "../../controllers/solicitud_controller/detalle_solicitud_post.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("id_solicitud=" + idSolicitud + "&estado=" + estado);
-}
+    function updateEstado(estado) {
+        var idSolicitud = <?php echo $solicitud_data['id_rfp_solicitud']; ?>;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
 
-
+                alert(this.responseText); // Muestra el mensaje de éxito o error
+                window.location.href = "../administrador/administrador.php"; // Recargar la página después de actualizar el estado
+            }
+        };
+        // Enviar los datos por POST al archivo ajax_handler.php
+        xhttp.open("POST", "../../controllers/solicitud_controller/detalle_solicitud_post.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("id_solicitud=" + idSolicitud + "&estado=" + estado);
+    }
 </script>
