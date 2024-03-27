@@ -74,6 +74,29 @@ if (isset($_GET['id'])) {
                 <li>No hay información de solicitud disponible</li>
             <?php endif; ?>
         </ul>
+        <!-- Formulario para actualizar la subcategoría -->
+        <div id="subcategoria-container" >
+        <!-- Campo de entrada de la subcategoría -->
+        <label for="subcategoria">Subcategoría:</label>
+        <select name="subcategoria" id="subcategoria">
+        <?php
+                        require_once('../../controllers/subcategoria_controller/subcategoria_controller.php');
+
+                            $subcategoria_controller = new subcategoria_controller();
+                            $prueba = 1;
+                            $cecos = $subcategoria_controller->get(); 
+                            // Verificar si se obtuvieron resultados
+                            if (!empty($subcategorias)) {
+                                foreach ($subcategorias as $subcategoria) {
+                                    echo '<option value="' . $subcategoria->id_rfp_subcategoria . '">' . $subcategoria->nombre_rfp_subcategoria . '</option>';
+                                }
+                            } else {
+                                echo '<option value="0">No hay centros de costo disponibles</option>';
+                            }
+                            ?>
+        </select>
+        </div>
+    
         <h2>Archivos de la Solicitud</h2>
         <ul>
             <?php
@@ -97,8 +120,8 @@ if (isset($_GET['id'])) {
 
 
         <div class="button-container">
-            <button type="button" class="btn btn-aceptar" onclick="updateEstado('aceptada')">Aceptar</button>
-            <button type="button" class="btn btn-rechazar" onclick="updateEstado('rechazada')">Rechazar</button>
+        <button type="button" class="btn btn-aceptar" onclick="aceptar()">Aceptar</button>
+        <button type="button" class="btn btn-rechazar" onclick="updateEstado('rechazada',null)">Rechazar</button>
 
         </div>
     </main>
@@ -106,12 +129,25 @@ if (isset($_GET['id'])) {
 
 </html>
 <script>
-    function updateEstado(estado) {
+    function aceptar() {
+        var subcategoria = document.getElementById("subcategoria").value;
+        
+        // Verificar si se ha ingresado una subcategoría
+        if (subcategoria.trim() !== '') {
+            // Llamar a la función para actualizar el estado con 'aceptada'
+            updateEstado('aceptada',subcategoria);
+        } else {
+            // Mostrar un mensaje de error o tomar otra acción según sea necesario
+            alert("Por favor ingresa una subcategoría para aceptar la solicitud.");
+        }
+    }
+
+    function updateEstado(estado, subcategoria_solicitud) {
         var idSolicitud = <?php echo $solicitud_data['id_rfp_solicitud']; ?>;
+        
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-
                 alert(this.responseText); // Muestra el mensaje de éxito o error
                 window.location.href = "../administrador/administrador.php"; // Recargar la página después de actualizar el estado
             }
@@ -119,6 +155,6 @@ if (isset($_GET['id'])) {
         // Enviar los datos por POST al archivo ajax_handler.php
         xhttp.open("POST", "../../controllers/solicitud_controller/detalle_solicitud_post.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("id_solicitud=" + idSolicitud + "&estado=" + estado);
+        xhttp.send("id_solicitud=" + idSolicitud + "&estado=" + estado + "&subcategoria=" + subcategoria_solicitud);
     }
 </script>

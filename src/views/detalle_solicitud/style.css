@@ -116,3 +116,19 @@ ul li span {
     height: 80px;
     
 }
+#subcategoria-container {
+    margin-top: 20px;
+}
+
+#subcategoria-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#subcategoria-container input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
