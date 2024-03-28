@@ -75,28 +75,31 @@ if (isset($_GET['id'])) {
             <?php endif; ?>
         </ul>
         <!-- Formulario para actualizar la subcategoría -->
-        <div id="subcategoria-container" >
-        <!-- Campo de entrada de la subcategoría -->
-        <label for="subcategoria">Subcategoría:</label>
-        <select name="subcategoria" id="subcategoria">
-        <?php
-                        require_once('../../controllers/subcategoria_controller/subcategoria_controller.php');
+        <div id="subcategoria-container">
+            <!-- Campo de entrada de la subcategoría -->
+            <label for="subcategoria">Subcategoría:</label>
+            <select name="subcategoria" id="subcategoria-select">
+                <?php
+                require_once('../../controllers/subcategoria_controller/subcategoria_controller.php');
 
-                            $subcategoria_controller = new subcategoria_controller();
-                            $prueba = 1;
-                            $cecos = $subcategoria_controller->get(); 
-                            // Verificar si se obtuvieron resultados
-                            if (!empty($subcategorias)) {
-                                foreach ($subcategorias as $subcategoria) {
-                                    echo '<option value="' . $subcategoria->id_rfp_subcategoria . '">' . $subcategoria->nombre_rfp_subcategoria . '</option>';
-                                }
-                            } else {
-                                echo '<option value="0">No hay centros de costo disponibles</option>';
-                            }
-                            ?>
-        </select>
+                $subcategoria_controller = new subcategoria_controller();
+
+                $subcategorias = $subcategoria_controller->get();
+                // Verificar si se obtuvieron resultados
+                if (!empty($subcategorias)) {
+                    var_dump($subcategorias);
+                    foreach ($subcategorias as $subcategoria) {
+                        echo '<option value="' . $subcategoria['id_rfp_subcategoria'] . '">' . $subcategoria['nombre_rfp_subcategoria'] . '(' . $subcategoria['nombre_usuario_subcategoria'] . ')' . '</option>';
+                    }
+                    
+                } else {
+                    echo '<option value="0">No hay centros de costo disponibles</option>';
+                }
+                
+                ?>
+            </select>
         </div>
-    
+
         <h2>Archivos de la Solicitud</h2>
         <ul>
             <?php
@@ -120,8 +123,8 @@ if (isset($_GET['id'])) {
 
 
         <div class="button-container">
-        <button type="button" class="btn btn-aceptar" onclick="aceptar()">Aceptar</button>
-        <button type="button" class="btn btn-rechazar" onclick="updateEstado('rechazada',null)">Rechazar</button>
+            <button type="button" class="btn btn-aceptar" onclick="aceptar()">Aceptar</button>
+            <button type="button" class="btn btn-rechazar" onclick="updateEstado('rechazada',null)">Rechazar</button>
 
         </div>
     </main>
@@ -130,21 +133,23 @@ if (isset($_GET['id'])) {
 </html>
 <script>
     function aceptar() {
-        var subcategoria = document.getElementById("subcategoria").value;
-        
+        var subcategoriaSelect = document.getElementById("subcategoria-select");
+        var subcategoria = subcategoriaSelect.options[subcategoriaSelect.selectedIndex].value;
+
         // Verificar si se ha ingresado una subcategoría
-        if (subcategoria.trim() !== '') {
+        if (subcategoria !== '0') {
+
             // Llamar a la función para actualizar el estado con 'aceptada'
-            updateEstado('aceptada',subcategoria);
+            updateEstado('aceptada', subcategoria);
         } else {
             // Mostrar un mensaje de error o tomar otra acción según sea necesario
-            alert("Por favor ingresa una subcategoría para aceptar la solicitud.");
+            alert("Por favor selecciona una subcategoría.");
         }
     }
 
     function updateEstado(estado, subcategoria_solicitud) {
         var idSolicitud = <?php echo $solicitud_data['id_rfp_solicitud']; ?>;
-        
+
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {

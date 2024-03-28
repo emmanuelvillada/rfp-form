@@ -47,7 +47,7 @@ class solicitud_controller
         LEFT JOIN
             usuarios u ON s.id_rfp_usuario_solicitud = u.documento
         LEFT JOIN
-            smart_center_rfp_subcategoria sc ON s.id_rfp_subcategoria_solicitud = sc.id_smart_cente_rfpr_subcategoria
+            smart_center_rfp_subcategoria sc ON s.id_rfp_subcategoria_solicitud = sc.id_rfp_subcategoria
         LEFT JOIN
             smart_center_rfp_presupuestos p ON s.id_rfp_presupuesto_solicitud = p.id_rfp_presupuestos
         LEFT JOIN
@@ -91,7 +91,7 @@ class solicitud_controller
         LEFT JOIN
             usuarios u ON s.id_rfp_usuario_solicitud = u.documento
         LEFT JOIN
-            smart_center_rfp_subcategoria sc ON s.id_rfp_subcategoria_solicitud = sc.id_smart_cente_rfpr_subcategoria
+            smart_center_rfp_subcategoria sc ON s.id_rfp_subcategoria_solicitud = sc.id_rfp_subcategoria
         LEFT JOIN
             smart_center_rfp_presupuestos p ON s.id_rfp_presupuesto_solicitud = p.id_rfp_presupuestos
         LEFT JOIN
@@ -144,7 +144,7 @@ class solicitud_controller
         LEFT JOIN
             usuarios u ON s.id_rfp_usuario_solicitud = u.documento
         LEFT JOIN
-            smart_center_rfp_subcategoria sc ON s.id_rfp_subcategoria_solicitud = sc.id_smart_cente_rfpr_subcategoria
+            smart_center_rfp_subcategoria sc ON s.id_rfp_subcategoria_solicitud = sc.id_rfp_subcategoria
         LEFT JOIN
             smart_center_rfp_presupuestos p ON s.id_rfp_presupuesto_solicitud = p.id_rfp_presupuestos
         LEFT JOIN

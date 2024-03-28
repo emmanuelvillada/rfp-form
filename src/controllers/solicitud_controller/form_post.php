@@ -96,7 +96,7 @@ if (isset($_POST['submit'])) {
                             move_uploaded_file($ruta_temporal, $ruta_destino);
 
                             // Guardar la información del archivo en la base de datos
-                            $archivo_controller->create($id_solicitud, $nombre_unico, $tipo_rfp_archivo, $ruta_destino, $fecha_subida_rfp_archivo);
+                            $archivo_controller->create($id_solicitud, $nombre_unico, $tipo_rfp_archivo, $ruta_destino, $fecha_subida_rfp_archivo,$nombre_rfp_archivo);
                         }
                     }
                     //enviar correo al equipo de negociacion, notificando la creacion de una nueva solicitud
